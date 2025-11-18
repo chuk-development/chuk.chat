@@ -118,17 +118,24 @@
     
     <div class="waitlist-section">
         <p class="waitlist-message">Subscribe to our mailing list to get access to beta or be notified when we launch!</p>
-        <form method="post" action="https://mail.chuk.chat/subscription/form" class="waitlist-box">
+        <div id="success-message" style="display: none; color: #27ae60; font-size: 1.1rem; margin: 20px 0;">
+            🎉 Successfully subscribed! Check your email to confirm.
+        </div>
+        <div id="error-message" style="display: none; color: #e74c3c; font-size: 1rem; margin: 20px 0;">
+            Oops! Something went wrong. Please try again.
+        </div>
+        <form id="waitlist-form" method="post" action="https://mail.chuk.chat/subscription/form" class="waitlist-box">
             <input type="hidden" name="nonce" />
             <input type="hidden" name="l" value="2bb51e2c-0567-44e7-9fac-26e1453e0067" />
             <input 
+                id="email-input"
                 type="email" 
                 name="email" 
                 placeholder="Enter your email…" 
                 required 
                 class="waitlist-input"
             />
-            <button type="submit" class="waitlist-btn">
+            <button id="submit-btn" type="submit" class="waitlist-btn">
                 Join Waitlist
             </button>
         </form>
