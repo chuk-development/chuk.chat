@@ -147,5 +147,49 @@
     <div class="image-container" style="margin-top: 20px;">
         <img src="mobile-screenshot.png" alt="Mobile Screenshot" style="max-width: 400px;">
     </div>
+    
+    <script>
+        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = document.getElementById('submit-btn');
+            const successMsg = document.getElementById('success-message');
+            const errorMsg = document.getElementById('error-message');
+            const emailInput = document.getElementById('email-input');
+            
+            // Hide previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Success
+                    successMsg.style.display = 'block';
+                    form.style.display = 'none';
+                } else {
+                    // Error
+                    errorMsg.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Join Waitlist';
+                }
+            } catch (error) {
+                // Network error
+                errorMsg.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist';
+            }
+        });
+    </script>
 </body>
 </html>
