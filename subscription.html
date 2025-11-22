@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Status — Chuk Chat</title>
+    <style>
+        :root {
+            --bg-color: #09090b;
+            --text-color: #ffffff;
+            --accent-color: #3F5E5D;
+            --accent-hover: #507674;
+            --secondary-text: #a1a1aa;
+            --card-bg: rgba(24, 24, 27, 0.6);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover-border: rgba(255, 255, 255, 0.15);
+            --top-bar-height: 60px;
+            --success-color: #4ade80;
+            --error-color: #f87171;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 0%, rgba(63, 94, 93, 0.15) 0%, transparent 70%);
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: var(--top-bar-height);
+        }
+
+        /* Top Navigation Bar */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--top-bar-height);
+            background: rgba(9, 9, 11, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+            transition: opacity 0.2s;
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-link {
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 60px 20px;
+            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .status-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            margin-top: 80px;
+        }
+
+        .status-icon {
+            font-size: 5rem;
+            margin-bottom: 24px;
+            animation: scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        p {
+            color: var(--secondary-text);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin: 0 0 32px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 32px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(63, 94, 93, 0.3);
+        }
+
+        .secondary-button {
+            display: inline-block;
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: color 0.2s;
+        }
+
+        .secondary-button:hover {
+            color: #fff;
+        }
+
+        .success-accent {
+            color: var(--success-color);
+        }
+
+        .error-accent {
+            color: var(--error-color);
+        }
+
+        .details {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 32px;
+            text-align: left;
+        }
+
+        .details h3 {
+            margin: 0 0 12px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .details ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--secondary-text);
+        }
+
+        .details li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .status-card {
+                padding: 40px 24px;
+            }
+            .status-icon {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <div class="nav-container">
+            <a href="./index.html" class="logo">Chuk Chat</a>
+            <div class="nav-links">
+                <a href="./pricing.html" class="nav-link">Pricing</a>
+                <a href="./downloads.html" class="nav-link">Downloads</a>
+                <a href="./support.html" class="nav-link">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="status-card" id="status-content">
+            <!-- Content will be injected by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const isSuccess = urlParams.get('success') === 'true';
+        const statusContent = document.getElementById('status-content');
+
+        if (isSuccess) {
+            // Success state
+            statusContent.innerHTML = `
+                <div class="status-icon">🎉</div>
+                <h1 class="success-accent">Payment Successful!</h1>
+                <p>Thank you for subscribing to Chuk Chat. Your payment has been processed successfully.</p>
+
+                <div class="details">
+                    <h3>What's Next?</h3>
+                    <ul>
+                        <li>Check your email for your subscription confirmation and receipt</li>
+                        <li>Download Chuk Chat for your platform if you haven't already</li>
+                        <li>Sign in with your account to start using all premium features</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 32px;">
+                    <a href="./downloads.html" class="cta-button">Download Chuk Chat</a>
+                </div>
+                <div>
+                    <a href="./index.html" class="secondary-button">Return to Home →</a>
+                </div>
+            `;
+        } else {
+            // Failure state
+            statusContent.innerHTML = `
+                <div class="status-icon">❌</div>
+                <h1 class="error-accent">Payment Failed</h1>
+                <p>We encountered an issue processing your payment. Don't worry, you have not been charged.</p>
+
+                <div class="details">
+                    <h3>Common Issues:</h3>
+                    <ul>
+                        <li>Insufficient funds in your account</li>
+                        <li>Card details entered incorrectly</li>
+                        <li>Payment was declined by your bank</li>
+                        <li>Connection issue during checkout</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 32px;">
+                    <a href="./pricing.html" class="cta-button">Try Again</a>
+                </div>
+                <div>
+                    <a href="./support.html" class="secondary-button">Contact Support →</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
