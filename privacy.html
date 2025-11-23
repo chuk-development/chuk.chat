@@ -201,10 +201,14 @@
             <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.1 Account Information</h3>
             <p>When you create an account, we collect:</p>
             <ul>
-                <li>Email address</li>
-                <li>Display name (optional)</li>
+                <li>Email address (stored in plaintext in Supabase database)</li>
+                <li>Display name (optional, stored in plaintext)</li>
                 <li>Password (stored as a secure hash, never in plaintext)</li>
             </ul>
+            <p>
+                <strong>Important:</strong> Your email and username are stored in standard database format (not encrypted)
+                as this is necessary for authentication and email communication. Only your chat messages are encrypted.
+            </p>
 
             <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.2 Chat Data</h3>
             <p>
@@ -362,27 +366,39 @@
             <p>We use the following third-party services:</p>
             <ul>
                 <li><strong>OpenRouter:</strong> AI model routing and access. Your prompts are sent to OpenRouter with model training disabled.
-                    Review <a href="https://openrouter.ai/privacy" target="_blank" rel="noopener noreferrer">OpenRouter's Privacy Policy</a>.
+                    Review <a href="https://openrouter.ai/privacy" target="_blank" rel="noopener noreferrer">OpenRouter's Privacy Policy</a> |
+                    <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
                 <li><strong>Groq:</strong> Speech-to-text transcription using Whisper. Audio is processed but not stored.
-                    Review <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Groq's Privacy Policy</a>.
+                    Review <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Groq's Privacy Policy</a> |
+                    <a href="https://groq.com/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
                 <li><strong>Inworld:</strong> Text-to-speech generation. Generated audio is not stored on our servers.
-                    Review <a href="https://www.inworld.ai/privacy-policy" target="_blank" rel="noopener noreferrer">Inworld's Privacy Policy</a>.
+                    Review <a href="https://www.inworld.ai/privacy-policy" target="_blank" rel="noopener noreferrer">Inworld's Privacy Policy</a> |
+                    <a href="https://www.inworld.ai/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
                 <li><strong>LiveKit:</strong> Real-time voice and video communication infrastructure (coming soon). Audio/video streams
                     are transmitted in real-time but not permanently stored.
-                    Review <a href="https://livekit.io/legal/privacy" target="_blank" rel="noopener noreferrer">LiveKit's Privacy Policy</a>.
+                    Review <a href="https://livekit.io/legal/privacy" target="_blank" rel="noopener noreferrer">LiveKit's Privacy Policy</a> |
+                    <a href="https://livekit.io/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
-                <li><strong>Supabase:</strong> Database and authentication (encrypted data storage only).
-                    Review <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's Privacy Policy</a>.
+                <li><strong>Supabase:</strong> Database and authentication (encrypted chat storage only, account data in plaintext).
+                    Review <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's Privacy Policy</a> |
+                    <a href="https://supabase.com/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
                 <li><strong>Stripe:</strong> Payment processing (we never store full credit card numbers).
-                    Review <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe's Privacy Policy</a>.
+                    Review <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe's Privacy Policy</a> |
+                    <a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
                 <li><strong>Lexoffice:</strong> Invoice generation for user billing. Your invoice data (name, email, billing address if provided)
                     is processed by Lexoffice to generate legally compliant invoices.
-                    Review <a href="https://www.lexoffice.de/datenschutz/" target="_blank" rel="noopener noreferrer">Lexoffice's Privacy Policy</a>.
+                    Review <a href="https://www.lexoffice.de/datenschutz/" target="_blank" rel="noopener noreferrer">Lexoffice's Privacy Policy</a> |
+                    <a href="https://www.lexoffice.de/" target="_blank" rel="noopener noreferrer">Website</a>.
+                </li>
+                <li><strong>Mailbox.org:</strong> Email service for sending transactional emails (account verification, password resets, notifications).
+                    Your email address is used to send you service-related emails.
+                    Review <a href="https://mailbox.org/en/data-protection" target="_blank" rel="noopener noreferrer">Mailbox.org's Privacy Policy</a> |
+                    <a href="https://mailbox.org/en/" target="_blank" rel="noopener noreferrer">Website</a>.
                 </li>
             </ul>
             <p>
