@@ -243,9 +243,10 @@
                 When you use AI features, your data is processed by specialized third-party services:
             </p>
             <ul>
-                <li><strong>Text Generation (LLMs):</strong> Messages are sent to OpenRouter, which routes them to AI providers
-                    (OpenAI, Anthropic, Google, Meta, etc.). <strong>Model training is disabled</strong> - your data is not used
-                    to train AI models.
+                <li><strong>Text Generation (LLMs):</strong> Messages are sent to OpenRouter, which routes them to open-weight
+                    AI model providers only. <strong>We only support open-weight models</strong> (e.g., Llama, Mistral, Qwen, DeepSeek).
+                    Closed/proprietary models (Claude, GPT-4, Gemini) are not available. <strong>Model training is disabled</strong> -
+                    your data is not used to train AI models.
                 </li>
                 <li><strong>Speech-to-Text:</strong> Audio is processed by Whisper running on Groq infrastructure for
                     transcription. Audio is not stored after transcription.
@@ -373,8 +374,9 @@
                 </li>
             </ul>
             <p>
-                <strong>AI Model Providers:</strong> OpenAI, Anthropic, Google, Meta, etc. - Your prompts are routed through
-                OpenRouter to these providers with model training disabled. Each provider has their own privacy policies.
+                <strong>AI Model Providers:</strong> We only support open-weight models (Llama, Mistral, Qwen, DeepSeek, etc.).
+                Your prompts are routed through OpenRouter to these open-weight model providers with model training disabled.
+                Closed/proprietary models like Claude, GPT-4, and Gemini are not available on chuk.chat.
             </p>
             <p>
                 These services have their own privacy policies, which we encourage you to review. We are not responsible
