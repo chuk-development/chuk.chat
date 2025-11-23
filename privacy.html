@@ -218,9 +218,20 @@
             </ul>
 
             <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.3 Usage Information</h3>
-            <p>We collect minimal usage data:</p>
+            <p>We collect the following usage data for billing and service operation:</p>
             <ul>
                 <li>Subscription status and payment information (processed securely via Stripe)</li>
+                <li><strong>Token Usage Data:</strong> For each AI message, we log:
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Input tokens (prompt length)</li>
+                        <li>Output tokens (response length)</li>
+                        <li>Model name used (e.g., "gpt-4", "claude-3.5-sonnet")</li>
+                        <li>Provider name (e.g., "OpenAI", "Anthropic")</li>
+                        <li>Timestamp</li>
+                    </ul>
+                    This data is stored in Supabase to calculate your usage and billing. We do NOT store the actual
+                    message content in these logs - only the token counts and metadata.
+                </li>
             </ul>
             <p>
                 <strong>We do NOT collect:</strong> Device information, operating system details, app version,
@@ -254,6 +265,7 @@
             <p>We use collected information to:</p>
             <ul>
                 <li>Provide and maintain the Service</li>
+                <li>Calculate usage and generate billing based on token consumption (input/output tokens per model)</li>
                 <li>Process your subscription and payments</li>
                 <li>Send important service updates and security notifications</li>
                 <li>Improve and optimize the Service</li>
@@ -285,6 +297,7 @@
             <ul>
                 <li><strong>Account Data:</strong> Retained until you delete your account</li>
                 <li><strong>Chat Data:</strong> Stored encrypted until you manually delete individual chats</li>
+                <li><strong>Token Usage Logs:</strong> Retained for billing purposes and deleted when your account is deleted</li>
                 <li><strong>Payment Information:</strong> Stored securely by Stripe (our payment processor)</li>
             </ul>
             <p>
