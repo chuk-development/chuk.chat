@@ -6,15 +6,15 @@
     <title>Downloads - Chuk Chat</title>
     <style>
         :root {
-            --bg-color: #09090b;
-            --text-color: #ffffff;
-            --accent-color: #3F5E5D;
-            --accent-hover: #507674;
-            --secondary-text: #a1a1aa;
-            --card-bg: rgba(24, 24, 27, 0.6);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --card-hover-border: rgba(255, 255, 255, 0.15);
-            --top-bar-height: 60px;
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --accent-color: #000000;
+            --accent-hover: #333333;
+            --secondary-text: #666666;
+            --card-bg: #f9f9f9;
+            --card-border: #e5e5e5;
+            --card-hover-border: #d4d4d4;
+            --top-bar-height: 70px;
         }
 
         * {
@@ -25,8 +25,8 @@
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, rgba(63, 94, 93, 0.15) 0%, transparent 70%);
-            background-attachment: fixed;
+            
+            
             color: var(--text-color);
             line-height: 1.6;
             display: flex;
@@ -43,7 +43,7 @@
             left: 0;
             right: 0;
             height: var(--top-bar-height);
-            background: rgba(9, 9, 11, 0.7);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--card-border);
@@ -63,21 +63,21 @@
         }
 
         .logo {
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: #fff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #000;
             text-decoration: none;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
             transition: opacity 0.2s;
         }
-        
+
         .logo:hover {
-            opacity: 0.9;
+            opacity: 0.7;
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
+            gap: 32px;
         }
 
         .nav-link {
@@ -90,11 +90,32 @@
         }
 
         .nav-link:hover {
-            color: #fff;
+            color: #000;
         }
-        
+
         .nav-link.active {
-            color: #fff;
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            filter: grayscale(100%);
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+            color: #000;
         }
 
         .container {
@@ -114,25 +135,21 @@
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(3rem, 6vw, 3.75rem);
             font-weight: 800;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
             margin: 0 0 20px 0;
-            background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #000;
             text-align: center;
-            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--secondary-text);
             margin-bottom: 60px;
             text-align: center;
             max-width: 600px;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .downloads-grid {
@@ -144,9 +161,9 @@
         }
 
         .download-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
+            background: #fff;
+            border: 3px solid var(--card-border);
+            border-radius: 0;
             padding: 36px;
             display: flex;
             flex-direction: column;
@@ -155,29 +172,27 @@
             transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
         }
 
         .download-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-color);
-            background: rgba(63, 94, 93, 0.08);
-            box-shadow: 0 12px 40px -8px rgba(63, 94, 93, 0.15);
+            border-color: var(--card-hover-border);
+            box-shadow: 0 12px 32px -8px rgba(0,0,0,0.1);
         }
 
         .os-icon {
             width: 56px;
             height: 56px;
             margin-bottom: 20px;
-            color: #fff;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            color: #000;
         }
 
         .os-name {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 8px;
-            color: #fff;
+            color: #000;
         }
 
         .os-version {
@@ -188,36 +203,33 @@
         }
 
         .download-btn {
-            background: var(--accent-color);
-            color: white;
+            background: #000;
+            color: #fff;
             text-decoration: none;
             padding: 12px 24px;
-            border-radius: 10px;
+            border-radius: 0;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.2s;
             width: 100%;
-            border: 1px solid transparent;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            border: 3px solid transparent;
         }
 
         .download-btn:hover {
-            background: var(--accent-hover);
+            background: #333;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(63, 94, 93, 0.3);
         }
 
         .download-btn.disabled {
-            background: rgba(255,255,255,0.03);
+            background: #f3f3f3;
             color: var(--secondary-text);
             cursor: not-allowed;
-            border: 1px solid var(--card-border);
-            box-shadow: none;
+            border: 3px solid var(--card-border);
             transform: none;
         }
-        
+
         .download-btn.disabled:hover {
-            background: rgba(255,255,255,0.05);
+            background: #f3f3f3;
         }
 
         .coming-soon-badge {
@@ -225,12 +237,12 @@
             top: 16px;
             right: 16px;
             font-size: 0.75rem;
-            background: rgba(255,255,255,0.1);
+            background: #f3f4f6;
             padding: 4px 10px;
-            border-radius: 99px;
-            color: #fff;
+            border-radius: 0;
+            color: #4b5563;
             font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 3px solid #e5e7eb;
         }
 
         /* Footer */
@@ -240,14 +252,48 @@
             padding-bottom: 60px;
             display: flex;
             justify-content: center;
+            align-items: center;
+            gap: 32px;
             width: 100%;
             border-top: 1px solid var(--card-border);
         }
-        
+
         .footer span {
             color: var(--secondary-text);
             font-size: 0.9rem;
             font-weight: 500;
+        }
+
+        .footer a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-link {
+                font-size: 0.875rem;
+            }
+
+            .footer {
+                flex-wrap: wrap;
+                gap: 16px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -256,7 +302,7 @@
     <nav class="top-bar">
         <div class="nav-container">
             <a href="./index.html" class="logo">Chuk Chat</a>
-            <div class="nav-links">
+            <div style="display: flex; align-items: center; gap: 32px;"><div class="nav-links">
                 <a href="./pricing.html" class="nav-link">Pricing</a>
                 <a href="./downloads.html" class="nav-link active">Downloads</a>
                 <a href="./support.html" class="nav-link">Support</a>
@@ -303,7 +349,10 @@
         </div>
 
         <footer class="footer">
-            <span style="color: #52525b;">&copy; 2025 Chuk</span>
+            <span>&copy; 2025 Chuk</span>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms of Service</a>
+            <a href="./impressum.html">Impressum</a>
         </footer>
     </div>
 </body>
