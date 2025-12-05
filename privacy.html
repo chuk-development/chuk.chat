@@ -4,205 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - chuk.chat</title>
+    <link rel="stylesheet" href="shared-styles.css">
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #000000;
-            --accent-hover: #333333;
-            --secondary-text: #666666;
-            --card-bg: #f9f9f9;
-            --card-border: #e5e5e5;
-            --card-hover-border: #d4d4d4;
-            --top-bar-height: 70px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            
-            
-            color: var(--text-color);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding-top: var(--top-bar-height);
-        }
-
-        /* Top Navigation Bar */
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--top-bar-height);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 0 20px;
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: -0.03em;
-            transition: opacity 0.2s;
-        }
-
-        .logo:hover {
-            opacity: 0.9;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .nav-link {
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: #000;
-        }
-
-        .nav-link.active {
-            color: #000;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.03em;
-        }
-
         .updated {
-            color: var(--secondary-text);
-            margin-bottom: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 13px;
         }
 
         h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-hover);
+            margin-top: 32px;
+            border-bottom: 1px dotted var(--border-dotted);
         }
 
-        p {
-            margin-bottom: 1rem;
-            color: var(--secondary-text);
+        h3 {
+            font-size: 16px;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            border-bottom: none;
         }
 
-        ul {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            color: var(--secondary-text);
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        a {
-            color: var(--accent-hover);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .highlight {
-            background: rgba(63, 94, 93, 0.2);
-            padding: 1rem;
-            border-radius: 0;
-            border-left: 3px solid var(--accent-color);
-            margin: 1rem 0;
-        }
-
-        .lang-switcher {
-            position: absolute;
+        .lang-switcher-box {
+            position: fixed;
             top: 70px;
-            right: 20px;
+            right: 24px;
             background: var(--card-bg);
-            border: 3px solid var(--card-border);
-            border-radius: 0;
+            border: 1px solid var(--border-solid);
             padding: 8px 12px;
-            font-size: 0.9rem;
+            font-size: 13px;
+            z-index: 100;
         }
 
-        .lang-switcher a {
-            color: var(--secondary-text);
-            text-decoration: none;
-            margin: 0 6px;
-            transition: color 0.2s;
+        .lang-switcher-box a.active {
+            color: var(--text-color);
+            font-weight: bold;
         }
 
-        .lang-switcher a:hover {
-            color: var(--accent-hover);
-        }
-
-        .lang-switcher a.active {
-            color: var(--accent-hover);
-            font-weight: 600;
+        .footer-links {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px dotted var(--border-dotted);
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
-    <div class="top-bar">
+    <nav class="top-bar">
         <div class="nav-container">
-            <a href="/" class="logo">chuk.chat</a>
+            <a href="./index.html" class="logo">chuk.chat</a>
             <div class="nav-links">
-                <a href="/pricing.html" class="nav-link">Pricing</a>
-                <a href="/downloads.html" class="nav-link">Downloads</a>
-                <a href="/support.html" class="nav-link">Support</a>
+                <a href="./pricing.html" class="nav-link">Pricing</a>
+                <a href="./downloads.html" class="nav-link">Downloads</a>
+                <a href="./support.html" class="nav-link">Support</a>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Language Switcher -->
-    <div class="lang-switcher">
-        <a href="/privacy.html" class="active">English</a> | <a href="/privacy-de.html">Deutsch</a>
+    <div class="lang-switcher-box">
+        <a href="./privacy.html" class="active">English</a> | <a href="./privacy-de.html">Deutsch</a>
     </div>
 
     <div class="container">
@@ -230,7 +88,7 @@
         <div class="section">
             <h2>2. Information We Collect</h2>
 
-            <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.1 Account Information</h3>
+            <h3>2.1 Account Information</h3>
             <p>When you create an account, we collect:</p>
             <ul>
                 <li>Email address (stored in plaintext in Supabase database)</li>
@@ -242,7 +100,7 @@
                 as this is necessary for authentication and email communication. Only your chat messages are encrypted.
             </p>
 
-            <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.2 Chat Data</h3>
+            <h3>2.2 Chat Data</h3>
             <p>
                 All your chat messages and conversations are encrypted end-to-end using AES-256-GCM encryption
                 on your device before being sent to Supabase. This means:
@@ -253,12 +111,12 @@
                 <li>Only you can read your chat history</li>
             </ul>
 
-            <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.3 Usage Information</h3>
+            <h3>2.3 Usage Information</h3>
             <p>We collect the following usage data for billing and service operation:</p>
             <ul>
                 <li>Subscription status and payment information (processed securely via Stripe)</li>
                 <li><strong>Token Usage Data:</strong> For each AI message, we log:
-                    <ul style="margin-top: 0.5rem;">
+                    <ul style="margin-top: 8px;">
                         <li>Input tokens (prompt length)</li>
                         <li>Output tokens (response length)</li>
                         <li>Model name used (e.g., "gpt-4", "claude-3.5-sonnet")</li>
@@ -274,7 +132,7 @@
                 platform type, error logs, crash reports, or analytics data.
             </p>
 
-            <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">2.4 Third-Party AI Services</h3>
+            <h3>2.4 Third-Party AI Services</h3>
             <p>
                 When you use AI features, your data is processed by specialized third-party services:
             </p>
@@ -332,18 +190,14 @@
 
         <div class="section">
             <h2>5. Data Retention</h2>
-            <p>
-                We retain your data as follows:
-            </p>
+            <p>We retain your data as follows:</p>
             <ul>
                 <li><strong>Account Data:</strong> Retained until you delete your account</li>
                 <li><strong>Chat Data:</strong> Stored encrypted until you manually delete individual chats</li>
                 <li><strong>Token Usage Logs:</strong> Retained for billing purposes and deleted when your account is deleted</li>
                 <li><strong>Payment Information:</strong> Stored securely by Stripe (our payment processor)</li>
             </ul>
-            <p>
-                We do not retain error logs, crash reports, or access logs in Supabase.
-            </p>
+            <p>We do not retain error logs, crash reports, or access logs in Supabase.</p>
         </div>
 
         <div class="section">
@@ -363,16 +217,12 @@
 
         <div class="section">
             <h2>7. Cookies and Tracking</h2>
-            <p>
-                Our website uses minimal cookies for essential functionality:
-            </p>
+            <p>Our website uses minimal cookies for essential functionality:</p>
             <ul>
                 <li><strong>Authentication cookies:</strong> To keep you logged in</li>
                 <li><strong>Preference cookies:</strong> To remember your theme and settings</li>
             </ul>
-            <p>
-                We do not use advertising cookies or third-party tracking scripts.
-            </p>
+            <p>We do not use advertising cookies or third-party tracking scripts.</p>
         </div>
 
         <div class="section">
@@ -396,55 +246,16 @@
             <h2>10. Third-Party Services</h2>
             <p>We use the following third-party services:</p>
             <ul>
-                <li><strong>OpenRouter:</strong> AI model routing and access. Your prompts are sent to OpenRouter with model training disabled.
-                    Review <a href="https://openrouter.ai/privacy" target="_blank" rel="noopener noreferrer">OpenRouter's Privacy Policy</a> |
-                    <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Groq:</strong> Speech-to-text transcription using Whisper. Audio is processed but not stored.
-                    Review <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Groq's Privacy Policy</a> |
-                    <a href="https://groq.com/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Inworld:</strong> Text-to-speech generation. Generated audio is not permanently stored.
-                    Review <a href="https://www.inworld.ai/privacy-policy" target="_blank" rel="noopener noreferrer">Inworld's Privacy Policy</a> |
-                    <a href="https://www.inworld.ai/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>LiveKit:</strong> Real-time voice and video communication infrastructure (coming soon). Audio/video streams
-                    are transmitted in real-time but not permanently stored.
-                    Review <a href="https://livekit.io/legal/privacy" target="_blank" rel="noopener noreferrer">LiveKit's Privacy Policy</a> |
-                    <a href="https://livekit.io/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Supabase:</strong> Database and authentication (encrypted chat storage only, account data in plaintext).
-                    Review <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's Privacy Policy</a> |
-                    <a href="https://supabase.com/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Stripe:</strong> Payment processing (we never store full credit card numbers).
-                    Review <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Stripe's Privacy Policy</a> |
-                    <a href="https://stripe.com/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Lexoffice:</strong> Invoice generation for user billing. Your invoice data (name, email, billing address if provided)
-                    is processed by Lexoffice to generate legally compliant invoices.
-                    Review <a href="https://www.lexoffice.de/datenschutz/" target="_blank" rel="noopener noreferrer">Lexoffice's Privacy Policy</a> |
-                    <a href="https://www.lexoffice.de/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Mailbox.org:</strong> Email service for sending transactional emails (account verification, password resets, notifications).
-                    Your email address is used to send you service-related emails.
-                    Review <a href="https://mailbox.org/en/data-protection" target="_blank" rel="noopener noreferrer">Mailbox.org's Privacy Policy</a> |
-                    <a href="https://mailbox.org/en/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
-                <li><strong>Hetzner:</strong> API server hosting infrastructure. Your API requests are processed through servers hosted by Hetzner.
-                    Review <a href="https://www.hetzner.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Hetzner's Privacy Policy</a> |
-                    <a href="https://www.hetzner.com/" target="_blank" rel="noopener noreferrer">Website</a>.
-                </li>
+                <li><strong>OpenRouter:</strong> AI model routing and access. <a href="https://openrouter.ai/privacy" target="_blank">Privacy Policy</a></li>
+                <li><strong>Groq:</strong> Speech-to-text transcription. <a href="https://groq.com/privacy-policy/" target="_blank">Privacy Policy</a></li>
+                <li><strong>Inworld:</strong> Text-to-speech generation. <a href="https://www.inworld.ai/privacy-policy" target="_blank">Privacy Policy</a></li>
+                <li><strong>LiveKit:</strong> Real-time voice and video (coming soon). <a href="https://livekit.io/legal/privacy" target="_blank">Privacy Policy</a></li>
+                <li><strong>Supabase:</strong> Database and authentication. <a href="https://supabase.com/privacy" target="_blank">Privacy Policy</a></li>
+                <li><strong>Stripe:</strong> Payment processing. <a href="https://stripe.com/privacy" target="_blank">Privacy Policy</a></li>
+                <li><strong>Lexoffice:</strong> Invoice generation. <a href="https://www.lexoffice.de/datenschutz/" target="_blank">Privacy Policy</a></li>
+                <li><strong>Mailbox.org:</strong> Email service. <a href="https://mailbox.org/en/data-protection" target="_blank">Privacy Policy</a></li>
+                <li><strong>Hetzner:</strong> API server hosting. <a href="https://www.hetzner.com/legal/privacy-policy" target="_blank">Privacy Policy</a></li>
             </ul>
-            <p>
-                <strong>AI Model Providers:</strong> We only support open-weight models (Llama, Mistral, Qwen, DeepSeek, etc.).
-                Your prompts are routed through OpenRouter to these open-weight model providers with model training disabled.
-                Closed/proprietary models like Claude, GPT-4, and Gemini are not available on chuk.chat.
-            </p>
-            <p>
-                These services have their own privacy policies, which we encourage you to review. We are not responsible
-                for how these third-party services handle your data.
-            </p>
         </div>
 
         <div class="section">
@@ -467,13 +278,11 @@
             </p>
         </div>
 
-        <div class="section">
-            <p style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--card-border);">
-                <a href="/terms.html">Terms of Service</a> |
-                <a href="/impressum.html">Impressum</a> |
-                <a href="/support.html">Support</a> |
-                <a href="/">Home</a>
-            </p>
+        <div class="footer-links">
+            <a href="./terms.html">Terms of Service</a> |
+            <a href="./impressum.html">Impressum</a> |
+            <a href="./support.html">Support</a> |
+            <a href="./index.html">Home</a>
         </div>
     </div>
 </body>

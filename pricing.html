@@ -3,279 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Chuk</title>
+    <title>Pricing - Chuk Chat</title>
+    <link rel="stylesheet" href="shared-styles.css">
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --accent-color: #000000;
-            --accent-hover: #333333;
-            --secondary-text: #666666;
-            --card-bg: #f9f9f9;
-            --card-border: #e5e5e5;
-            --card-hover-border: #d4d4d4;
-            --top-bar-height: 70px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding-top: var(--top-bar-height);
-        }
-
-        /* Top Navigation Bar */
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--top-bar-height);
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 0 32px;
-        }
-
-        .nav-container {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            transition: opacity 0.2s;
-        }
-
-        .logo:hover {
-            opacity: 0.7;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-link {
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: #000;
-        }
-
-        .nav-link.active {
-
-        /* Language Switcher */
-        .lang-switcher {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .lang-btn {
-            font-size: 1.25rem;
-            cursor: pointer;
-            opacity: 0.4;
-            transition: opacity 0.2s;
-            text-decoration: none;
-            filter: grayscale(100%);
-        }
-
-        .lang-btn:hover, .lang-btn.active {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-            color: #000;
-        }
-
         .container {
-            width: 100%;
-            max-width: 1000px;
-            padding: 80px 20px;
             text-align: center;
-            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         h1 {
-            font-size: clamp(3rem, 6vw, 3.75rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            margin: 0 0 16px 0;
-            color: #000;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .subtitle {
-            font-size: 1.25rem;
-            color: var(--secondary-text);
-            margin-bottom: 60px;
-            font-weight: 400;
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
         }
 
         .pricing-card {
-            background: #fff;
-            border: 3px solid var(--card-border);
-            border-radius: 0;
-            padding: 48px;
-            max-width: 420px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-solid);
+            padding: 32px;
+            max-width: 380px;
             margin: 0 auto;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
         }
 
         .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-            border-color: var(--card-hover-border);
+            border-color: var(--text-color);
         }
 
         .price {
-            font-size: 4.5rem;
-            font-weight: 800;
-            color: #000;
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--text-color);
             line-height: 1;
             margin-bottom: 8px;
-            letter-spacing: -0.04em;
         }
 
         .price-period {
-            color: var(--secondary-text);
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px dotted var(--border-dotted);
         }
 
         .features {
-            margin: 40px 0;
             text-align: left;
-            color: var(--secondary-text);
-            font-size: 1rem;
+            margin-bottom: 24px;
         }
 
         .feature-item {
             display: flex;
             align-items: center;
-            margin-bottom: 16px;
-            gap: 12px;
+            margin-bottom: 12px;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            padding-bottom: 12px;
+            border-bottom: 1px dotted var(--border-dotted);
         }
 
-        .feature-item span {
-            font-weight: 500;
-            color: #000;
+        .feature-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         .feature-icon {
-            color: #000;
-            min-width: 20px;
+            color: var(--success);
+            min-width: 18px;
         }
 
         .note {
-            margin-top: 32px;
-            font-size: 0.9rem;
-            color: var(--secondary-text);
-            border-top: 1px solid var(--card-border);
-            padding-top: 24px;
-            font-weight: 500;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px dashed var(--border-dotted);
+            padding-top: 16px;
         }
 
-        /* Footer */
         .footer {
             margin-top: auto;
-            padding-top: 60px;
-            padding-bottom: 60px;
-            border-top: 1px solid var(--card-border);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 32px;
-            width: 100%;
-        }
-
-        .footer span {
-            color: var(--secondary-text);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .footer a {
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
-            color: #000;
-        }
-
-        @media (max-width: 768px) {
-            .top-bar {
-                padding: 0 20px;
-            }
-
-            .nav-links {
-                gap: 20px;
-            }
-
-            .nav-link {
-                font-size: 0.875rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .footer {
-                flex-wrap: wrap;
-                gap: 16px;
-                text-align: center;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
     <nav class="top-bar">
         <div class="nav-container">
             <a href="./index.html" class="logo">Chuk Chat</a>
-            <div style="display: flex; align-items: center; gap: 32px;"><div class="nav-links">
+            <div class="nav-links">
                 <a href="./pricing.html" class="nav-link active">Pricing</a>
                 <a href="./downloads.html" class="nav-link">Downloads</a>
                 <a href="./support.html" class="nav-link">Support</a>
@@ -286,22 +109,22 @@
     <div class="container">
         <h1>Simple Pricing</h1>
         <p class="subtitle">Transparent costs. No hidden fees.</p>
-        
+
         <div class="pricing-card">
             <div class="price">€20</div>
             <div class="price-period">per month</div>
 
             <div class="features">
                 <div class="feature-item">
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     <span>Full Access to Chuk AI</span>
                 </div>
                 <div class="feature-item">
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     <span>End-to-End Encryption</span>
                 </div>
                 <div class="feature-item">
-                    <svg class="feature-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="feature-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     <span>€18 in AI Credits Included</span>
                 </div>
             </div>
