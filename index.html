@@ -184,17 +184,26 @@
         }
 
         .lang-btn {
-            font-size: 20px;
+            font-size: 14px;
+            padding: 4px 8px;
             cursor: pointer;
-            opacity: 0.4;
+            opacity: 0.5;
             transition: opacity 0.2s;
             text-decoration: none;
-            filter: grayscale(100%);
+            color: var(--text-secondary);
+            border: 1px solid transparent;
         }
 
-        .lang-btn:hover, .lang-btn.active {
+        .lang-btn:hover {
             opacity: 1;
-            filter: grayscale(0%);
+            text-decoration: none;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            color: var(--text-color);
+            font-weight: bold;
+            border: 1px solid var(--border-solid);
         }
 
         /* Two Column Layout */
@@ -603,8 +612,8 @@
                     <a href="./support.html" class="nav-link">Support</a>
                 </div>
                 <div class="lang-switcher">
-                    <a href="./index.html" class="lang-btn active" title="English">🇬🇧</a>
-                    <a href="./index-de.html" class="lang-btn" title="Deutsch">🇩🇪</a>
+                    <a href="./index.html" class="lang-btn active" title="English">EN</a>
+                    <a href="./index-de.html" class="lang-btn" title="Deutsch">DE</a>
                 </div>
             </div>
         </div>
@@ -679,7 +688,7 @@
         </div>
 
         <footer class="footer">
-            <span>&copy; 2025 Chuk</span>
+            <span>&copy; 2025 <a href="https://chuk.dev">Chuk Development</a></span>
             <a href="./privacy.html">Privacy Policy</a>
             <a href="./terms.html">Terms of Service</a>
             <a href="./impressum.html">Impressum</a>
