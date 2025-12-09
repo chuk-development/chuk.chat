@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum - chuk.chat</title>
+    <title>Impressum - Chuk Chat</title>
     <link rel="stylesheet" href="shared-styles.css">
     <style>
         .placeholder {
@@ -19,25 +19,62 @@
             color: var(--text-muted);
         }
 
-        .footer-links {
-            margin-top: 48px;
-            padding-top: 24px;
-            border-top: 1px dotted var(--border-dotted);
-            text-align: center;
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            font-size: 14px;
+            padding: 4px 8px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+
+        .lang-btn:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            color: var(--text-color);
+            font-weight: bold;
+            border: 1px solid var(--border-solid);
         }
     </style>
 </head>
 <body>
     <nav class="top-bar">
         <div class="nav-container">
-            <a href="./index.html" class="logo">chuk.chat</a>
-            <div class="nav-links">
-                <a href="./pricing.html" class="nav-link">Pricing</a>
-                <a href="./downloads.html" class="nav-link">Downloads</a>
-                <a href="./support.html" class="nav-link">Support</a>
+            <a href="./index.html" class="logo">Chuk Chat</a>
+            <div style="display: flex; align-items: center; gap: 32px;">
+                <div class="nav-links">
+                    <a href="./pricing.html" class="nav-link">Pricing</a>
+                    <a href="./downloads.html" class="nav-link">Downloads</a>
+                    <a href="./support.html" class="nav-link">Support</a>
+                </div>
+                <div class="lang-switcher">
+                    <a href="./impressum.html" class="lang-btn active" title="Deutsch">DE</a>
+                </div>
             </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         </div>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./pricing.html">Pricing</a>
+        <a href="./downloads.html">Downloads</a>
+        <a href="./support.html">Support</a>
+    </div>
 
     <div class="container">
         <h1>Impressum</h1>
@@ -46,12 +83,18 @@
             <p>Inhalt folgt in Kürze / Content follows soon</p>
         </div>
 
-        <div class="footer-links">
-            <a href="./terms.html">Terms of Service</a> |
-            <a href="./privacy.html">Privacy Policy</a> |
-            <a href="./support.html">Support</a> |
-            <a href="./index.html">Home</a>
-        </div>
+        <footer class="footer">
+            <span>&copy; 2025 <a href="https://chuk.dev">Chuk Development</a></span>
+            <a href="./privacy.html">Privacy Policy</a>
+            <a href="./terms.html">Terms of Service</a>
+            <a href="https://status.chuk.chat/status/chukchat" target="_blank">Status</a>
+        </footer>
     </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>

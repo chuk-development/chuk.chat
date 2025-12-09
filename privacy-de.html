@@ -24,43 +24,66 @@
             border-bottom: none;
         }
 
-        .lang-switcher-box {
-            position: fixed;
-            top: 70px;
-            right: 24px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-solid);
-            padding: 8px 12px;
-            font-size: 13px;
-            z-index: 100;
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
 
-        .lang-switcher-box a.active {
+        .lang-btn {
+            font-size: 14px;
+            padding: 4px 8px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+
+        .lang-btn:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .lang-btn.active {
+            opacity: 1;
             color: var(--text-color);
             font-weight: bold;
-        }
-
-        .footer-links {
-            margin-top: 48px;
-            padding-top: 24px;
-            border-top: 1px dotted var(--border-dotted);
+            border: 1px solid var(--border-solid);
         }
     </style>
 </head>
 <body>
     <nav class="top-bar">
         <div class="nav-container">
-            <a href="./index.html" class="logo">chuk.chat</a>
-            <div class="nav-links">
-                <a href="./pricing.html" class="nav-link">Preise</a>
-                <a href="./downloads.html" class="nav-link">Downloads</a>
-                <a href="./support.html" class="nav-link">Support</a>
+            <a href="./index-de.html" class="logo">Chuk Chat</a>
+            <div style="display: flex; align-items: center; gap: 32px;">
+                <div class="nav-links">
+                    <a href="./pricing-de.html" class="nav-link">Preise</a>
+                    <a href="./downloads-de.html" class="nav-link">Downloads</a>
+                    <a href="./support-de.html" class="nav-link">Support</a>
+                </div>
+                <div class="lang-switcher">
+                    <a href="./privacy.html" class="lang-btn" title="English">EN</a>
+                    <a href="./privacy-de.html" class="lang-btn active" title="Deutsch">DE</a>
+                </div>
             </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         </div>
     </nav>
 
-    <div class="lang-switcher-box">
-        <a href="./privacy.html">English</a> | <a href="./privacy-de.html" class="active">Deutsch</a>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./pricing-de.html">Preise</a>
+        <a href="./downloads-de.html">Downloads</a>
+        <a href="./support-de.html">Support</a>
+        <div class="mobile-lang">
+            <a href="./privacy.html">EN</a>
+            <a href="./privacy-de.html" class="active">DE</a>
+        </div>
     </div>
 
     <div class="container">
@@ -227,12 +250,18 @@
             </p>
         </div>
 
-        <div class="footer-links">
-            <a href="./terms-de.html">Nutzungsbedingungen</a> |
-            <a href="./impressum.html">Impressum</a> |
-            <a href="./support.html">Support</a> |
-            <a href="./index-de.html">Startseite</a>
-        </div>
+        <footer class="footer">
+            <span>&copy; 2025 <a href="https://chuk.dev">Chuk Development</a></span>
+            <a href="./terms-de.html">AGB</a>
+            <a href="./impressum.html">Impressum</a>
+            <a href="https://status.chuk.chat/status/chukchat" target="_blank">Status</a>
+        </footer>
     </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
