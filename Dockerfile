@@ -5,6 +5,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy the website files
 COPY *.html /usr/share/nginx/html/
+COPY *.css /usr/share/nginx/html/
 COPY *.png /usr/share/nginx/html/
 
 # Expose port 80
