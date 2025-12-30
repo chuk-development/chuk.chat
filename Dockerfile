@@ -1,16 +1,10 @@
+FROM hugomods/hugo:latest AS builder
+WORKDIR /src
+COPY . .
+RUN hugo --minify
+
 FROM nginx:alpine
-
-# Copy the nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy the website files
-COPY *.html /usr/share/nginx/html/
-COPY *.css /usr/share/nginx/html/
-COPY *.png /usr/share/nginx/html/
-COPY robots.txt /usr/share/nginx/html/
-COPY sitemap.xml /usr/share/nginx/html/
-
-# Expose port 80
+COPY --from=builder /src/public /usr/share/nginx/html
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
