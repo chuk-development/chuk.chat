@@ -4,7 +4,7 @@ layout: "downloads"
 type: "page"
 translationKey: "downloads"
 
-heading: "Download Chuk"
+heading: "Download Chuk Chat"
 subheading: "One account, same experience on every device. Your conversations sync securely across all platforms."
 platforms:
   - name: "Windows"

@@ -1,0 +1,32 @@
+{{ define "title" }}Blog — {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<h1>Blog</h1>
+{{ if eq .Lang "de" }}
+<p class="subtitle">Gedanken zu Datenschutz, KI und Software, die Nutzer respektiert.</p>
+{{ else }}
+<p class="subtitle">Thoughts on privacy, AI, and building software that respects users.</p>
+{{ end }}
+
+<div class="blog-list">
+    {{ range .Pages }}
+    <article class="blog-post-preview">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <div class="blog-post-meta">{{ .Date.Format "02. January 2006" }}</div>
+        {{ if .Description }}
+        <p>{{ .Description }}</p>
+        {{ else if .Summary }}
+        <p>{{ .Summary }}</p>
+        {{ end }}
+    </article>
+    {{ else }}
+    <div class="placeholder">
+        {{ if eq .Lang "de" }}
+        <p>Noch keine Blogbeiträge. Schauen Sie bald wieder vorbei!</p>
+        {{ else }}
+        <p>No blog posts yet. Check back soon!</p>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}
