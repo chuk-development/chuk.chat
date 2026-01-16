@@ -923,7 +923,7 @@ button:disabled {
 
 /* Blog Styles */
 .blog-list {
-    margin-top: 32px;
+    margin-top: 24px;
 }
 
 .blog-post-preview {
@@ -939,6 +939,7 @@ button:disabled {
 }
 
 .blog-post-preview h3 {
+    margin-top: 0;
     margin-bottom: 8px;
 }
 
@@ -959,23 +960,10 @@ button:disabled {
 
 .blog-post-preview p {
     margin-bottom: 0;
-    color: var(--text-secondary);
-}
-
-.blog-article {
-    max-width: 800px;
-}
-
-.blog-article header {
-    margin-bottom: 32px;
-}
-
-.blog-article header h1 {
-    margin-bottom: 12px;
 }
 
 .blog-post-content {
-    line-height: 1.8;
+    margin-top: 32px;
 }
 
 .blog-post-content h2 {
@@ -986,48 +974,36 @@ button:disabled {
     margin-top: 32px;
 }
 
-.blog-post-content p {
-    margin-bottom: 20px;
+.blog-post-content pre {
+    background: var(--card-bg);
+    border: 1px solid var(--border-solid);
+    padding: 16px;
+    overflow-x: auto;
+    margin: 16px 0;
+}
+
+.blog-post-content code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+.blog-post-content p code {
+    background: var(--highlight-bg);
+    padding: 2px 6px;
+    border: 1px solid var(--border-dotted);
+}
+
+.blog-post-content blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 16px 0;
+    padding-left: 16px;
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 .blog-post-content img {
     max-width: 100%;
     height: auto;
     border: 1px solid var(--border-solid);
-    margin: 24px 0;
-}
-
-.blog-post-content strong {
-    color: var(--text-color);
-}
-
-.blog-post-content blockquote {
-    border-left: 3px solid var(--accent);
-    margin: 24px 0;
-    padding: 16px 24px;
-    background: var(--highlight-bg);
-    font-style: italic;
-}
-
-.blog-post-content blockquote p {
-    margin-bottom: 0;
-}
-
-.blog-post-content code {
-    background: var(--highlight-bg);
-    padding: 2px 6px;
-    font-size: 14px;
-}
-
-.blog-post-content pre {
-    background: var(--highlight-bg);
-    border: 1px solid var(--border-solid);
-    padding: 16px;
-    overflow-x: auto;
-    margin: 24px 0;
-}
-
-.blog-post-content pre code {
-    background: none;
-    padding: 0;
+    margin: 16px 0;
 }

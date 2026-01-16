@@ -15,14 +15,14 @@ Btw, always keep in mind that these are multi-billion dollar companies. They've 
 When I ask Grok "I need a Z Image Turbo prompt to make an image like that"
 it gives me this...
 
-![Grok generates images instead of a prompt](/blog/ai-state-2026/grok-1.png)
+![Grok generates images instead of a prompt](/blog/ai-state-2026/grok-1.avif)
 
 For me that does not look like an image prompt, right?
 Btw no system prompt modding or anything, just stock grok.com.
 
 Of course if you then tell it to give you what you asked for, it does the job. By the way, it always uses search even when it doesn't make sense.
 
-![Grok finally gives the prompt but explains what Z Image Turbo is](/blog/ai-state-2026/grok-2.png)
+![Grok finally gives the prompt but explains what Z Image Turbo is](/blog/ai-state-2026/grok-2.avif)
 
 Let me continue - yes it answered my question now, but I already know what Z Image Turbo is and I didn't ask for an explanation. There are certainly people who would be interested in that, and if I was interested, I would have asked, right?
 
@@ -32,26 +32,26 @@ Let's move on to Perplexity. Their whole job is search. Let's see how different 
 
 **Default Model:**
 
-![Perplexity default model stops at Pixel 9](/blog/ai-state-2026/perplexity-default.png)
+![Perplexity default model stops at Pixel 9](/blog/ai-state-2026/perplexity-default.avif)
 
 Hm, so as far as I know my question was open and you had to find out what the latest Google Pixel is - and it is the 10 series.
 And yes, that is probably not in the model's training data, but your only job is search. Should you not first find out what the latest Google Pixel is?
 
 **Kimi K2:**
 
-![Kimi K2 says Pixel 10 not released yet](/blog/ai-state-2026/perplexity-kimi.png)
+![Kimi K2 says Pixel 10 not released yet](/blog/ai-state-2026/perplexity-kimi.avif)
 
 It literally says "Pixel 10: (not released yet)" - which is just false. Both models probably do not have that in their training data, but Perplexity's job is to make it work, right? So maybe tell the model that it doesn't know shit at all, or that it always has to search for things it can't be sure about or that might be updated.
 
 **Gemini 3 Flash:**
 
-![Gemini 3 Flash also fails](/blog/ai-state-2026/perplexity-gemini-flash.png)
+![Gemini 3 Flash also fails](/blog/ai-state-2026/perplexity-gemini-flash.avif)
 
 Well, not really. But the leading model Gemini 3 Pro, right?
 
 **Gemini 3 Pro (with reasoning):**
 
-![Gemini 3 Pro with reasoning also fails](/blog/ai-state-2026/perplexity-gemini-pro.png)
+![Gemini 3 Pro with reasoning also fails](/blog/ai-state-2026/perplexity-gemini-pro.avif)
 
 I think that is the AGI we all need!
 
@@ -59,25 +59,25 @@ Same result for Sonnet 4.5 and GPT 5.2 by the way - I'm not going to screenshot 
 
 **Grok:**
 
-![Grok dodges the question](/blog/ai-state-2026/perplexity-grok.png)
+![Grok dodges the question](/blog/ai-state-2026/perplexity-grok.avif)
 
 "Pixel 10 and beyond - battery sizes vary by model; I can pull exact figures if you want the latest list" - So even Grok just dodges the question instead of actually searching.
 
 **Deep Research:**
 
-![Deep Research finally works](/blog/ai-state-2026/perplexity-deep-research.png)
+![Deep Research finally works](/blog/ai-state-2026/perplexity-deep-research.avif)
 
 Finally, a complete table with Pixel 10. But I had to use Deep Research for a simple question that any search should have answered.
 
 Ok, and yes - if I tell it "to the latest" explicitly, it does the job:
 
-![With explicit to the latest it works](/blog/ai-state-2026/perplexity-to-latest.png)
+![With explicit to the latest it works](/blog/ai-state-2026/perplexity-to-latest.avif)
 
 But look at the previous screenshot - I already said "starting from 7" which implies I want everything up to the current model. Every human would understand that.
 
 **Gemini 3 Pro with explicit "to the latest" prompt:**
 
-![Gemini still fails with explicit instructions](/blog/ai-state-2026/perplexity-gemini-to-latest.png)
+![Gemini still fails with explicit instructions](/blog/ai-state-2026/perplexity-gemini-to-latest.avif)
 
 Still only goes up to Pixel 9. Even with explicit instructions.
 
@@ -109,11 +109,11 @@ Now, this is a different category. Okara AI is not a multi-billion dollar compan
 
 So my question is: why do you send my location?
 
-![Okara Chain of Thought shows location](/blog/ai-state-2026/okara-1.png)
+![Okara Chain of Thought shows location](/blog/ai-state-2026/okara-1.avif)
 
-![Okara shows exact coordinates](/blog/ai-state-2026/okara-2.png)
+![Okara shows exact coordinates](/blog/ai-state-2026/okara-2.avif)
 
-![Okara asks about your location](/blog/ai-state-2026/okara-3.png)
+![Okara asks about your location](/blog/ai-state-2026/okara-3.avif)
 
 Not my location btw.
 

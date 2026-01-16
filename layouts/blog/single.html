@@ -3,10 +3,10 @@
 {{ define "description" }}{{ if .Description }}{{ .Description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}{{ end }}
 
 {{ define "main" }}
-<article class="blog-article">
+<article>
     <header>
         <h1>{{ .Title }}</h1>
-        <div class="blog-post-meta">{{ .Date.Format "02. January 2006" }}{{ if .Params.author }} · {{ .Params.author }}{{ end }}</div>
+        <div class="blog-post-meta">{{ .Date.Format "02. January 2006" }}{{ if .Params.author }} &middot; {{ .Params.author }}{{ end }}</div>
     </header>
 
     <div class="blog-post-content">
@@ -15,9 +15,9 @@
 
     <div style="margin-top: 48px; padding-top: 24px; border-top: 1px dotted var(--border-dotted);">
         {{ if eq .Lang "de" }}
-        <a href="{{ "blog" | relLangURL }}">← Zurück zum Blog</a>
+        <a href="{{ "blog" | relLangURL }}">&larr; Zurück zum Blog</a>
         {{ else }}
-        <a href="{{ "blog" | relLangURL }}">← Back to Blog</a>
+        <a href="{{ "blog" | relLangURL }}">&larr; Back to Blog</a>
         {{ end }}
     </div>
 </article>
