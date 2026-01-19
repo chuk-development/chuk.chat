@@ -89,7 +89,7 @@ Und ja, wenn du den Prompt ein bisschen änderst, funktioniert es manchmal bei m
 
 Reden wir über Spracheingabe. Ja, sie ist über die Jahre besser geworden. Sogar viel besser. Aber sie vermasselt immer noch so viel. Sie versteht dich immer noch ständig falsch. Egal ob Grok, ChatGPT oder Perplexity - alle haben dieses Problem.
 
-Und OpenAI? Wusstet ihr, dass deren Voice-Mode-Modell immer noch GPT-4o mini ist, veröffentlicht am 18. Juli 2024? Wir haben jetzt GPT 5.2, das sie als so großartiges Modell bewerben. Warum ist Voice Mode dann immer noch auf 4o mini?
+Und OpenAI? Wusstet ihr, dass deren Voice-Mode-Modell immer noch GPT-4o mini für kostenlose Nutzer und GPT-4o für zahlende Nutzer ist? Beide 2024 veröffentlicht. Wir haben jetzt GPT 5.2, das sie als so großartiges Modell bewerben. Warum ist Voice Mode dann immer noch auf 4o? Nicht dass es einen großen Unterschied macht.
 
 Und dann gibt es Claude. Deren Voice Mode ist ein kompletter Witz. Haben die überhaupt einen? Sie behaupten, das beste Coding-Modell zu haben - und ich werde dem nicht widersprechen, wahrscheinlich stimmt das - aber sie können keinen Voice Mode bauen? Ernsthaft?
 

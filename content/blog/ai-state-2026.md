@@ -89,7 +89,7 @@ And yes, if you change the prompt a little bit it does work sometimes on some mo
 
 Let's talk about voice input. Yes, it has gotten better over the years. Much better actually. But it still messes up so much. It still misunderstands you constantly. Doesn't matter if it's Grok, ChatGPT, or Perplexity - they all have this problem.
 
-And OpenAI? Did you know that their voice mode model still is GPT-4o mini, released on July 18, 2024? We have GPT 5.2 now, which they claim is such a great model. So why is voice mode still on 4o mini?
+And OpenAI? Did you know that their voice mode model still is GPT-4o mini for free users and GPT-4o for paid users? Both released in 2024. We have GPT 5.2 now, which they claim is such a great model. So why is voice mode still on 4o? Not that it makes a big difference.
 
 And then there's Claude. Their voice mode is a complete joke. Actually, do they even have one? They claim to have the best coding model - and I'm not going to argue with that, they probably do - but they can't build a voice mode? Seriously?
 
