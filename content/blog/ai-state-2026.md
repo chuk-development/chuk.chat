@@ -65,15 +65,15 @@ Same result for Sonnet 4.5 and GPT 5.2 by the way - I'm not going to screenshot 
 
 **Deep Research:**
 
-![Deep Research finally works](/blog/ai-state-2026/perplexity-deep-research.avif)
+![Deep Research still only goes to Pixel 9a](/blog/ai-state-2026/perplexity-deep-research.avif)
 
-Finally, a complete table with Pixel 10. But I had to use Deep Research for a simple question that any search should have answered.
+Even Deep Research only goes up to Pixel 9a. Not Pixel 10. For a simple search question.
 
-Ok, and yes - if I tell it "to the latest" explicitly, it does the job:
+Ok, and yes - if I tell it "to the latest" explicitly, it finally does the job:
 
 ![With explicit to the latest it works](/blog/ai-state-2026/perplexity-to-latest.avif)
 
-But look at the previous screenshot - I already said "starting from 7" which implies I want everything up to the current model. Every human would understand that.
+Now it shows Pixel 10. But I already said "starting from 7" which implies I want everything up to the current model. Every human would understand that. Why do I have to spell it out?
 
 **Gemini 3 Pro with explicit "to the latest" prompt:**
 

@@ -65,15 +65,15 @@ Gleiches Ergebnis bei Sonnet 4.5 und GPT 5.2 übrigens - ich werde nicht jeden e
 
 **Deep Research:**
 
-![Deep Research funktioniert endlich](/blog/ai-state-2026/perplexity-deep-research.avif)
+![Deep Research geht auch nur bis Pixel 9a](/blog/ai-state-2026/perplexity-deep-research.avif)
 
-Endlich eine vollständige Tabelle mit Pixel 10. Aber ich musste Deep Research für eine einfache Frage nutzen, die jede Suche hätte beantworten sollen.
+Selbst Deep Research geht nur bis Pixel 9a. Nicht Pixel 10. Für eine einfache Suchfrage.
 
-Ok, und ja - wenn ich explizit "to the latest" sage, macht es den Job:
+Ok, und ja - wenn ich explizit "to the latest" sage, macht es endlich den Job:
 
 ![Mit explizitem to the latest funktioniert es](/blog/ai-state-2026/perplexity-to-latest.avif)
 
-Aber schau dir den vorherigen Screenshot an - ich habe bereits "starting from 7" gesagt, was impliziert, dass ich alles bis zum aktuellen Modell will. Jeder Mensch würde das verstehen.
+Jetzt zeigt es Pixel 10. Aber ich habe bereits "starting from 7" gesagt, was impliziert, dass ich alles bis zum aktuellen Modell will. Jeder Mensch würde das verstehen. Warum muss ich es buchstabieren?
 
 **Gemini 3 Pro mit explizitem "to the latest" Prompt:**
 
