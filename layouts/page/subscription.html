@@ -1,340 +1,175 @@
-<!DOCTYPE html>
-<html lang="{{ .Lang }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <style>
-        :root {
-            --bg-color: #09090b;
-            --text-color: #ffffff;
-            --accent-color: #3F5E5D;
-            --accent-hover: #507674;
-            --secondary-text: #a1a1aa;
-            --card-bg: rgba(24, 24, 27, 0.6);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --card-hover-border: rgba(255, 255, 255, 0.15);
-            --top-bar-height: 60px;
-            --success-color: #4ade80;
-            --error-color: #f87171;
-            --warning-color: #fbbf24;
-        }
+{{ define "main" }}
+<div class="status-card" id="status-content">
+    <!-- Content will be injected by JavaScript -->
+</div>
+{{ end }}
 
-        * {
-            box-sizing: border-box;
-        }
+{{ define "head" }}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - var(--top-bar-height));
+    }
+    .footer {
+        margin-top: auto;
+    }
+    .status-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-solid);
+        padding: 48px 40px;
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+    }
+    .status-icon {
+        width: 64px;
+        height: 64px;
+        border: 2px solid var(--border-solid);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px auto;
+        font-size: 32px;
+    }
+    .status-icon.success {
+        border-color: var(--success);
+        color: var(--success);
+    }
+    .status-icon.error {
+        border-color: var(--error);
+        color: var(--error);
+    }
+    .status-icon.warning {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+    .status-card h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 0 16px 0;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .status-card p {
+        margin: 0 0 24px 0;
+        color: var(--text-secondary);
+    }
+    .status-card .cta-button {
+        display: inline-block;
+        background: var(--text-color);
+        color: var(--bg-color);
+        border: none;
+        padding: 12px 24px;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+    .status-card .cta-button:hover {
+        background: var(--accent);
+    }
+    .status-card .secondary-link {
+        display: block;
+        margin-top: 16px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .status-card .secondary-link:hover {
+        color: var(--accent);
+    }
+    .details-box {
+        background: var(--highlight-bg);
+        border: 1px dashed var(--border-dotted);
+        padding: 16px;
+        margin-top: 24px;
+        text-align: left;
+    }
+    .details-box h3 {
+        margin: 0 0 12px 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .details-box ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+    .details-box li {
+        margin-bottom: 6px;
+    }
+</style>
+{{ end }}
 
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, rgba(63, 94, 93, 0.15) 0%, transparent 70%);
-            background-attachment: fixed;
-            color: var(--text-color);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding-top: var(--top-bar-height);
-        }
+{{ define "scripts" }}
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const isSuccess = urlParams.get('success') === 'true';
+    const isCanceled = urlParams.get('canceled') === 'true';
+    const isSignup = urlParams.get('signup') === 'success';
+    const statusContent = document.getElementById('status-content');
 
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--top-bar-height);
-            background: rgba(9, 9, 11, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--card-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 0 20px;
-        }
+    const homeUrl = '{{ "/" | relLangURL }}';
+    const pricingUrl = '{{ "pricing" | relLangURL }}';
+    const supportUrl = '{{ "support" | relLangURL }}';
+    const downloadsUrl = '{{ "downloads" | relLangURL }}';
 
-        .nav-container {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: -0.03em;
-            transition: opacity 0.2s;
-        }
-
-        .logo:hover {
-            opacity: 0.9;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .nav-link {
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .nav-link:hover {
-            color: #fff;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 700px;
-            padding: 60px 20px;
-            animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .status-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 60px 40px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            margin-top: 80px;
-        }
-
-        .status-icon {
-            font-size: 5rem;
-            margin-bottom: 24px;
-            animation: scaleIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 16px;
-            color: #fff;
-        }
-
-        p {
-            color: var(--secondary-text);
-            font-size: 1.15rem;
-            line-height: 1.6;
-            margin: 0 0 32px 0;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 14px 32px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .cta-button:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(63, 94, 93, 0.3);
-        }
-
-        .secondary-button {
-            display: inline-block;
-            color: var(--secondary-text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-top: 16px;
-            transition: color 0.2s;
-        }
-
-        .secondary-button:hover {
-            color: #fff;
-        }
-
-        .success-accent {
-            color: var(--success-color);
-        }
-
-        .error-accent {
-            color: var(--error-color);
-        }
-
-        .warning-accent {
-            color: var(--warning-color);
-        }
-
-        .details {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 32px;
-            text-align: left;
-        }
-
-        .details h3 {
-            margin: 0 0 12px 0;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-        }
-
-        .details ul {
-            margin: 0;
-            padding-left: 20px;
-            color: var(--secondary-text);
-        }
-
-        .details li {
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .status-card {
-                padding: 40px 24px;
-            }
-            .status-icon {
-                font-size: 4rem;
-            }
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav class="top-bar">
-        <div class="nav-container">
-            <a href="{{ "/" | relLangURL }}" class="logo">Chuk Chat</a>
-            <div class="nav-links">
-                <a href="{{ "pricing" | relLangURL }}" class="nav-link">{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
-                <a href="{{ "downloads" | relLangURL }}" class="nav-link">Downloads</a>
-                <a href="{{ "support" | relLangURL }}" class="nav-link">Support</a>
+    if (isSuccess) {
+        statusContent.innerHTML = `
+            <div class="status-icon success">&#10003;</div>
+            <h1>{{ .Params.success_title }}</h1>
+            <p>{{ .Params.success_message }}</p>
+            <a href="${downloadsUrl}" class="cta-button">{{ .Params.success_cta }}</a>
+            <a href="${homeUrl}" class="secondary-link">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} &rarr;</a>
+        `;
+    } else if (isCanceled) {
+        statusContent.innerHTML = `
+            <div class="status-icon warning">&#8617;</div>
+            <h1>{{ .Params.canceled_title }}</h1>
+            <p>{{ .Params.canceled_message }}</p>
+            <a href="${pricingUrl}" class="cta-button">{{ .Params.canceled_cta }}</a>
+            <a href="${homeUrl}" class="secondary-link">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} &rarr;</a>
+        `;
+    } else if (isSignup) {
+        statusContent.innerHTML = `
+            <div class="status-icon success">&#10003;</div>
+            <h1>{{ .Params.signup_title }}</h1>
+            <p>{{ .Params.signup_message }}</p>
+            <a href="${downloadsUrl}" class="cta-button">{{ .Params.signup_cta }}</a>
+            <a href="${homeUrl}" class="secondary-link">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} &rarr;</a>
+        `;
+    } else if (window.location.search === '' || urlParams.has('session_id')) {
+        statusContent.innerHTML = `
+            <div class="status-icon success">&#9881;</div>
+            <h1>{{ .Params.portal_title }}</h1>
+            <p>{{ .Params.portal_message }}</p>
+            <a href="${homeUrl}" class="cta-button">{{ .Params.portal_cta }}</a>
+        `;
+    } else {
+        statusContent.innerHTML = `
+            <div class="status-icon error">&#10007;</div>
+            <h1>{{ .Params.error_title }}</h1>
+            <p>{{ .Params.error_message }}</p>
+            <div class="details-box">
+                <h3>{{ .Params.issues_title }}</h3>
+                <ul>
+                    {{ range .Params.issues }}
+                    <li>{{ . }}</li>
+                    {{ end }}
+                </ul>
             </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="status-card" id="status-content">
-            <!-- Content will be injected by JavaScript -->
-        </div>
-    </div>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const isSuccess = urlParams.get('success') === 'true';
-        const isCanceled = urlParams.get('canceled') === 'true';
-        const isSignup = urlParams.get('signup') === 'success';
-        const statusContent = document.getElementById('status-content');
-
-        // URLs
-        const homeUrl = '{{ "/" | relLangURL }}';
-        const pricingUrl = '{{ "pricing" | relLangURL }}';
-        const supportUrl = '{{ "support" | relLangURL }}';
-        const downloadsUrl = '{{ "downloads" | relLangURL }}';
-
-        if (isSuccess) {
-            // Payment successful
-            statusContent.innerHTML = `
-                <div class="status-icon">🎉</div>
-                <h1 class="success-accent">{{ .Params.success_title }}</h1>
-                <p>{{ .Params.success_message }}</p>
-                <div style="margin-top: 32px;">
-                    <a href="${downloadsUrl}" class="cta-button">{{ .Params.success_cta }}</a>
-                </div>
-                <div>
-                    <a href="${homeUrl}" class="secondary-button">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} →</a>
-                </div>
-            `;
-        } else if (isCanceled) {
-            // Payment canceled
-            statusContent.innerHTML = `
-                <div class="status-icon">↩️</div>
-                <h1 class="warning-accent">{{ .Params.canceled_title }}</h1>
-                <p>{{ .Params.canceled_message }}</p>
-                <div style="margin-top: 32px;">
-                    <a href="${pricingUrl}" class="cta-button">{{ .Params.canceled_cta }}</a>
-                </div>
-                <div>
-                    <a href="${homeUrl}" class="secondary-button">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} →</a>
-                </div>
-            `;
-        } else if (isSignup) {
-            // Signup successful
-            statusContent.innerHTML = `
-                <div class="status-icon">✅</div>
-                <h1 class="success-accent">{{ .Params.signup_title }}</h1>
-                <p>{{ .Params.signup_message }}</p>
-                <div style="margin-top: 32px;">
-                    <a href="${downloadsUrl}" class="cta-button">{{ .Params.signup_cta }}</a>
-                </div>
-                <div>
-                    <a href="${homeUrl}" class="secondary-button">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} →</a>
-                </div>
-            `;
-        } else if (window.location.search === '' || urlParams.has('session_id')) {
-            // Return from billing portal (no params or just session_id)
-            statusContent.innerHTML = `
-                <div class="status-icon">⚙️</div>
-                <h1>{{ .Params.portal_title }}</h1>
-                <p>{{ .Params.portal_message }}</p>
-                <div style="margin-top: 32px;">
-                    <a href="${homeUrl}" class="cta-button">{{ .Params.portal_cta }}</a>
-                </div>
-            `;
-        } else {
-            // Error state (default)
-            statusContent.innerHTML = `
-                <div class="status-icon">❌</div>
-                <h1 class="error-accent">{{ .Params.error_title }}</h1>
-                <p>{{ .Params.error_message }}</p>
-
-                <div class="details">
-                    <h3>{{ .Params.issues_title }}</h3>
-                    <ul>
-                        {{ range .Params.issues }}
-                        <li>{{ . }}</li>
-                        {{ end }}
-                    </ul>
-                </div>
-
-                <div style="margin-top: 32px;">
-                    <a href="${pricingUrl}" class="cta-button">{{ .Params.try_again }}</a>
-                </div>
-                <div>
-                    <a href="${supportUrl}" class="secondary-button">{{ .Params.contact_support }} →</a>
-                </div>
-            `;
-        }
-    </script>
-</body>
-</html>
+            <div style="margin-top: 24px;">
+                <a href="${pricingUrl}" class="cta-button">{{ .Params.try_again }}</a>
+            </div>
+            <a href="${supportUrl}" class="secondary-link">{{ .Params.contact_support }} &rarr;</a>
+        `;
+    }
+</script>
+{{ end }}
