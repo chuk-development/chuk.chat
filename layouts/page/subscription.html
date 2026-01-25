@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <style>
         :root {
             --bg-color: #09090b;
@@ -17,6 +19,7 @@
             --top-bar-height: 60px;
             --success-color: #4ade80;
             --error-color: #f87171;
+            --warning-color: #fbbf24;
         }
 
         * {
@@ -184,6 +187,10 @@
             color: var(--error-color);
         }
 
+        .warning-accent {
+            color: var(--warning-color);
+        }
+
         .details {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
@@ -218,6 +225,9 @@
             .status-icon {
                 font-size: 4rem;
             }
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -242,14 +252,67 @@
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const isSuccess = urlParams.get('success') === 'true';
+        const isCanceled = urlParams.get('canceled') === 'true';
+        const isSignup = urlParams.get('signup') === 'success';
         const statusContent = document.getElementById('status-content');
 
+        // URLs
+        const homeUrl = '{{ "/" | relLangURL }}';
+        const pricingUrl = '{{ "pricing" | relLangURL }}';
+        const supportUrl = '{{ "support" | relLangURL }}';
+        const downloadsUrl = '{{ "downloads" | relLangURL }}';
+
         if (isSuccess) {
+            // Payment successful
             statusContent.innerHTML = `
                 <div class="status-icon">🎉</div>
                 <h1 class="success-accent">{{ .Params.success_title }}</h1>
+                <p>{{ .Params.success_message }}</p>
+                <div style="margin-top: 32px;">
+                    <a href="${downloadsUrl}" class="cta-button">{{ .Params.success_cta }}</a>
+                </div>
+                <div>
+                    <a href="${homeUrl}" class="secondary-button">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} →</a>
+                </div>
+            `;
+        } else if (isCanceled) {
+            // Payment canceled
+            statusContent.innerHTML = `
+                <div class="status-icon">↩️</div>
+                <h1 class="warning-accent">{{ .Params.canceled_title }}</h1>
+                <p>{{ .Params.canceled_message }}</p>
+                <div style="margin-top: 32px;">
+                    <a href="${pricingUrl}" class="cta-button">{{ .Params.canceled_cta }}</a>
+                </div>
+                <div>
+                    <a href="${homeUrl}" class="secondary-button">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} →</a>
+                </div>
+            `;
+        } else if (isSignup) {
+            // Signup successful
+            statusContent.innerHTML = `
+                <div class="status-icon">✅</div>
+                <h1 class="success-accent">{{ .Params.signup_title }}</h1>
+                <p>{{ .Params.signup_message }}</p>
+                <div style="margin-top: 32px;">
+                    <a href="${downloadsUrl}" class="cta-button">{{ .Params.signup_cta }}</a>
+                </div>
+                <div>
+                    <a href="${homeUrl}" class="secondary-button">{{ if eq .Lang "de" }}Zur Startseite{{ else }}Back to Home{{ end }} →</a>
+                </div>
+            `;
+        } else if (window.location.search === '' || urlParams.has('session_id')) {
+            // Return from billing portal (no params or just session_id)
+            statusContent.innerHTML = `
+                <div class="status-icon">⚙️</div>
+                <h1>{{ .Params.portal_title }}</h1>
+                <p>{{ .Params.portal_message }}</p>
+                <div style="margin-top: 32px;">
+                    <a href="${homeUrl}" class="cta-button">{{ .Params.portal_cta }}</a>
+                </div>
             `;
         } else {
+            // Error state (default)
             statusContent.innerHTML = `
                 <div class="status-icon">❌</div>
                 <h1 class="error-accent">{{ .Params.error_title }}</h1>
@@ -265,10 +328,10 @@
                 </div>
 
                 <div style="margin-top: 32px;">
-                    <a href="{{ "pricing" | relLangURL }}" class="cta-button">{{ .Params.try_again }}</a>
+                    <a href="${pricingUrl}" class="cta-button">{{ .Params.try_again }}</a>
                 </div>
                 <div>
-                    <a href="{{ "support" | relLangURL }}" class="secondary-button">{{ .Params.contact_support }} →</a>
+                    <a href="${supportUrl}" class="secondary-button">{{ .Params.contact_support }} →</a>
                 </div>
             `;
         }
