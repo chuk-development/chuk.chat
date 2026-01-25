@@ -7,7 +7,7 @@ hero_title: "Chuk Chat — Private KI, die<br>wirklich dir gehört"
 hero_subtitle: "Ein einfaches monatliches Abo, volle Kontrolle, kein Data Mining.<br>Chatten, schreiben, coden, recherchieren — komplett mit transparenten Open-Weight-Modellen."
 
 form_placeholder: "E-Mail-Adresse eingeben..."
-form_button: "Early Access sichern"
+form_button: "Abonnieren"
 form_success: "🎉 Du bist auf der Liste! Bitte überprüfe deine E-Mails, um dein Abonnement zu bestätigen."
 
 features_title: "Warum Chuk Chat?"
