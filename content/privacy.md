@@ -41,8 +41,8 @@ We collect the following usage data for billing and service operation:
 - **Token Usage Data:** For each AI message, we log:
   - Input tokens (prompt length)
   - Output tokens (response length)
-  - Model name used (e.g., "gpt-4", "claude-3.5-sonnet")
-  - Provider name (e.g., "OpenAI", "Anthropic")
+  - Model name used (e.g., "deepseek-r1-0528", "qwen3-235b-a22b")
+  - Provider name (e.g., "DeepSeek", "Qwen")
   - Timestamp
 
 This data is stored in Supabase to calculate your usage and billing. We do NOT store the actual message content in these logs - only the token counts and metadata.
@@ -74,7 +74,16 @@ We use collected information to:
 
 **We do not sell your personal information to third parties.**
 
-## 4. Data Security
+## 4. Legal Basis for Processing (GDPR Art. 6)
+
+We process your personal data on the following legal bases:
+
+- **Contract Performance (Art. 6(1)(b) GDPR):** Processing of account data, chat data, payment information, and usage data is necessary to provide our Service and fulfill our contractual obligations to you.
+- **Legitimate Interest (Art. 6(1)(f) GDPR):** We process data for fraud detection, security measures, and service improvement. Our legitimate interest is maintaining a secure and functional service.
+- **Legal Obligation (Art. 6(1)(c) GDPR):** We may process data to comply with legal requirements such as tax regulations and law enforcement requests.
+- **Consent (Art. 6(1)(a) GDPR):** Where required, we obtain your explicit consent before processing. You may withdraw consent at any time.
+
+## 5. Data Security
 
 We implement industry-standard security measures to protect your data:
 
@@ -106,7 +115,13 @@ You have the right to:
 
 To exercise these rights, contact us at [privacy@chuk.chat](mailto:privacy@chuk.chat) or use the in-app account settings.
 
-## 7. Cookies and Tracking
+- **Complaint:** You have the right to lodge a complaint with a supervisory authority. The responsible authority for us is:
+  Unabhängiges Landeszentrum für Datenschutz Schleswig-Holstein (ULD)
+  Holstenstraße 98, 24103 Kiel
+  https://www.datenschutzzentrum.de
+  Email: mail@datenschutzzentrum.de
+
+## 8. Cookies and Tracking
 
 Our website uses minimal cookies for essential functionality:
 
@@ -115,15 +130,15 @@ Our website uses minimal cookies for essential functionality:
 
 We do not use advertising cookies or third-party tracking scripts.
 
-## 8. Children's Privacy
+## 9. Children's Privacy
 
 Our Service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.
 
-## 9. International Data Transfers
+## 10. International Data Transfers
 
 Your data may be stored and processed in Supabase infrastructure located in different countries. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy.
 
-## 10. Third-Party Services
+## 11. Third-Party Services
 
 We use the following third-party services:
 
@@ -137,11 +152,11 @@ We use the following third-party services:
 - **Mailbox.org:** Email service. [Privacy Policy](https://mailbox.org/en/data-protection)
 - **Hetzner:** API server hosting. [Privacy Policy](https://www.hetzner.com/legal/privacy-policy)
 
-## 11. Changes to This Privacy Policy
+## 12. Changes to This Privacy Policy
 
 We may update this Privacy Policy from time to time. We will notify you of significant changes by email or through the app. Continued use of the Service after changes constitutes acceptance of the updated policy.
 
-## 12. Contact Us
+## 13. Contact Us
 
 If you have questions or concerns about this Privacy Policy or our data practices, please contact us:
 

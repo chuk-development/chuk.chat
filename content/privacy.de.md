@@ -41,8 +41,8 @@ Wir sammeln die folgenden Nutzungsdaten für Abrechnungs- und Dienstbetriebszwec
 - **Token-Nutzungsdaten:** Für jede KI-Nachricht protokollieren wir:
   - Eingabe-Tokens (Prompt-Länge)
   - Ausgabe-Tokens (Antwortlänge)
-  - Verwendeter Modellname (z.B. "llama-3", "mistral-large")
-  - Anbietername (z.B. "Meta", "Mistral")
+  - Verwendeter Modellname (z.B. "deepseek-r1-0528", "qwen3-235b-a22b")
+  - Anbietername (z.B. "DeepSeek", "Qwen")
   - Zeitstempel
 
 Diese Daten werden in Supabase gespeichert, um Ihre Nutzung und Abrechnung zu berechnen. Wir speichern NICHT den tatsächlichen Nachrichteninhalt in diesen Protokollen - nur die Token-Anzahl und Metadaten.
@@ -71,7 +71,16 @@ Wir verwenden gesammelte Informationen, um:
 
 **Wir verkaufen Ihre persönlichen Informationen nicht an Dritte.**
 
-## 4. Datensicherheit
+## 4. Rechtsgrundlage der Verarbeitung (DSGVO Art. 6)
+
+Wir verarbeiten Ihre personenbezogenen Daten auf folgenden Rechtsgrundlagen:
+
+- **Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO):** Die Verarbeitung von Kontodaten, Chat-Daten, Zahlungsinformationen und Nutzungsdaten ist zur Erbringung unseres Dienstes und zur Erfüllung unserer vertraglichen Verpflichtungen erforderlich.
+- **Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO):** Wir verarbeiten Daten zur Betrugserkennung, für Sicherheitsmaßnahmen und zur Dienstverbesserung. Unser berechtigtes Interesse ist die Aufrechterhaltung eines sicheren und funktionsfähigen Dienstes.
+- **Rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO):** Wir können Daten verarbeiten, um gesetzliche Anforderungen wie Steuervorschriften und Anfragen von Strafverfolgungsbehörden zu erfüllen.
+- **Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):** Wo erforderlich, holen wir Ihre ausdrückliche Einwilligung vor der Verarbeitung ein. Sie können Ihre Einwilligung jederzeit widerrufen.
+
+## 5. Datensicherheit
 
 Wir implementieren branchenübliche Sicherheitsmaßnahmen zum Schutz Ihrer Daten:
 
@@ -80,14 +89,14 @@ Wir implementieren branchenübliche Sicherheitsmaßnahmen zum Schutz Ihrer Daten
 - **HTTPS/TLS:** Alle Datenübertragungen werden mit TLS 1.3 verschlüsselt
 - **Sichere Infrastruktur:** Gehostet auf Supabase mit SOC 2 Type II-Konformität
 
-## 5. Datenspeicherung
+## 6. Datenspeicherung
 
 - **Kontodaten:** Gespeichert, bis Sie Ihr Konto löschen
 - **Chat-Daten:** Verschlüsselt gespeichert, bis Sie einzelne Chats manuell löschen
 - **Token-Nutzungsprotokolle:** Für Abrechnungszwecke gespeichert und gelöscht, wenn Ihr Konto gelöscht wird
 - **Zahlungsinformationen:** Sicher von Stripe gespeichert
 
-## 6. Ihre Rechte
+## 7. Ihre Rechte
 
 Sie haben das Recht auf:
 
@@ -98,7 +107,13 @@ Sie haben das Recht auf:
 
 Um diese Rechte auszuüben, kontaktieren Sie uns unter [privacy@chuk.chat](mailto:privacy@chuk.chat) oder verwenden Sie die In-App-Kontoeinstellungen.
 
-## 7. Cookies und Tracking
+- **Beschwerde:** Sie haben das Recht, eine Beschwerde bei einer Aufsichtsbehörde einzureichen. Die für uns zuständige Aufsichtsbehörde ist:
+  Unabhängiges Landeszentrum für Datenschutz Schleswig-Holstein (ULD)
+  Holstenstraße 98, 24103 Kiel
+  https://www.datenschutzzentrum.de
+  E-Mail: mail@datenschutzzentrum.de
+
+## 8. Cookies und Tracking
 
 Unsere Website verwendet minimale Cookies für wesentliche Funktionen:
 
@@ -107,7 +122,7 @@ Unsere Website verwendet minimale Cookies für wesentliche Funktionen:
 
 Wir verwenden keine Werbe-Cookies oder Tracking-Skripte von Drittanbietern.
 
-## 8. Drittanbieterdienste
+## 9. Drittanbieterdienste
 
 Wir verwenden die folgenden Drittanbieterdienste:
 
@@ -119,7 +134,11 @@ Wir verwenden die folgenden Drittanbieterdienste:
 - **Lexoffice:** Rechnungserstellung. [Datenschutz](https://www.lexoffice.de/datenschutz/)
 - **Hetzner:** API-Server-Hosting. [Datenschutz](https://www.hetzner.com/legal/privacy-policy)
 
-## 9. Kontakt
+## 10. Änderungen dieser Datenschutzerklärung
+
+Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Wir werden Sie über wesentliche Änderungen per E-Mail oder über die App informieren. Die fortgesetzte Nutzung des Dienstes nach Änderungen gilt als Akzeptanz der aktualisierten Richtlinie.
+
+## 11. Kontakt
 
 E-Mail: [privacy@chuk.chat](mailto:privacy@chuk.chat)
 Support: [support@chuk.chat](mailto:support@chuk.chat)

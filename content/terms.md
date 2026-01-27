@@ -98,10 +98,21 @@ We reserve the right to suspend or terminate your account at any time for violat
 
 You may terminate your account at any time through the account settings or by contacting support.
 
-## 13. Changes to Terms
+## 13. Online Dispute Resolution
+
+The European Commission provides a platform for online dispute resolution (ODR): https://ec.europa.eu/consumers/odr/
+Our email address can be found in our legal notice (Impressum).
+We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+
+## 14. Governing Law and Jurisdiction
+
+These Terms are governed by the laws of the Federal Republic of Germany, excluding the UN Convention on Contracts for the International Sale of Goods (CISG).
+For consumers within the EU, mandatory consumer protection laws of their country of residence apply in addition.
+
+## 15. Changes to Terms
 
 We reserve the right to modify these Terms of Service at any time. We will notify users of significant changes via email or in-app notification.
 
-## 14. Contact Information
+## 16. Contact Information
 
 If you have questions about these Terms of Service, please contact us at: [support@chuk.chat](mailto:support@chuk.chat)

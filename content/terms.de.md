@@ -96,10 +96,21 @@ Wir behalten uns das Recht vor, Ihr Konto jederzeit wegen Verstößen gegen dies
 
 Sie können Ihr Konto jederzeit über die Kontoeinstellungen oder durch Kontaktaufnahme mit dem Support kündigen.
 
-## 13. Änderungen der Bedingungen
+## 13. Online-Streitbeilegung
+
+Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/
+Unsere E-Mail-Adresse finden Sie in unserem Impressum.
+Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+
+## 14. Anwendbares Recht und Gerichtsstand
+
+Diese Bedingungen unterliegen dem Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).
+Für Verbraucher innerhalb der EU gelten zusätzlich die zwingenden Verbraucherschutzgesetze ihres Wohnsitzlandes.
+
+## 15. Änderungen der Bedingungen
 
 Wir behalten uns das Recht vor, diese Allgemeinen Geschäftsbedingungen jederzeit zu ändern. Wir werden Benutzer über wesentliche Änderungen per E-Mail oder In-App-Benachrichtigung informieren.
 
-## 14. Kontaktinformationen
+## 16. Kontaktinformationen
 
 Wenn Sie Fragen zu diesen Allgemeinen Geschäftsbedingungen haben, kontaktieren Sie uns unter: [support@chuk.chat](mailto:support@chuk.chat)

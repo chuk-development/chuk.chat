@@ -39,7 +39,7 @@ Nein. Wir verkaufen niemals deine Daten an Dritte.
 
 ### Wie viel kostet es?
 
-€20 pro Monat, inklusive 19% MwSt. Dies beinhaltet €16 KI-Guthaben.
+€20 pro Monat. Dies beinhaltet €16 KI-Guthaben. Hinweis: Als Kleinunternehmer gemäß §19 UStG erheben wir keine Umsatzsteuer.
 
 ### Wie funktioniert das KI-Guthaben?
 
