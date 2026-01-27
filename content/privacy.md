@@ -3,7 +3,7 @@ title: "Privacy Policy"
 layout: "legal"
 type: "page"
 translationKey: "privacy"
-updated: "Last Updated: November 23, 2025"
+updated: "Last Updated: January 27, 2026"
 tldr: "Your chats are encrypted end-to-end on your device before being stored. We cannot read your messages. We collect minimal data necessary to provide the service."
 ---
 
@@ -93,7 +93,7 @@ We implement industry-standard security measures to protect your data:
 - **Secure Infrastructure:** Hosted on Supabase with SOC 2 Type II compliance
 - **Regular Security Audits:** We regularly review our security practices
 
-## 5. Data Retention
+## 6. Data Retention
 
 We retain your data as follows:
 
@@ -104,7 +104,7 @@ We retain your data as follows:
 
 We do not retain error logs, crash reports, or access logs in Supabase.
 
-## 6. Your Rights
+## 7. Your Rights
 
 You have the right to:
 

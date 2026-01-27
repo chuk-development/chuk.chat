@@ -3,7 +3,7 @@ title: "Allgemeine Geschäftsbedingungen"
 layout: "legal"
 type: "page"
 translationKey: "terms"
-updated: "Zuletzt aktualisiert: 23. November 2025"
+updated: "Zuletzt aktualisiert: 27. Januar 2026"
 ---
 
 ## 1. Annahme der Bedingungen

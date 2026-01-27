@@ -3,7 +3,7 @@ title: "Terms of Service"
 layout: "legal"
 type: "page"
 translationKey: "terms"
-updated: "Last Updated: November 23, 2025"
+updated: "Last Updated: January 27, 2026"
 ---
 
 ## 1. Acceptance of Terms

@@ -3,7 +3,7 @@ title: "Datenschutzerklärung"
 layout: "legal"
 type: "page"
 translationKey: "privacy"
-updated: "Zuletzt aktualisiert: 23. November 2025"
+updated: "Zuletzt aktualisiert: 27. Januar 2026"
 tldr: "Ihre Chats werden auf Ihrem Gerät Ende-zu-Ende-verschlüsselt, bevor sie gespeichert werden. Wir können Ihre Nachrichten nicht lesen. Wir sammeln nur die minimal notwendigen Daten zur Bereitstellung des Dienstes."
 ---
 
