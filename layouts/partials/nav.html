@@ -7,6 +7,7 @@
                 <a href="{{ "blog" | relLangURL }}" class="nav-link{{ if eq .Section "blog" }} active{{ end }}">Blog</a>
                 <a href="{{ "pricing" | relLangURL }}" class="nav-link{{ if eq .Section "pricing" }} active{{ end }}">{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
                 <a href="{{ "downloads" | relLangURL }}" class="nav-link{{ if eq .Section "downloads" }} active{{ end }}">Downloads</a>
+                <a href="https://chat.chuk.chat/" class="nav-link" target="_blank">Web App</a>
                 <a href="{{ "support" | relLangURL }}" class="nav-link{{ if eq .Section "support" }} active{{ end }}">{{ if eq .Lang "de" }}Support{{ else }}Support{{ end }}</a>
             </div>
             <div class="lang-switcher">
@@ -32,6 +33,7 @@
     <a href="{{ "blog" | relLangURL }}"{{ if eq .Section "blog" }} class="active"{{ end }}>Blog</a>
     <a href="{{ "pricing" | relLangURL }}"{{ if eq .Section "pricing" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
     <a href="{{ "downloads" | relLangURL }}"{{ if eq .Section "downloads" }} class="active"{{ end }}>Downloads</a>
+    <a href="https://chat.chuk.chat/" target="_blank">Web App</a>
     <a href="{{ "support" | relLangURL }}"{{ if eq .Section "support" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Support{{ else }}Support{{ end }}</a>
     <div class="mobile-lang">
         {{- if eq .Lang "en" -}}
