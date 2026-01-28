@@ -31,6 +31,8 @@ To use the Service, you must create an account. You agree to:
 - Notify us immediately of any unauthorized use of your account
 - Accept responsibility for all activities that occur under your account
 
+You must be at least 16 years old to create an account and use the Service.
+
 ## 4. Acceptable Use
 
 You agree not to use the Service to:

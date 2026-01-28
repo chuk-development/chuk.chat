@@ -132,7 +132,9 @@ We do not use advertising cookies or third-party tracking scripts.
 
 ## 9. Children's Privacy
 
-Our Service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child under 13, please contact us immediately.
+Our Service is not intended for children under the age of 16. We do not knowingly collect personal information from children under 16. If you believe we have collected information from a child under 16, please contact us immediately.
+
+In accordance with GDPR Article 8, users must be at least 16 years old to use our Service in the European Union.
 
 ## 10. International Data Transfers
 

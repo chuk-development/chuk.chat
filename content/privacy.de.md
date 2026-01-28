@@ -134,11 +134,17 @@ Wir verwenden die folgenden Drittanbieterdienste:
 - **Lexoffice:** Rechnungserstellung. [Datenschutz](https://www.lexoffice.de/datenschutz/)
 - **Hetzner:** API-Server-Hosting. [Datenschutz](https://www.hetzner.com/legal/privacy-policy)
 
-## 10. Änderungen dieser Datenschutzerklärung
+## 10. Datenschutz von Kindern
+
+Unser Dienst ist nicht für Kinder unter 16 Jahren bestimmt. Wir sammeln wissentlich keine personenbezogenen Daten von Kindern unter 16 Jahren. Wenn Sie glauben, dass wir Informationen von einem Kind unter 16 Jahren gesammelt haben, kontaktieren Sie uns bitte umgehend.
+
+Gemäß Art. 8 DSGVO müssen Nutzer in der Europäischen Union mindestens 16 Jahre alt sein, um unseren Dienst zu nutzen.
+
+## 11. Änderungen dieser Datenschutzerklärung
 
 Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Wir werden Sie über wesentliche Änderungen per E-Mail oder über die App informieren. Die fortgesetzte Nutzung des Dienstes nach Änderungen gilt als Akzeptanz der aktualisierten Richtlinie.
 
-## 11. Kontakt
+## 12. Kontakt
 
 E-Mail: [privacy@chuk.chat](mailto:privacy@chuk.chat)
 Support: [support@chuk.chat](mailto:support@chuk.chat)

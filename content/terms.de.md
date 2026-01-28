@@ -31,6 +31,8 @@ Um den Dienst zu nutzen, müssen Sie ein Konto erstellen. Sie erklären sich dam
 - Uns sofort über unbefugte Nutzung Ihres Kontos zu informieren
 - Verantwortung für alle Aktivitäten zu übernehmen, die unter Ihrem Konto stattfinden
 
+Sie müssen mindestens 16 Jahre alt sein, um ein Konto zu erstellen und den Dienst zu nutzen.
+
 ## 4. Akzeptable Nutzung
 
 Sie erklären sich damit einverstanden, den Dienst nicht zu nutzen, um:

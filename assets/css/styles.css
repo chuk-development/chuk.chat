@@ -604,6 +604,17 @@ button:disabled {
     color: var(--text-color);
 }
 
+.mobile-menu a.nav-cta {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: bold;
+}
+
+.mobile-menu a.nav-cta:hover {
+    background: #9A7209;
+}
+
 .mobile-menu .mobile-lang {
     display: flex;
     gap: 8px;
