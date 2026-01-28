@@ -87,8 +87,13 @@ hugo --minify
 docker compose up --build
 ```
 
+## Workflow
+
+- **Always commit and push** after making changes — CI/CD auto-deploys from `main`.
+
 ## Notes
 
+- **Web App:** https://chat.chuk.chat/ — linked prominently in the top nav bar (golden CTA button) and as a featured full-width card on the downloads page.
 - No package.json, no npm, no JS build tools — pure Hugo
 - Waitlist/email signup form on homepage is currently **deactivated** (commented out in `layouts/index.html`), kept for potential reactivation
 - Static assets cached for 1 year via Nginx (`Cache-Control: public, immutable`)
