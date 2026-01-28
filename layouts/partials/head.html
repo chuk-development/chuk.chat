@@ -71,6 +71,6 @@
 </script>
 {{- end }}
 
-{{ $styles := resources.Get "css/styles.css" }}
-<link rel="stylesheet" href="{{ $styles.Permalink }}">
+{{ $styles := resources.Get "css/styles.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 {{- block "head" . }}{{- end }}

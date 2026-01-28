@@ -95,6 +95,20 @@ body {
     font-weight: bold;
 }
 
+.nav-cta {
+    background: var(--accent);
+    color: #fff !important;
+    padding: 5px 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.nav-cta:hover {
+    background: #9A7209;
+    box-shadow: 0 0 8px rgba(184, 134, 11, 0.5);
+}
+
 .container {
     width: 100%;
     max-width: 900px;
