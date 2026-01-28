@@ -4,12 +4,21 @@
 
 <div class="downloads-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; margin-bottom: 40px;">
     {{ range .Params.platforms }}
+    {{ if .featured }}
+    <div class="download-card featured-card" style="grid-column: 1 / -1; background: var(--card-bg); border: 2px solid var(--accent); padding: 36px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.15s;">
+        {{ .icon | safeHTML }}
+        <div style="font-size: 22px; font-weight: bold; margin-bottom: 6px; color: var(--text-color);">{{ .name }}</div>
+        <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 24px;">{{ .version }}</div>
+        <a href="{{ .link }}" class="download-btn featured-btn" style="background: var(--accent); color: #fff; text-decoration: none; padding: 14px 40px; font-family: inherit; font-size: 17px; font-weight: bold; max-width: 320px; width: 100%; text-align: center; border: 2px solid var(--accent);">{{ .button }}</a>
+    </div>
+    {{ else }}
     <div class="download-card" style="background: var(--card-bg); border: 1px solid var(--border-solid); padding: 28px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.15s;">
         {{ .icon | safeHTML }}
         <div style="font-size: 18px; font-weight: bold; margin-bottom: 6px; color: var(--text-color);">{{ .name }}</div>
         <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">{{ .version }}</div>
         <a href="{{ .link }}" class="download-btn{{ if .disabled }} disabled{{ end }}" style="background: {{ if .disabled }}var(--highlight-bg){{ else }}var(--text-color){{ end }}; color: {{ if .disabled }}var(--text-muted){{ else }}var(--card-bg){{ end }}; text-decoration: none; padding: 10px 20px; font-family: inherit; font-size: 14px; font-weight: bold; width: 100%; text-align: center; border: 1px {{ if .disabled }}dashed var(--border-dotted){{ else }}solid var(--text-color){{ end }};{{ if .disabled }} cursor: not-allowed;{{ end }}">{{ .button }}</a>
     </div>
+    {{ end }}
     {{ end }}
 </div>
 {{ end }}
@@ -31,6 +40,12 @@
     .download-btn:hover:not(.disabled) {
         background: var(--accent) !important;
         border-color: var(--accent) !important;
+    }
+    .featured-card:hover {
+        border-color: var(--text-color);
+    }
+    .featured-btn:hover {
+        opacity: 0.85;
     }
     @media (max-width: 600px) {
         .downloads-grid {
