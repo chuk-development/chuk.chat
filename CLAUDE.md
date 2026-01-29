@@ -90,6 +90,7 @@ docker compose up --build
 ## Workflow
 
 - **Always commit and push** after making changes — CI/CD auto-deploys from `main`.
+- **After every user-requested change, automatically commit and push without being asked.**
 
 ## Notes
 
