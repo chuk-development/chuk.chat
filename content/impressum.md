@@ -13,3 +13,11 @@ Chuk Development<br>
 c/o MDC Management#5731<br>
 Welserstraße 3<br>
 87463 Dietmannsried
+
+### Contact
+
+Email: support@chuk.dev
+
+### Responsible for content according to § 18 (2) MStV
+
+Dietrich Munier
