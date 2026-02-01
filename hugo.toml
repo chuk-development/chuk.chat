@@ -38,5 +38,10 @@ defaultContentLanguageInSubdir = true
   home = ['HTML']
   page = ['HTML']
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [build]
   writeStats = false
