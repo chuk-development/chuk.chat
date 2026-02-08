@@ -47,7 +47,7 @@ platforms:
     downloads:
       - label: "ARM64"
         link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-arm64.apk"
-      - label: "ARM32"
+      - label: "ARMv7"
         link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-arm32.apk"
       - label: "x64"
         link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-x64.apk"
