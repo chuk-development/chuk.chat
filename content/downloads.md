@@ -31,12 +31,26 @@ platforms:
     link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-amd64.deb"
     button: "Download .deb"
     disabled: false
+    downloads:
+      - label: ".deb"
+        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-amd64.deb"
+      - label: ".rpm"
+        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-x86_64.rpm"
+      - label: ".AppImage"
+        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-x86_64.AppImage"
   - name: "Android"
     version: "Android 8.0+"
     icon: '<svg style="width: 40px; height: 40px; margin-bottom: 16px; color: var(--text-color);" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0012 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.983 5.983 0 006 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>'
     link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-arm64.apk"
     button: "Download APK"
     disabled: false
+    downloads:
+      - label: "ARM64"
+        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-arm64.apk"
+      - label: "ARM32"
+        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-arm32.apk"
+      - label: "x64"
+        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-x64.apk"
   - name: "iOS"
     version: "iOS 14+"
     icon: '<svg style="width: 40px; height: 40px; margin-bottom: 16px; color: var(--text-color);" viewBox="0 0 24 24" fill="currentColor"><path d="M17.3377 13.313C17.3637 11.047 19.2384 9.65865 19.3347 9.60265C18.192 7.94332 16.417 7.68265 15.8087 7.65599C14.302 7.49999 12.839 8.54399 12.069 8.54399C11.2904 8.54399 10.1057 7.67332 8.84235 7.69465C7.18902 7.71599 5.65368 8.65599 4.81368 10.1147C3.07568 13.1253 4.37302 17.5853 6.05302 20.0147C6.88368 21.204 7.85435 22.5347 9.16235 22.4867C10.425 22.4373 10.901 21.6827 12.4624 21.6827C14.0144 21.6827 14.4397 22.4867 15.7844 22.4613C17.1564 22.4133 18.0377 21.1893 18.851 19.996C19.8024 18.6053 20.2024 17.2547 20.2224 17.1747C20.205 17.1653 17.3037 16.056 17.3377 13.313ZM14.8984 5.74932C15.6037 4.89599 16.0784 3.70799 15.9477 2.53199C14.909 2.57599 13.6477 3.22532 12.893 4.08132C12.2144 4.84665 11.621 6.05999 11.7757 7.22265C12.9357 7.31332 14.1917 6.60399 14.8984 5.74932Z"/></svg>'

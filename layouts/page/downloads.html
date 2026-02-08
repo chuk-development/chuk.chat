@@ -9,6 +9,13 @@
         <div style="font-size: 18px; font-weight: bold; margin-bottom: 6px; color: var(--text-color);">{{ .name }}</div>
         <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">{{ .version }}</div>
         <a href="{{ .link }}" class="download-btn{{ if .disabled }} disabled{{ end }}" style="background: {{ if .disabled }}var(--highlight-bg){{ else }}var(--text-color){{ end }}; color: {{ if .disabled }}var(--text-muted){{ else }}var(--card-bg){{ end }}; text-decoration: none; padding: 10px 20px; font-family: inherit; font-size: 14px; font-weight: bold; width: 100%; text-align: center; border: 1px {{ if .disabled }}dashed var(--border-dotted){{ else }}solid var(--text-color){{ end }};{{ if .disabled }} cursor: not-allowed;{{ end }}">{{ .button }}</a>
+        {{ if .downloads }}
+        <div class="download-links" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; justify-content: center; width: 100%;">
+            {{ range .downloads }}
+            <a href="{{ .link }}" class="download-sub-link" style="font-size: 13px; color: var(--text-secondary); text-decoration: none; padding: 4px 10px; border: 1px solid var(--border-solid); transition: all 0.15s;">{{ .label }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
     </div>
     {{ end }}
 </div>
@@ -31,6 +38,10 @@
     .download-btn:hover:not(.disabled) {
         background: var(--accent) !important;
         border-color: var(--accent) !important;
+    }
+    .download-sub-link:hover {
+        border-color: var(--text-color) !important;
+        color: var(--text-color) !important;
     }
     @media (max-width: 600px) {
         .downloads-grid {
