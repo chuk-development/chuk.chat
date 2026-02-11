@@ -159,9 +159,9 @@ Jetzt schau dir das an:
 
 "AI solutions that help you get work done." Das ist jetzt deren Überschrift. Nicht "der beste Übersetzer der Welt" oder so. AI solutions. Die haben Tabs für "Translate speech", "Use API", "Automate tasks". Irgendwas namens "DeepL Agent", der dir hilft "Business-Aufgaben mit einfachen Sprachanweisungen zu automatisieren."
 
-Aber hier ist, was mich wirklich nervt: Du kannst nur 500 Zeichen auf der Homepage eingeben. 500. Das sind ungefähr drei Sätze. Willst du mehr? "Open Translator". Noch mehr? "Start free trial". Und wenn du mehr als 5.000 Zeichen übersetzen willst, musst du einen Account erstellen.
+Aber hier ist, was mich wirklich nervt: Du kannst nur 500 Zeichen auf der Homepage eingeben. 500. Das sind ungefähr drei Sätze. Klar, man kriegt 5.000 Zeichen ohne Anmeldung, wenn man sich zum eigentlichen Übersetzer durchklickt. Aber warum ist die Homepage nicht mehr der Übersetzer?
 
-Ihr seid ein Übersetzungsunternehmen. Eure Business-Kunden zahlen euch viel Geld. Warum quetscht ihr Normalnutzer wegen 5.000 Zeichen aus? Lasst die Leute einfach ihren Text übersetzen. Man kann argumentieren, deren Produkt ist fertig, da gibt's nichts mehr zu verbessern — gut. Aber anstatt es einfach und schnell zu halten, haben sie es in diese aufgeblähte "AI-Plattform" verwandelt, die ewig zum Laden braucht.
+Ihr seid ein Übersetzungsunternehmen. Eure Business-Kunden zahlen euch viel Geld. Warum limitiert ihr Normalnutzer auf 5.000 Zeichen? Lasst die Leute einfach ihren Text übersetzen. Man kann argumentieren, deren Produkt ist fertig, da gibt's nichts mehr zu verbessern — gut. Aber anstatt es einfach und schnell zu halten, haben sie es in diese aufgeblähte "AI-Plattform" verwandelt, die ewig zum Laden braucht.
 
 Und ja, man kommt immer noch auf die alte Übersetzer-Seite, wenn man sich durchklickt. Aber die Hauptseite — die, auf der man landet, wenn man auf deepl.com geht — das war früher der Übersetzer. Du bist dahin gegangen, hast deinen Text eingefügt, übersetzt. Jetzt ist die Hauptseite dieses AI-Marketing-Ding und der eigentliche Übersetzer ist hinter einem Klick versteckt.
 
