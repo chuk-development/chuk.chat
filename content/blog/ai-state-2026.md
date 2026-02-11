@@ -159,9 +159,9 @@ Now look at this:
 
 "AI solutions that help you get work done." That's their headline now. Not "the world's best translator" or anything like that. AI solutions. They have tabs for "Translate speech", "Use API", "Automate tasks". Something called "DeepL Agent" that "helps you automate business tasks using simple language instructions."
 
-But here's what actually gets me: You can only type 500 characters on the homepage. 500. That's like three sentences. Sure, you get 5,000 characters without signing up if you click through to the actual translator. But why is the homepage not the translator anymore?
+But here's what actually gets me: You can only type 500 characters on the homepage. 500. That's like three sentences. Click through to the actual translator and you get 1,500 without an account, 5,000 if you sign up. But why is the homepage not the translator anymore?
 
-You're a translation company. Your business customers pay you a lot of money. Why are you limiting free users to 5,000 characters? Just let people translate their text. You can argue their product is done, there's nothing more to improve — fine. But instead of keeping it simple and fast, they turned it into this bloated "AI platform" that takes forever to load.
+You're a translation company. Your business customers pay you a lot of money. Why are you limiting free users to 1,500 characters? Just let people translate their text. You can argue their product is done, there's nothing more to improve — fine. But instead of keeping it simple and fast, they turned it into this bloated "AI platform" that takes forever to load.
 
 And yes, you can still get to the old translator page if you click through. But the main page — the one you land on when you go to deepl.com — used to be the translator. You'd go there, paste your text, translate. Now the main page is this AI marketing thing and the actual translator is buried behind a click.
 
