@@ -145,6 +145,44 @@ And here's the real irony: These companies have the most advanced AI models in t
 
 Seriously?
 
+## Update — February 11, 2026
+
+It keeps going. Of course it does.
+
+## DeepL
+
+DeepL used to be simple. You go to the website, paste your text, get a translation. Done. That was it. That's all you needed.
+
+Now look at this:
+
+![DeepL's new AI platform homepage](/blog/ai-state-2026/deepl.avif)
+
+"AI solutions that help you get work done." That's their headline now. Not "the world's best translator" or anything like that. AI solutions. They have tabs for "Translate speech", "Use API", "Automate tasks". Something called "DeepL Agent" that "helps you automate business tasks using simple language instructions."
+
+But here's what actually gets me: You can only type 500 characters on the homepage. 500. That's like three sentences. Want more? "Open Translator". Want even more? "Start free trial". And if you want to translate more than 5,000 characters, you need to create an account.
+
+You're a translation company. Your business customers pay you a lot of money. Why are you squeezing free users for 5,000 characters? Just let people translate their text. You can argue their product is done, there's nothing more to improve — fine. But instead of keeping it simple and fast, they turned it into this bloated "AI platform" that takes forever to load.
+
+And yes, you can still get to the old translator page if you click through. But the main page — the one you land on when you go to deepl.com — used to be the translator. You'd go there, paste your text, translate. Now the main page is this AI marketing thing and the actual translator is buried behind a click.
+
+I just want to go to DeepL, paste a text, and get a translation. That's it. Stop trying to be another AI company. The world doesn't need another "AI solutions" platform. It needs a fast, simple translator that just works.
+
+## Perplexity — Again
+
+Remember the Perplexity section from January? It gets better.
+
+So Perplexity lets you choose different AI models. Cool feature. You'd expect that when you select a model, it actually uses that model, right?
+
+![Perplexity says Gemini 3 Pro was unavailable](/blog/ai-state-2026/perplexity-model-unavailable.avif)
+
+"Prepared using because Gemini 3 Pro was inapplicable or unavailable"
+
+Read that again. It doesn't even tell you which model it actually used instead. "Prepared using because" — there's literally a word missing in the sentence. Grammar aside, it just silently switches to the default model and tells you after the fact. No warning beforehand, no "hey, this model is currently unavailable, want to pick another one?" — nothing. You write your prompt, you wait, and then at the very bottom it says "oh by the way, we didn't use the model you selected."
+
+Why even offer model selection if you're just going to ignore it?
+
+---
+
 ## Conclusion
 
 I could go deeper. I could test more platforms, show more broken features, document more failures. But I think you get the point.

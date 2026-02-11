@@ -145,6 +145,44 @@ Und hier ist die echte Ironie: Diese Unternehmen haben die fortschrittlichsten K
 
 Ernsthaft?
 
+## Update — 11. Februar 2026
+
+Es geht weiter. Natürlich geht es weiter.
+
+## DeepL
+
+DeepL war mal einfach. Du gehst auf die Website, fügst deinen Text ein, kriegst eine Übersetzung. Fertig. Das war's. Mehr brauchte man nicht.
+
+Jetzt schau dir das an:
+
+![DeepLs neue AI-Plattform Homepage](/blog/ai-state-2026/deepl.avif)
+
+"AI solutions that help you get work done." Das ist jetzt deren Überschrift. Nicht "der beste Übersetzer der Welt" oder so. AI solutions. Die haben Tabs für "Translate speech", "Use API", "Automate tasks". Irgendwas namens "DeepL Agent", der dir hilft "Business-Aufgaben mit einfachen Sprachanweisungen zu automatisieren."
+
+Aber hier ist, was mich wirklich nervt: Du kannst nur 500 Zeichen auf der Homepage eingeben. 500. Das sind ungefähr drei Sätze. Willst du mehr? "Open Translator". Noch mehr? "Start free trial". Und wenn du mehr als 5.000 Zeichen übersetzen willst, musst du einen Account erstellen.
+
+Ihr seid ein Übersetzungsunternehmen. Eure Business-Kunden zahlen euch viel Geld. Warum quetscht ihr Normalnutzer wegen 5.000 Zeichen aus? Lasst die Leute einfach ihren Text übersetzen. Man kann argumentieren, deren Produkt ist fertig, da gibt's nichts mehr zu verbessern — gut. Aber anstatt es einfach und schnell zu halten, haben sie es in diese aufgeblähte "AI-Plattform" verwandelt, die ewig zum Laden braucht.
+
+Und ja, man kommt immer noch auf die alte Übersetzer-Seite, wenn man sich durchklickt. Aber die Hauptseite — die, auf der man landet, wenn man auf deepl.com geht — das war früher der Übersetzer. Du bist dahin gegangen, hast deinen Text eingefügt, übersetzt. Jetzt ist die Hauptseite dieses AI-Marketing-Ding und der eigentliche Übersetzer ist hinter einem Klick versteckt.
+
+Ich will einfach nur auf DeepL gehen, einen Text reinkopieren und eine Übersetzung bekommen. Das ist alles. Hört auf zu versuchen, noch ein AI-Unternehmen zu sein. Die Welt braucht keine weitere "AI solutions"-Plattform. Sie braucht einen schnellen, einfachen Übersetzer, der einfach funktioniert.
+
+## Perplexity — Schon wieder
+
+Erinnert ihr euch an den Perplexity-Abschnitt vom Januar? Es wird besser.
+
+Also Perplexity lässt dich verschiedene KI-Modelle auswählen. Cooles Feature. Man würde erwarten, dass wenn man ein Modell auswählt, es dieses Modell auch tatsächlich benutzt, oder?
+
+![Perplexity sagt Gemini 3 Pro war nicht verfügbar](/blog/ai-state-2026/perplexity-model-unavailable.avif)
+
+"Prepared using because Gemini 3 Pro was inapplicable or unavailable"
+
+Lies das nochmal. Es sagt dir nicht mal, welches Modell es stattdessen benutzt hat. "Prepared using because" — da fehlt buchstäblich ein Wort im Satz. Grammatik mal beiseite, es wechselt einfach still und heimlich zum Standard-Modell und sagt es dir im Nachhinein. Keine Warnung vorher, kein "hey, dieses Modell ist gerade nicht verfügbar, willst du ein anderes nehmen?" — nichts. Du schreibst deinen Prompt, du wartest, und dann steht ganz unten "ach übrigens, wir haben nicht das Modell benutzt, das du ausgewählt hast."
+
+Warum überhaupt Modellauswahl anbieten, wenn ihr sie eh ignoriert?
+
+---
+
 ## Fazit
 
 Ich könnte tiefer gehen. Ich könnte mehr Plattformen testen, mehr kaputte Features zeigen, mehr Fehler dokumentieren. Aber ich denke, ihr versteht den Punkt.
