@@ -12,5 +12,5 @@ features:
   - "Full Access to Chuk AI"
   - "End-to-End Encryption"
   - "€16 in AI Credits Included"
-note: "Includes 19% VAT.<br>We take a 10% commission to keep the lights on."
+note: "As a small business under §19 UStG, no VAT is charged."
 ---

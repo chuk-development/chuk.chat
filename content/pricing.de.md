@@ -12,5 +12,5 @@ features:
   - "Voller Zugang zu Chuk AI"
   - "Ende-zu-Ende-Verschlüsselung"
   - "€16 KI-Guthaben inklusive"
-note: "Inkl. 19% MwSt.<br>Wir behalten 10% als Provision, um das Licht anzulassen."
+note: "Gemäß §19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer erhoben."
 ---
