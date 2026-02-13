@@ -39,7 +39,7 @@ No. We never sell your data to third parties.
 
 ### How much does it cost?
 
-€20 per month. This includes €16 in AI credits. Note: As a small business under §19 UStG (German Small Business Regulation), we do not charge VAT.
+€20 per month. This includes €16 in AI credits.
 
 ### How do AI credits work?
 

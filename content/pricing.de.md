@@ -12,5 +12,5 @@ features:
   - "Voller Zugang zu Chuk AI"
   - "Ende-zu-Ende-Verschlüsselung"
   - "€16 KI-Guthaben inklusive"
-note: "Gemäß §19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer erhoben."
+note: ""
 ---
