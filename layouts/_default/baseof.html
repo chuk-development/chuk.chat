@@ -17,6 +17,23 @@
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
         }
+
+        // Measure KAO banner height and set CSS variable
+        (function() {
+            function updateBannerHeight() {
+                const banner = document.querySelector('.kao-banner');
+                if (banner) {
+                    document.documentElement.style.setProperty('--kao-banner-height', banner.offsetHeight + 'px');
+                } else {
+                    document.documentElement.style.setProperty('--kao-banner-height', '0px');
+                }
+            }
+            // Run after DOM is ready and periodically to catch dynamic insertion
+            updateBannerHeight();
+            const observer = new MutationObserver(updateBannerHeight);
+            observer.observe(document.body, { childList: true, subtree: true });
+            window.addEventListener('resize', updateBannerHeight);
+        })();
     </script>
     {{- block "scripts" . }}{{- end }}
 </body>
