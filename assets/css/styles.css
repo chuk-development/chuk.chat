@@ -14,6 +14,7 @@
     --card-bg: #FFFFFF;
     --icon-bg: #F0EBE0;
     --top-bar-height: 56px;
+    --layout-max-width: 1120px;
 }
 
 * {
@@ -67,12 +68,12 @@ body:has(.kao-banner) {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    padding: 0 24px;
+    padding: 0 16px;
 }
 
 .nav-container {
     width: 100%;
-    max-width: 900px;
+    max-width: var(--layout-max-width);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -186,7 +187,7 @@ body:has(.kao-banner) {
 
 .container {
     width: 100%;
-    max-width: 900px;
+    max-width: var(--layout-max-width);
     padding: 60px 24px;
     animation: fadeIn 0.5s ease-out;
 }
@@ -705,7 +706,7 @@ button:disabled {
 }
 
 /* Responsive Design */
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
     .nav-right {
         gap: 12px;
     }
@@ -1140,52 +1141,152 @@ button:disabled {
     height: auto;
     border: 1px solid var(--border-solid);
     margin: 16px 0;
-    cursor: pointer;
+}
+
+.image-viewer-trigger {
+    cursor: zoom-in;
     transition: opacity 0.2s;
 }
 
-.blog-post-content img:hover {
+.image-viewer-trigger:hover {
     opacity: 0.9;
 }
 
-/* Lightbox */
-.lightbox {
+body.image-viewer-open {
+    overflow: hidden;
+}
+
+.image-viewer {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 2000;
-    cursor: pointer;
+    inset: 0;
+    z-index: 2100;
     animation: fadeIn 0.2s ease-out;
 }
 
-.lightbox.active {
+.image-viewer.active {
+    display: block;
+}
+
+.image-viewer-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: rgba(18, 15, 10, 0.88);
+    cursor: pointer;
+}
+
+.image-viewer-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min(96vw, 1360px);
+    height: min(92vh, 980px);
+    margin: 4vh auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border-solid);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+}
+
+.image-viewer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-solid);
+    background: var(--highlight-bg);
+}
+
+.image-viewer-btn {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-solid);
+    padding: 6px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 38px;
+}
+
+.image-viewer-btn:hover:not(:disabled) {
+    border-color: var(--text-color);
+}
+
+.image-viewer-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.image-viewer-zoom-level {
+    min-width: 54px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.image-viewer-fit {
+    min-width: 72px;
+}
+
+.image-viewer-close {
+    margin-left: auto;
+    font-size: 24px;
+    line-height: 1;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.image-viewer-stage {
+    flex: 1;
+    overflow: auto;
+    background: #F7F3EA;
+}
+
+.image-viewer-canvas {
+    min-width: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
 }
 
-.lightbox img {
-    max-width: 95%;
-    max-height: 95%;
-    border: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+.image-viewer-canvas img {
+    display: block;
+    max-width: none;
+    max-height: none;
+    border: 1px solid var(--border-solid);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
-}
+@media (max-width: 720px) {
+    .image-viewer-panel {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        border: none;
+    }
 
-.lightbox-close:hover {
-    color: var(--accent);
+    .image-viewer-toolbar {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .image-viewer-btn {
+        padding: 6px 10px;
+    }
+
+    .image-viewer-fit {
+        min-width: 64px;
+    }
+
+    .image-viewer-canvas {
+        padding: 10px;
+    }
 }

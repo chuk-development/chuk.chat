@@ -12,6 +12,24 @@
         {{- partial "footer.html" . -}}
     </div>
 
+    <div class="image-viewer" id="imageViewer" aria-hidden="true">
+        <button type="button" class="image-viewer-backdrop" data-image-viewer-close aria-label="{{ if eq .Lang "de" }}Bildansicht schliessen{{ else }}Close image viewer{{ end }}"></button>
+        <div class="image-viewer-panel" role="dialog" aria-modal="true" aria-label="{{ if eq .Lang "de" }}Bildansicht{{ else }}Image viewer{{ end }}">
+            <div class="image-viewer-toolbar">
+                <button type="button" class="image-viewer-btn" id="imageViewerZoomOut" aria-label="{{ if eq .Lang "de" }}Verkleinern{{ else }}Zoom out{{ end }}">-</button>
+                <span class="image-viewer-zoom-level" id="imageViewerZoomLevel">100%</span>
+                <button type="button" class="image-viewer-btn" id="imageViewerZoomIn" aria-label="{{ if eq .Lang "de" }}Vergroessern{{ else }}Zoom in{{ end }}">+</button>
+                <button type="button" class="image-viewer-btn image-viewer-fit" id="imageViewerReset">{{ if eq .Lang "de" }}Anpassen{{ else }}Fit{{ end }}</button>
+                <button type="button" class="image-viewer-btn image-viewer-close" id="imageViewerClose" aria-label="{{ if eq .Lang "de" }}Schliessen{{ else }}Close{{ end }}">&times;</button>
+            </div>
+            <div class="image-viewer-stage" id="imageViewerStage">
+                <div class="image-viewer-canvas" id="imageViewerCanvas">
+                    <img id="imageViewerImg" src="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -56,6 +74,238 @@
                 .catch(() => {
                     starsCount.textContent = '--';
                 });
+        })();
+
+        (function() {
+            const viewer = document.getElementById('imageViewer');
+            const stage = document.getElementById('imageViewerStage');
+            const canvas = document.getElementById('imageViewerCanvas');
+            const viewerImage = document.getElementById('imageViewerImg');
+            const zoomOutBtn = document.getElementById('imageViewerZoomOut');
+            const zoomInBtn = document.getElementById('imageViewerZoomIn');
+            const resetBtn = document.getElementById('imageViewerReset');
+            const closeBtn = document.getElementById('imageViewerClose');
+            const zoomLevel = document.getElementById('imageViewerZoomLevel');
+            const backdrop = viewer ? viewer.querySelector('[data-image-viewer-close]') : null;
+
+            if (!viewer || !stage || !canvas || !viewerImage || !zoomOutBtn || !zoomInBtn || !resetBtn || !closeBtn || !zoomLevel || !backdrop) {
+                return;
+            }
+
+            const maxScale = 6;
+            const zoomStep = 1.2;
+            let naturalWidth = 0;
+            let naturalHeight = 0;
+            let currentScale = 1;
+            let minScale = 1;
+            let activeTrigger = null;
+
+            function clamp(value, minValue, maxValue) {
+                return Math.min(maxValue, Math.max(minValue, value));
+            }
+
+            function isOpen() {
+                return viewer.classList.contains('active');
+            }
+
+            function getFitScale() {
+                if (!naturalWidth || !naturalHeight) {
+                    return 1;
+                }
+
+                const viewportWidth = Math.max(stage.clientWidth - 24, 1);
+                const viewportHeight = Math.max(stage.clientHeight - 24, 1);
+                return Math.min(viewportWidth / naturalWidth, viewportHeight / naturalHeight, 1);
+            }
+
+            function renderScale() {
+                if (!naturalWidth || !naturalHeight) {
+                    return;
+                }
+
+                const scaledWidth = Math.max(1, Math.round(naturalWidth * currentScale));
+                const scaledHeight = Math.max(1, Math.round(naturalHeight * currentScale));
+
+                viewerImage.style.width = scaledWidth + 'px';
+                viewerImage.style.height = scaledHeight + 'px';
+                canvas.style.width = Math.max(stage.clientWidth, scaledWidth) + 'px';
+                canvas.style.height = Math.max(stage.clientHeight, scaledHeight) + 'px';
+
+                zoomLevel.textContent = Math.round(currentScale * 100) + '%';
+                zoomOutBtn.disabled = currentScale <= minScale + 0.001;
+                zoomInBtn.disabled = currentScale >= maxScale - 0.001;
+            }
+
+            function centerImage() {
+                stage.scrollLeft = Math.max(0, (canvas.offsetWidth - stage.clientWidth) / 2);
+                stage.scrollTop = Math.max(0, (canvas.offsetHeight - stage.clientHeight) / 2);
+            }
+
+            function zoomTo(nextScale, anchorX, anchorY) {
+                const clampedScale = clamp(nextScale, minScale, maxScale);
+                if (Math.abs(clampedScale - currentScale) < 0.001) {
+                    return;
+                }
+
+                const safeAnchorX = typeof anchorX === 'number' ? anchorX : stage.scrollLeft + (stage.clientWidth / 2);
+                const safeAnchorY = typeof anchorY === 'number' ? anchorY : stage.scrollTop + (stage.clientHeight / 2);
+                const ratio = clampedScale / currentScale;
+
+                currentScale = clampedScale;
+                renderScale();
+
+                stage.scrollLeft = (safeAnchorX * ratio) - (stage.clientWidth / 2);
+                stage.scrollTop = (safeAnchorY * ratio) - (stage.clientHeight / 2);
+            }
+
+            function openViewer(image) {
+                const source = image.currentSrc || image.src;
+                if (!source) {
+                    return;
+                }
+
+                activeTrigger = image;
+                viewerImage.src = source;
+                viewerImage.alt = image.alt || '';
+                viewer.classList.add('active');
+                viewer.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('image-viewer-open');
+            }
+
+            function closeViewer() {
+                if (!isOpen()) {
+                    return;
+                }
+
+                viewer.classList.remove('active');
+                viewer.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('image-viewer-open');
+                viewerImage.removeAttribute('src');
+                viewerImage.alt = '';
+                naturalWidth = 0;
+                naturalHeight = 0;
+                currentScale = 1;
+                minScale = 1;
+
+                if (activeTrigger) {
+                    activeTrigger.focus();
+                    activeTrigger = null;
+                }
+            }
+
+            viewerImage.addEventListener('load', () => {
+                naturalWidth = viewerImage.naturalWidth || 1;
+                naturalHeight = viewerImage.naturalHeight || 1;
+                minScale = getFitScale();
+                currentScale = minScale;
+                renderScale();
+                centerImage();
+            });
+
+            const triggerSelector = 'img[data-image-viewer], .screenshot-container img, .desktop-image-container img, .blog-post-content img';
+            const triggerImages = document.querySelectorAll(triggerSelector);
+            const seen = new Set();
+
+            triggerImages.forEach((image) => {
+                if (!(image instanceof HTMLImageElement) || !image.src || seen.has(image)) {
+                    return;
+                }
+                seen.add(image);
+                image.classList.add('image-viewer-trigger');
+
+                if (!image.hasAttribute('tabindex')) {
+                    image.tabIndex = 0;
+                }
+                if (!image.hasAttribute('role')) {
+                    image.setAttribute('role', 'button');
+                }
+
+                image.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    openViewer(image);
+                });
+
+                image.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openViewer(image);
+                    }
+                });
+            });
+
+            backdrop.addEventListener('click', closeViewer);
+            closeBtn.addEventListener('click', closeViewer);
+
+            zoomInBtn.addEventListener('click', () => {
+                zoomTo(currentScale * zoomStep);
+            });
+
+            zoomOutBtn.addEventListener('click', () => {
+                zoomTo(currentScale / zoomStep);
+            });
+
+            resetBtn.addEventListener('click', () => {
+                minScale = getFitScale();
+                currentScale = minScale;
+                renderScale();
+                centerImage();
+            });
+
+            stage.addEventListener('wheel', (event) => {
+                if (!isOpen()) {
+                    return;
+                }
+
+                event.preventDefault();
+                const rect = stage.getBoundingClientRect();
+                const anchorX = stage.scrollLeft + (event.clientX - rect.left);
+                const anchorY = stage.scrollTop + (event.clientY - rect.top);
+                const factor = event.deltaY < 0 ? 1.1 : (1 / 1.1);
+
+                zoomTo(currentScale * factor, anchorX, anchorY);
+            }, { passive: false });
+
+            document.addEventListener('keydown', (event) => {
+                if (!isOpen()) {
+                    return;
+                }
+
+                if (event.key === 'Escape') {
+                    closeViewer();
+                    return;
+                }
+
+                if (event.key === '+' || event.key === '=') {
+                    event.preventDefault();
+                    zoomTo(currentScale * zoomStep);
+                    return;
+                }
+
+                if (event.key === '-') {
+                    event.preventDefault();
+                    zoomTo(currentScale / zoomStep);
+                    return;
+                }
+
+                if (event.key === '0') {
+                    event.preventDefault();
+                    minScale = getFitScale();
+                    currentScale = minScale;
+                    renderScale();
+                    centerImage();
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (!isOpen() || !naturalWidth || !naturalHeight) {
+                    return;
+                }
+
+                const nextMinScale = getFitScale();
+                minScale = nextMinScale;
+                currentScale = clamp(currentScale, minScale, maxScale);
+                renderScale();
+            });
         })();
     </script>
     {{- block "scripts" . }}{{- end }}
