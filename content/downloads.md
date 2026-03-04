@@ -16,44 +16,44 @@ platforms:
   - name: "Windows"
     version: "Windows 10/11 (x64)"
     icon: '<svg style="width: 40px; height: 40px; margin-bottom: 16px; color: var(--text-color);" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>'
-    link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-windows-x64-setup.exe"
+    link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-windows-x64-setup.exe"
     button: "Download Setup"
     disabled: false
     downloads:
       - label: "Setup.exe"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-windows-x64-setup.exe"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-windows-x64-setup.exe"
       - label: "Portable ZIP"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-windows-x64-portable.zip"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-windows-x64-portable.zip"
   - name: "Android"
     version: "Android 8.0+"
     icon: '<svg style="width: 40px; height: 40px; margin-bottom: 16px; color: var(--text-color);" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0012 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.983 5.983 0 006 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>'
-    link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-armv8.apk"
+    link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-android-armv8.apk"
     button: "Download APK"
     disabled: false
     downloads:
       - label: "ARMv8"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-armv8.apk"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-android-armv8.apk"
       - label: "ARMv7"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-armv7.apk"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-android-armv7.apk"
       - label: "x64"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-android-x64.apk"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-android-x64.apk"
   - name: "Linux"
     version: ".deb, .rpm, .AppImage"
     icon: '<svg style="width: 40px; height: 40px; margin-bottom: 16px; color: var(--text-color);" viewBox="0 0 448 512" fill="currentColor"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-.4 2.9-1.5.2-1.4-1.9-2.3-3.2-2.9-1.7-.7-3.9-1-5.5-.1-.4.2-.8.7-.6 1.1.3 1.3 2.3 1.1 3.4 1.7zm-21.9 1.7c1.2 0 2-1.2 3-1.7 1.1-.6 3.1-.4 3.5-1.6.2-.4-.2-.9-.6-1.1-1.6-.9-3.8-.6-5.5.1-1.3.6-3.4 1.5-3.2 2.9.1 1 1.8 1.5 2.8 1.4zM420 403.8c-3.6-4-5.3-11.6-7.2-19.7-1.8-8.1-3.9-16.8-10.5-22.4-1.3-1.1-2.6-2.1-4-2.9-1.3-.8-2.7-1.5-4.1-2 9.2-27.3 5.6-54.5-3.7-79.1-11.4-30.1-31.3-56.4-46.5-74.4-17.1-21.5-33.7-41.9-33.4-72C311.1 85.4 315.7.1 234.8 0 132.4-.2 158 103.4 156.9 135.2c-1.7 23.4-6.4 41.8-22.5 64.7-18.9 22.5-45.5 58.8-58.1 96.7-6 17.9-8.8 36.1-6.2 53.3-6.5 5.8-11.4 14.7-16.6 20.2-4.2 4.3-10.3 5.9-17 8.3s-14 6-18.5 14.5c-2.1 3.9-2.8 8.1-2.8 12.4 0 3.9.6 7.9 1.2 11.8 1.2 8.1 2.5 15.7.8 20.8-5.2 14.4-5.9 24.4-2.2 31.7 3.8 7.3 11.4 10.5 20.1 12.3 17.3 3.6 40.8 2.7 59.3 12.5 19.8 10.4 39.9 14.1 55.9 10.4 11.6-2.6 21.1-9.6 25.9-20.2 12.5-.1 26.3-5.4 48.3-6.6 14.9-1.2 33.6 5.3 55.1 4.1.6 2.3 1.4 4.6 2.5 6.7v.1c8.3 16.7 23.8 24.3 40.3 23 16.6-1.3 34.1-11 48.3-27.9 13.6-16.4 36-23.2 50.9-32.2 7.4-4.5 13.4-10.1 13.9-18.3.4-8.2-4.4-17.3-15.5-29.7zM223.7 87.3c9.8-22.2 34.2-21.8 44-.4 6.5 14.2 3.6 30.9-4.3 40.4-1.6-.8-5.9-2.6-12.6-4.9 1.1-1.2 3.1-2.7 3.9-4.6 4.8-11.8-.2-27-9.1-27.3-7.3-.5-13.9 10.8-11.8 23-4.1-2-9.4-3.5-13-4.4-1-6.9-.3-14.6 2.9-21.8zM183 75.8c10.1 0 20.8 14.2 19.1 33.5-3.5 1-7.1 2.5-10.2 4.6 1.2-8.9-3.3-20.1-9.6-19.6-8.4.7-9.8 21.2-1.8 28.1 1 .8 1.9-.2-5.9 5.5-15.6-14.6-10.5-52.1 8.4-52.1zm-13.6 60.7c6.2-4.6 13.6-10 14.1-10.5 4.7-4.4 13.5-14.2 27.9-14.2 7.1 0 15.6 2.3 25.9 8.9 6.3 4.1 11.3 4.4 22.6 9.3 8.4 3.5 13.7 9.7 10.5 18.2-2.6 7.1-11 14.4-22.7 18.1-11.1 3.6-19.8 16-38.2 14.9-3.9-.2-7-1-9.6-2.1-8-3.5-12.2-10.4-20-15-8.6-4.8-13.2-10.4-14.7-15.3-1.4-4.9 0-9 4.2-12.3zm3.3 334c-2.7 35.1-43.9 34.4-75.3 18-29.9-15.8-68.6-6.5-76.5-21.9-2.4-4.7-2.4-12.7 2.6-26.4v-.2c2.4-7.6.6-16-.6-23.9-1.2-7.8-1.8-15 .9-20 3.5-6.7 8.5-9.1 14.8-11.3 10.3-3.7 11.8-3.4 19.6-9.9 5.5-5.7 9.5-12.9 14.3-18 5.1-5.5 10-8.1 17.7-6.9 8.1 1.2 15.1 6.8 21.9 16l19.6 35.6c9.5 19.9 43.1 48.4 41 68.9zm-30.5-154.4c-17.4-29.1-23.5-63-22.7-97.7 0-5.4 5.4-4.7 7.3-1.5 4.6 7.7 18.6 12.2 33 10.7 12.5 1 21.8 5.6 24.6 14.5-18.7 15.2-38.8 48.8-42.2 74zm56.1 8.2c3.4-.3 3.9 2.6 5.3 3.9 8.2 6.6 15.5 14.6 24.2 20.2 15.5 10 20.2 26.6 33.2 39.3 37.3 36.5 22.4 92.7-23.3 115.3-13.2 6.2-27 11.8-41.7 13.3-16.6 1.7-35-2.8-46.1-15.3-9.2-10.5-6.8-23.6.1-34.5 4-6.2 9.4-11.4 15-16.3 9-7.5 19.6-14.1 29.4-22.4 12.9-10.9 20.6-27.2 25.8-45.5 2-7.2 3.5-13.8 3.5-20.6 0-6.4-1.2-11.9-3.5-17.3-.1-.9-1-1.3-1.9-1.5-4.3-1.1-14.3-1.8-19.9 1.1-.6.4-1.5.6-1.3-.8.3-3.5.5-7.7 1.2-11.2.4-3 1.2-6.7 0-9.7z"/></svg>'
-    link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-amd64.deb"
+    link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-linux-amd64.deb"
     button: "Download .deb"
     disabled: false
     downloads:
       - label: ".deb"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-amd64.deb"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-linux-amd64.deb"
       - label: ".rpm"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-x86_64.rpm"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-linux-x86_64.rpm"
       - label: ".AppImage"
-        link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-linux-x86_64.AppImage"
+        link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-linux-x86_64.AppImage"
   - name: "macOS"
     version: "Apple Silicon & Intel"
     icon: '<svg style="width: 40px; height: 40px; margin-bottom: 16px; color: var(--text-color);" viewBox="0 0 24 24" fill="currentColor"><path d="M17.3377 13.313C17.3637 11.047 19.2384 9.65865 19.3347 9.60265C18.192 7.94332 16.417 7.68265 15.8087 7.65599C14.302 7.49999 12.839 8.54399 12.069 8.54399C11.2904 8.54399 10.1057 7.67332 8.84235 7.69465C7.18902 7.71599 5.65368 8.65599 4.81368 10.1147C3.07568 13.1253 4.37302 17.5853 6.05302 20.0147C6.88368 21.204 7.85435 22.5347 9.16235 22.4867C10.425 22.4373 10.901 21.6827 12.4624 21.6827C14.0144 21.6827 14.4397 22.4867 15.7844 22.4613C17.1564 22.4133 18.0377 21.1893 18.851 19.996C19.8024 18.6053 20.2024 17.2547 20.2224 17.1747C20.205 17.1653 17.3037 16.056 17.3377 13.313ZM14.8984 5.74932C15.6037 4.89599 16.0784 3.70799 15.9477 2.53199C14.909 2.57599 13.6477 3.22532 12.893 4.08132C12.2144 4.84665 11.621 6.05999 11.7757 7.22265C12.9357 7.31332 14.1917 6.60399 14.8984 5.74932Z"/></svg>'
-    link: "https://github.com/chuk-development/chuk_chat_releases/releases/latest/download/chuk_chat-macos.dmg"
+    link: "https://github.com/chuk-development/chuk_chat/releases/download/v1.0.40/chuk_chat-macos.dmg"
     button: "Download DMG"
     disabled: false
   - name: "iOS"

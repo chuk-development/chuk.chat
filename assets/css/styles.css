@@ -87,6 +87,9 @@ body:has(.kao-banner) {
 .logo {
     font-weight: bold;
     font-size: 22px;
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.2s;
