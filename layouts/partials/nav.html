@@ -2,7 +2,7 @@
 <nav class="top-bar">
     <div class="nav-container">
         <a href="{{ "/" | relLangURL }}" class="logo">Chuk Chat</a>
-        <div style="display: flex; align-items: center; gap: 32px;">
+        <div class="nav-right">
             <div class="nav-links">
                 <a href="{{ "blog" | relLangURL }}" class="nav-link{{ if eq .Section "blog" }} active{{ end }}">Blog</a>
                 <a href="{{ "pricing" | relLangURL }}" class="nav-link{{ if eq .Section "pricing" }} active{{ end }}">{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
@@ -23,6 +23,13 @@
                 <a href="{{ with .Translations }}{{ (index . 0).Permalink }}{{ else }}/de/{{ end }}" class="lang-btn" title="Deutsch">DE</a>
                 {{- end -}}
             </div>
+            <a href="https://github.com/chuk-development/chuk_chat" class="github-stars-link" target="_blank" rel="noopener noreferrer" aria-label="{{ if eq .Lang "de" }}Open-Source Repository auf GitHub mit Sternen{{ else }}Open-source repository on GitHub with stars{{ end }}">
+                <span class="github-stars-text">Open Source</span>
+                <span class="github-stars-badge">
+                    <span class="github-star-label">{{ if eq .Lang "de" }}Sterne{{ else }}Stars{{ end }}</span>
+                    <span class="github-star-count" id="githubStarsCount">--</span>
+                </span>
+            </a>
         </div>
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -35,6 +42,7 @@
     <a href="{{ "pricing" | relLangURL }}"{{ if eq .Section "pricing" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
     <a href="{{ "downloads" | relLangURL }}"{{ if eq .Section "downloads" }} class="active"{{ end }}>Downloads</a>
     <a href="https://docs.chuk.chat/" target="_blank">Docs</a>
+    <a href="https://github.com/chuk-development/chuk_chat" target="_blank" rel="noopener noreferrer">{{ if eq .Lang "de" }}Open Source auf GitHub{{ else }}Open Source on GitHub{{ end }}</a>
     <a href="https://chat.chuk.chat/" target="_blank" class="nav-cta">Web App</a>
     <a href="{{ "support" | relLangURL }}"{{ if eq .Section "support" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Support{{ else }}Support{{ end }}</a>
     <div class="mobile-lang">

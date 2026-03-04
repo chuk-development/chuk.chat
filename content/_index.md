@@ -4,7 +4,7 @@ description: "Chuk Chat is a private AI chat app with no data mining, no trackin
 keywords: "private AI chat, secure AI assistant, anonymous AI, encrypted AI chat, privacy-focused AI, open-weight AI, no data mining AI, private chatbot, secure chatbot, GDPR compliant AI"
 
 hero_title: "Chuk Chat — Private AI That<br>Actually Belongs to You"
-hero_subtitle: "A simple monthly subscription, full control, no data mining.<br>Chat, write, code, research — powered entirely by transparent open-weight models."
+hero_subtitle: "A simple monthly subscription, full control, no data mining.<br>Chat, write, code, research — powered entirely by transparent open-weight models.<br>Chuk Chat is open source on <a href='https://github.com/chuk-development/chuk_chat' target='_blank' rel='noopener noreferrer'>GitHub</a>."
 
 form_placeholder: "Enter your email address..."
 form_button: "Subscribe"

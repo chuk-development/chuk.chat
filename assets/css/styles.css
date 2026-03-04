@@ -78,6 +78,12 @@ body:has(.kao-banner) {
     justify-content: space-between;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .logo {
     font-weight: bold;
     font-size: 22px;
@@ -127,6 +133,52 @@ body:has(.kao-banner) {
 .nav-cta:hover {
     background: #9A7209;
     box-shadow: 0 0 8px rgba(184, 134, 11, 0.5);
+}
+
+.github-stars-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border-solid);
+    background: var(--highlight-bg);
+    padding: 4px 8px;
+    color: var(--text-secondary);
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.github-stars-link:hover {
+    color: var(--text-color);
+    border-color: var(--text-color);
+    text-decoration: none;
+}
+
+.github-stars-text {
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.github-stars-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--border-solid);
+    padding: 2px 6px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.github-star-label {
+    color: var(--text-secondary);
+    font-weight: normal;
+}
+
+.github-star-count {
+    min-width: 2ch;
+    text-align: right;
 }
 
 .container {
@@ -650,6 +702,24 @@ button:disabled {
 }
 
 /* Responsive Design */
+@media (max-width: 960px) {
+    .nav-right {
+        gap: 12px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-link {
+        font-size: 15px;
+    }
+
+    .github-stars-text {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     .two-column-section {
         grid-template-columns: 1fr;
@@ -718,6 +788,18 @@ button:disabled {
     }
 
     .lang-switcher {
+        display: none;
+    }
+
+    .nav-right {
+        gap: 8px;
+    }
+
+    .github-stars-link {
+        padding: 4px 6px;
+    }
+
+    .github-stars-text {
         display: none;
     }
 

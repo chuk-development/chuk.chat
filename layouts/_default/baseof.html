@@ -34,6 +34,29 @@
             observer.observe(document.body, { childList: true, subtree: true });
             window.addEventListener('resize', updateBannerHeight);
         })();
+
+        (function() {
+            const starsCount = document.getElementById('githubStarsCount');
+            if (!starsCount) {
+                return;
+            }
+
+            fetch('https://api.github.com/repos/chuk-development/chuk_chat')
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load GitHub stars');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    if (typeof data.stargazers_count === 'number') {
+                        starsCount.textContent = new Intl.NumberFormat().format(data.stargazers_count);
+                    }
+                })
+                .catch(() => {
+                    starsCount.textContent = '--';
+                });
+        })();
     </script>
     {{- block "scripts" . }}{{- end }}
 </body>
