@@ -26,7 +26,7 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:title" content="{{ .Title }}">
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta property="og:image" content="{{ .Site.BaseURL }}desktop.png">
+<meta property="og:image" content="{{ .Site.BaseURL }}desktop.png?v=20260304">
 <meta property="og:locale" content="{{ .Site.Language.Params.locale }}">
 {{- range .Translations }}
 <meta property="og:locale:alternate" content="{{ .Site.Language.Params.locale }}">
@@ -38,7 +38,7 @@
 <meta name="twitter:url" content="{{ .Permalink }}">
 <meta name="twitter:title" content="{{ .Title }}">
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta name="twitter:image" content="{{ .Site.BaseURL }}desktop.png">
+<meta name="twitter:image" content="{{ .Site.BaseURL }}desktop.png?v=20260304">
 
 {{- if .IsHome }}
 <!-- JSON-LD Structured Data -->
