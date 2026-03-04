@@ -69,21 +69,28 @@
                 return response.json();
             })
             .then((release) => {
-                const releaseName = typeof release.name === 'string' ? release.name.trim() : '';
-                const releaseTag = typeof release.tag_name === 'string' ? release.tag_name.trim() : '';
-                const releaseNameMatch = releaseName.match(/v?\d+(?:\.\d+)+/);
-                const resolvedTag = releaseNameMatch ? releaseNameMatch[0] : releaseTag;
-
-                if (!resolvedTag) {
-                    return;
-                }
+                const assets = Array.isArray(release.assets) ? release.assets : [];
+                const aliasByAsset = {
+                    'chuk_chat-android-armv8.apk': 'android-arm64.apk',
+                    'chuk_chat-android-armv7.apk': 'android-arm32.apk'
+                };
 
                 links.forEach((link) => {
-                    const asset = link.getAttribute('data-github-asset');
-                    if (!asset) {
+                    const requestedAsset = link.getAttribute('data-github-asset');
+                    if (!requestedAsset) {
                         return;
                     }
-                    link.href = 'https://github.com/chuk-development/chuk_chat/releases/download/' + resolvedTag + '/' + asset;
+
+                    const mappedAsset = aliasByAsset[requestedAsset] || requestedAsset;
+                    const suffix = mappedAsset.startsWith('chuk_chat-') ? mappedAsset.slice('chuk_chat-'.length) : mappedAsset;
+
+                    const matched = assets.find((asset) => {
+                        return typeof asset.name === 'string' && asset.name.endsWith(suffix);
+                    });
+
+                    if (matched && typeof matched.browser_download_url === 'string') {
+                        link.href = matched.browser_download_url;
+                    }
                 });
             })
             .catch(() => {});
