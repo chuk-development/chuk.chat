@@ -3,6 +3,8 @@ title: "Downloads - Chuk Chat"
 layout: "downloads"
 type: "page"
 translationKey: "downloads"
+description: "Privaten KI-Chat für Web, Windows, Linux, Android und macOS herunterladen. Ein Konto, verschlüsselte Synchronisierung auf allen Geräten."
+keywords: "privater ki chat download, deutscher ai chat app, verschlüsselter ki chat app"
 
 heading: "Chuk Chat herunterladen"
 subheading: "Ein Konto, dasselbe Erlebnis auf jedem Gerät. Deine Gespräche werden sicher über alle Plattformen synchronisiert."

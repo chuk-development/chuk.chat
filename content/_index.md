@@ -1,7 +1,7 @@
 ---
-title: "Chuk Chat — Private AI Chat | Secure & Anonymous AI Assistant"
-description: "Chuk Chat is a private AI chat app with no data mining, no tracking, and full encryption. Experience secure, anonymous AI conversations powered by open-weight models. Your data stays yours."
-keywords: "private AI chat, secure AI assistant, anonymous AI, encrypted AI chat, privacy-focused AI, open-weight AI, no data mining AI, private chatbot, secure chatbot, GDPR compliant AI"
+title: "Chuk Chat — Private AI Chat from Germany | Secure & Anonymous"
+description: "Chuk Chat is a private AI chat app from Germany with no data mining, no tracking, and end-to-end encryption. Use a secure ChatGPT alternative powered only by open-weight models."
+keywords: "private ai chat, german ai chat, private chatgpt, private gemini, private claude alternative, private chatgpt alternative, encrypted ai chat, privacy ai assistant, no tracking ai chat, chat gbt alternative"
 
 hero_title: "Chuk Chat — Private AI That<br>Actually Belongs to You"
 hero_subtitle: "A simple monthly subscription, full control, no data mining.<br>Chat, write, code, research — powered entirely by transparent open-weight models.<br>Chuk Chat is open source on <a href='https://github.com/chuk-development/chuk_chat' target='_blank' rel='noopener noreferrer'>GitHub</a>."

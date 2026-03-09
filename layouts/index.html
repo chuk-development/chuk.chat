@@ -56,6 +56,17 @@
     <h2>{{ .Params.try_title }}</h2>
     <p>{{ .Params.try_text | safeHTML }}</p>
 </div>
+
+<div class="section text-block" style="margin-top: 20px;">
+    {{ if eq .Lang "de" }}
+    <h2 style="font-size: 16px;">Weitere Seiten</h2>
+    <p><a href="{{ "private-chatgpt-alternative" | relLangURL }}">Private ChatGPT-Alternative</a> · <a href="{{ "deutscher-ki-chat" | relLangURL }}">Deutscher KI-Chat</a></p>
+    {{ else }}
+    <h2 style="font-size: 16px;">More Pages</h2>
+    <p><a href="{{ "private-chatgpt-alternative" | relLangURL }}">Private ChatGPT Alternative</a> · <a href="{{ "german-ai-chat" | relLangURL }}">German AI Chat</a></p>
+    {{ end }}
+</div>
+
 {{ end }}
 
 {{/* Scripts for waitlist form — deactivated

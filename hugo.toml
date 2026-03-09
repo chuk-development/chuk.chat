@@ -3,6 +3,8 @@ languageCode = 'en'
 title = 'Chuk Chat'
 defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
 
 [languages]
   [languages.en]
@@ -11,6 +13,8 @@ defaultContentLanguageInSubdir = true
     weight = 1
     [languages.en.params]
       locale = 'en_US'
+      description = 'Private AI chat app from Germany with end-to-end encryption, open-weight models, and no data mining.'
+      keywords = 'private ai chat, german ai chat, private chatgpt, private gemini, private claude alternative, secure ai assistant, encrypted ai chat, chat gbt alternative, open-weight ai chat'
 
   [languages.de]
     languageCode = 'de'
@@ -18,10 +22,18 @@ defaultContentLanguageInSubdir = true
     weight = 2
     [languages.de.params]
       locale = 'de_DE'
+      description = 'Privater KI-Chat aus Deutschland mit Ende-zu-Ende-Verschlüsselung, Open-Weight-Modellen und ohne Data Mining.'
+      keywords = 'privater ki chat, deutscher ki chat, deutscher ai chat, privat chatgpt, privat gemini, privat gemien, datenschutz ki chat, verschlüsselter ai chat, deutscher chat gbt, chatgpt alternative deutschland'
 
 [params]
   description = 'Private AI Chat | Secure & Anonymous AI Assistant'
+  keywords = 'private ai chat, secure ai chat, anonymous ai assistant, open-weight ai'
   author = 'Chuk Development'
+
+[sitemap]
+  changefreq = 'weekly'
+  priority = 0.5
+  filename = 'sitemap.xml'
 
 [permalinks]
   [permalinks.page]

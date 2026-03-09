@@ -3,75 +3,212 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>{{ .Title }}{{ if not .IsHome }} — Chuk Chat{{ end }}</title>
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-{{- with .Params.keywords }}
+
+{{- $pageTitle := .Title -}}
+{{- if not .IsHome -}}
+    {{- $pageTitle = printf "%s — %s" .Title .Site.Title -}}
+{{- end -}}
+
+{{- $pageDescription := .Site.Params.description -}}
+{{- with .Site.Language.Params.description -}}
+    {{- $pageDescription = . -}}
+{{- end -}}
+{{- with .Description -}}
+    {{- $pageDescription = . -}}
+{{- else -}}
+    {{- with .Summary -}}
+        {{- $pageDescription = . | plainify | truncate 160 -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $pageKeywords := .Site.Params.keywords -}}
+{{- with .Site.Language.Params.keywords -}}
+    {{- $pageKeywords = . -}}
+{{- end -}}
+{{- with .Params.keywords -}}
+    {{- $pageKeywords = . -}}
+{{- end -}}
+
+{{- $ogImage := printf "%sdesktop.png?v=20260304" .Site.BaseURL -}}
+{{- $xDefault := .Permalink -}}
+{{- range .AllTranslations -}}
+    {{- if eq .Lang "en" -}}
+        {{- $xDefault = .Permalink -}}
+    {{- end -}}
+{{- end -}}
+
+<title>{{ $pageTitle }}</title>
+<meta name="description" content="{{ $pageDescription }}">
+{{- with $pageKeywords }}
 <meta name="keywords" content="{{ . }}">
 {{- end }}
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="{{ .Site.Params.author }}">
 
-<!-- Canonical and Language -->
 <link rel="canonical" href="{{ .Permalink }}">
-{{- if .IsTranslated }}
-{{- range .Translations }}
+{{- range .AllTranslations }}
 <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
 {{- end }}
-<link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
-{{- end }}
-<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+<link rel="alternate" hreflang="x-default" href="{{ $xDefault }}">
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:title" content="{{ .Title }}">
-<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta property="og:image" content="{{ .Site.BaseURL }}desktop.png?v=20260304">
+<meta property="og:title" content="{{ $pageTitle }}">
+<meta property="og:description" content="{{ $pageDescription }}">
+<meta property="og:image" content="{{ $ogImage }}">
+<meta property="og:image:alt" content="Chuk Chat user interface screenshot">
 <meta property="og:locale" content="{{ .Site.Language.Params.locale }}">
-{{- range .Translations }}
+{{- $currentLocale := .Site.Language.Params.locale -}}
+{{- range .AllTranslations }}
+{{- if ne .Site.Language.Params.locale $currentLocale }}
 <meta property="og:locale:alternate" content="{{ .Site.Language.Params.locale }}">
+{{- end }}
 {{- end }}
 <meta property="og:site_name" content="Chuk Chat">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="{{ .Permalink }}">
-<meta name="twitter:title" content="{{ .Title }}">
-<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-<meta name="twitter:image" content="{{ .Site.BaseURL }}desktop.png?v=20260304">
+<meta name="twitter:title" content="{{ $pageTitle }}">
+<meta name="twitter:description" content="{{ $pageDescription }}">
+<meta name="twitter:image" content="{{ $ogImage }}">
 
-{{- if .IsHome }}
-<!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Chuk Chat",
-    "applicationCategory": "CommunicationApplication",
-    "operatingSystem": "Windows, macOS, Linux, iOS, Android",
-    "description": "Private AI chat application with no data mining, no tracking, and full encryption. Powered by transparent open-weight AI models.",
-    "url": "{{ .Site.BaseURL }}",
-    "offers": {
-        "@type": "Offer",
-        "price": "20",
-        "priceCurrency": "EUR",
-        "priceValidUntil": "2026-12-31"
-    },
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "ratingCount": "1"
-    },
-    "author": {
-        "@type": "Organization",
-        "name": "Chuk Development",
-        "url": "https://chuk.dev"
-    },
-    "keywords": "private AI chat, secure AI, anonymous chatbot, encrypted AI, privacy AI assistant"
+    "@type": "WebPage",
+    "name": {{ $pageTitle | jsonify }},
+    "description": {{ $pageDescription | jsonify }},
+    "url": {{ .Permalink | jsonify }},
+    "inLanguage": {{ .Lang | jsonify }},
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "Chuk Chat",
+        "url": {{ .Site.BaseURL | jsonify }}
+    }
+}
+</script>
+
+{{- if not .IsHome }}
+{{- $homeLabel := cond (eq .Lang "de") "Startseite" "Home" -}}
+{{- $breadcrumbs := slice (dict "name" $homeLabel "url" ("/" | absLangURL)) -}}
+{{- if and (eq .Section "blog") .IsPage -}}
+{{- $breadcrumbs = $breadcrumbs | append (dict "name" "Blog" "url" ("blog/" | absLangURL)) -}}
+{{- end -}}
+{{- $breadcrumbs = $breadcrumbs | append (dict "name" .Title "url" .Permalink) -}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {{- range $index, $crumb := $breadcrumbs }}
+        {{- if gt $index 0 }},{{ end }}
+        {
+            "@type": "ListItem",
+            "position": {{ add $index 1 }},
+            "name": {{ $crumb.name | jsonify }},
+            "item": {{ $crumb.url | jsonify }}
+        }
+        {{- end }}
+    ]
 }
 </script>
 {{- end }}
 
-{{ $styles := resources.Get "css/styles.css" | fingerprint }}
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "{{ .Site.BaseURL }}#organization",
+            "name": "Chuk Development",
+            "url": "https://chuk.dev",
+            "email": "support@chuk.dev"
+        },
+        {
+            "@type": "WebSite",
+            "@id": "{{ .Site.BaseURL }}#website",
+            "name": "Chuk Chat",
+            "url": "{{ .Site.BaseURL }}",
+            "inLanguage": ["en", "de"],
+            "publisher": {
+                "@id": "{{ .Site.BaseURL }}#organization"
+            }
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "Chuk Chat",
+            "applicationCategory": "CommunicationApplication",
+            "operatingSystem": "Windows, macOS, Linux, iOS, Android, Web",
+            "description": {{ $pageDescription | jsonify }},
+            "url": {{ .Permalink | jsonify }},
+            "offers": {
+                "@type": "Offer",
+                "price": "20",
+                "priceCurrency": "EUR"
+            },
+            "keywords": {{ $pageKeywords | jsonify }}
+        }
+    ]
+}
+</script>
+{{- end }}
+
+{{- if and (eq .Section "blog") .IsPage }}
+{{- $authorName := "Chuk" -}}
+{{- with .Params.author -}}
+{{- $authorName = . -}}
+{{- end -}}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ .Title | jsonify }},
+    "description": {{ $pageDescription | jsonify }},
+    "url": {{ .Permalink | jsonify }},
+    "inLanguage": {{ .Lang | jsonify }},
+    "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+    "author": {
+        "@type": "Person",
+        "name": {{ $authorName | jsonify }}
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Chuk Development",
+        "url": "https://chuk.dev"
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ .Permalink | jsonify }}
+    }
+}
+</script>
+{{- end }}
+
+{{- with .Params.faq_schema }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {{- range $index, $item := . }}
+        {{- if gt $index 0 }},{{ end }}
+        {
+            "@type": "Question",
+            "name": {{ $item.question | jsonify }},
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": {{ $item.answer | jsonify }}
+            }
+        }
+        {{- end }}
+    ]
+}
+</script>
+{{- end }}
+
+{{- $styles := resources.Get "css/styles.css" | fingerprint }}
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 {{- block "head" . }}{{- end }}

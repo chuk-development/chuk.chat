@@ -3,6 +3,8 @@ title: "Downloads - Chuk Chat"
 layout: "downloads"
 type: "page"
 translationKey: "downloads"
+description: "Download private AI chat apps for web, Windows, Linux, Android, and macOS. One account, encrypted sync across devices."
+keywords: "private ai chat download, secure ai chat app windows, encrypted ai chat app germany"
 
 heading: "Download Chuk Chat"
 subheading: "One account, same experience on every device. Your conversations sync securely across all platforms."

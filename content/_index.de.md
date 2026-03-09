@@ -1,7 +1,7 @@
 ---
-title: "Chuk Chat — Private KI-Chat | Sicher & Anonym"
-description: "Chuk Chat ist eine private KI-Chat-App ohne Data Mining, ohne Tracking und mit vollständiger Verschlüsselung. Erlebe sichere, anonyme KI-Gespräche mit Open-Weight-Modellen. Deine Daten bleiben deine."
-keywords: "private KI Chat, sichere KI Assistent, anonyme KI, verschlüsselte KI Chat, datenschutz KI, Open-Weight KI, kein Data Mining KI, privater Chatbot, sicherer Chatbot, DSGVO konform KI"
+title: "Chuk Chat — Privater KI-Chat aus Deutschland | Sicher & Anonym"
+description: "Chuk Chat ist ein privater KI-Chat aus Deutschland ohne Data Mining, ohne Tracking und mit Ende-zu-Ende-Verschlüsselung. Nutze eine sichere ChatGPT-Alternative mit Open-Weight-Modellen."
+keywords: "privater ki chat, deutscher ki chat, deutscher ai chat, privat chatgpt, privat gemini, privat gemien, chatgpt alternative deutschland, verschlüsselter ai chat, datenschutz ki chat, chat gbt alternative"
 
 hero_title: "Chuk Chat — Private KI, die<br>wirklich dir gehört"
 hero_subtitle: "Ein einfaches monatliches Abo, volle Kontrolle, kein Data Mining.<br>Chatten, schreiben, coden, recherchieren — komplett mit transparenten Open-Weight-Modellen.<br>Chuk Chat ist Open Source auf <a href='https://github.com/chuk-development/chuk_chat' target='_blank' rel='noopener noreferrer'>GitHub</a>."

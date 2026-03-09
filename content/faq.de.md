@@ -3,6 +3,21 @@ title: "FAQ"
 layout: "legal"
 type: "page"
 translationKey: "faq"
+description: "FAQ zu Chuk Chat mit Antworten zu privatem KI-Chat, Verschlüsselung, Open-Weight-Modellen, Preisen und Support."
+keywords: "privater ki chat faq, datenschutz ki chat fragen, verschlüsselter ai chat faq, open-weight ki faq"
+faq_schema:
+  - question: "Was ist Chuk Chat?"
+    answer: "Chuk Chat ist eine datenschutzorientierte KI-Chat-Anwendung mit Open-Weight-Modellen und Ende-zu-Ende-Verschlüsselung."
+  - question: "Sind meine Daten wirklich privat?"
+    answer: "Ja. Deine Chat-Nachrichten werden vor dem Speichern auf deinem Gerät mit AES-256-GCM verschlüsselt."
+  - question: "Welche Daten speichert ihr?"
+    answer: "Verschlüsselte Chats sowie Kontodaten wie E-Mail und Benutzername für die Anmeldung und Token-Zähler für die Abrechnung."
+  - question: "Wie viel kostet Chuk Chat?"
+    answer: "Chuk Chat kostet 20 EUR pro Monat und enthält 16 EUR KI-Guthaben."
+  - question: "Kann ich jederzeit kündigen?"
+    answer: "Ja. Du kannst jederzeit in den App-Einstellungen oder über den Support kündigen."
+  - question: "Welche Plattformen werden unterstützt?"
+    answer: "Chuk Chat wird für Windows, macOS, Linux, iOS und Android entwickelt, und die Web-App ist bereits verfügbar."
 ---
 
 ## Allgemein

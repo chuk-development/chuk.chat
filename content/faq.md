@@ -3,6 +3,21 @@ title: "FAQ"
 layout: "legal"
 type: "page"
 translationKey: "faq"
+description: "FAQ for Chuk Chat covering private AI chat, encryption, open-weight models, pricing, and support."
+keywords: "private ai chat faq, encrypted ai chat faq, secure ai chat questions, open-weight ai faq"
+faq_schema:
+  - question: "What is Chuk Chat?"
+    answer: "Chuk Chat is a privacy-focused AI chat application that uses only open-weight AI models and end-to-end encryption."
+  - question: "Is my data really private?"
+    answer: "Yes. Your chat messages are encrypted on your device using AES-256-GCM before they are stored."
+  - question: "What data do you store?"
+    answer: "Encrypted chat messages, plus account data such as email and username for authentication, and token counts for billing."
+  - question: "How much does it cost?"
+    answer: "Chuk Chat costs 20 EUR per month and includes 16 EUR in AI credits."
+  - question: "Can I cancel anytime?"
+    answer: "Yes. You can cancel in the app settings or by contacting support, and access continues until the end of the billing period."
+  - question: "Which platforms are supported?"
+    answer: "Chuk Chat is being built for Windows, macOS, Linux, iOS, and Android, with a web app already available."
 ---
 
 ## General
