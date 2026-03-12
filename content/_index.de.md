@@ -26,43 +26,63 @@ comparison:
   - feature: "Privatsphäre zuerst"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
   - feature: "Sitz in Deutschland"
     chatgpt: false
     claude: false
+    okara: false
+    lumo: false
+    chuk: true
+  - feature: "Sitz in der EU"
+    chatgpt: false
+    claude: false
+    okara: false
+    lumo: false
     chuk: true
   - feature: "Open Source"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
   - feature: "Nur Open-Weight-Modelle"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: false
     chuk: true
   - feature: "Ende-zu-Ende-verschlüsselt"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
-  - feature: "Linux Desktop-App"
+  - feature: "Trainiert nie mit deinen Daten"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
-  - feature: "Cross-Platform"
-    chatgpt: true
-    claude: true
-    chuk: true
-  - feature: "Kein Data Mining"
+  - feature: "Kein User-Tracking"
     chatgpt: false
     claude: false
-    chuk: true
-  - feature: "Kein Tracking"
-    chatgpt: false
-    claude: false
+    okara: false
+    lumo: true
     chuk: true
   - feature: "DSGVO by Design"
     chatgpt: false
     claude: false
+    okara: false
+    lumo: true
     chuk: true
+  - feature: "Plattformen"
+    chatgpt_platforms: ["iOS", "Android", "Mac", "Windows", "Web"]
+    claude_platforms: ["iOS", "Android", "Mac", "Windows", "Web"]
+    okara_platforms: ["Web"]
+    lumo_platforms: ["iOS", "Android", "Web"]
+    chuk_platforms: ["Android", "Mac", "Windows", "Linux", "Web"]
 
 data_title: "Deine Daten bleiben deine"
 data_text: "Wir speichern nichts, was du nicht willst.<br>Vollständig löschbar. Vollständig kontrollierbar. Vollständig dein."

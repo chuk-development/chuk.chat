@@ -26,43 +26,63 @@ comparison:
   - feature: "Privacy First"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
   - feature: "Based in Germany"
     chatgpt: false
     claude: false
+    okara: false
+    lumo: false
+    chuk: true
+  - feature: "Based in EU"
+    chatgpt: false
+    claude: false
+    okara: false
+    lumo: false
     chuk: true
   - feature: "Open Source"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
   - feature: "Open-Weight Models Only"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: false
     chuk: true
   - feature: "End-to-End Encrypted"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
-  - feature: "Linux Desktop App"
+  - feature: "Never Trains on Your Data"
     chatgpt: false
     claude: false
+    okara: true
+    lumo: true
     chuk: true
-  - feature: "Cross-Platform"
-    chatgpt: true
-    claude: true
-    chuk: true
-  - feature: "No Data Mining"
+  - feature: "No User Tracking"
     chatgpt: false
     claude: false
-    chuk: true
-  - feature: "No Tracking"
-    chatgpt: false
-    claude: false
+    okara: false
+    lumo: true
     chuk: true
   - feature: "GDPR by Design"
     chatgpt: false
     claude: false
+    okara: false
+    lumo: true
     chuk: true
+  - feature: "Platforms"
+    chatgpt_platforms: ["iOS", "Android", "Mac", "Windows", "Web"]
+    claude_platforms: ["iOS", "Android", "Mac", "Windows", "Web"]
+    okara_platforms: ["Web"]
+    lumo_platforms: ["iOS", "Android", "Web"]
+    chuk_platforms: ["Android", "Mac", "Windows", "Linux", "Web"]
 
 data_title: "Your Data Stays Yours"
 data_text: "We store nothing you don't want.<br>Fully deletable. Fully controllable. Fully yours."

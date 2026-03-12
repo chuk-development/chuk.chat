@@ -848,7 +848,7 @@ button:disabled {
     width: 100%;
     border-collapse: collapse;
     font-size: 16px;
-    min-width: 480px;
+    min-width: 700px;
 }
 
 .comparison-table thead th {
@@ -912,24 +912,51 @@ button:disabled {
     font-weight: bold;
 }
 
+.comparison-platforms-cell {
+    text-align: center;
+}
+
+.platform-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    margin: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    background: var(--highlight-bg);
+    border: 1px solid var(--border-dotted);
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.platform-tag-highlight {
+    background: rgba(184, 134, 11, 0.1);
+    border-color: rgba(184, 134, 11, 0.3);
+    color: var(--text-color);
+}
+
 @media (max-width: 600px) {
     .comparison-table {
         font-size: 14px;
-        min-width: 360px;
+        min-width: 580px;
     }
 
     .comparison-table thead th,
     .comparison-table tbody td {
-        padding: 10px 12px;
+        padding: 10px 8px;
     }
 
     .comparison-table thead th {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .comparison-yes,
     .comparison-no {
         font-size: 17px;
+    }
+
+    .platform-tag {
+        font-size: 10px;
+        padding: 1px 5px;
     }
 }
 

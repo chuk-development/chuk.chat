@@ -55,6 +55,8 @@
                     <th class="comparison-feature-col"></th>
                     <th>ChatGPT</th>
                     <th>Claude AI</th>
+                    <th>Okara</th>
+                    <th>Lumo</th>
                     <th class="comparison-highlight-col">Chuk Chat</th>
                 </tr>
             </thead>
@@ -62,9 +64,26 @@
                 {{ range .Params.comparison }}
                 <tr>
                     <td class="comparison-feature-col">{{ .feature }}</td>
-                    <td>{{ if .chatgpt }}<span class="comparison-yes" aria-label="Yes">&#10003;</span>{{ else }}<span class="comparison-no" aria-label="No">&#10007;</span>{{ end }}</td>
-                    <td>{{ if .claude }}<span class="comparison-yes" aria-label="Yes">&#10003;</span>{{ else }}<span class="comparison-no" aria-label="No">&#10007;</span>{{ end }}</td>
-                    <td class="comparison-highlight-col">{{ if .chuk }}<span class="comparison-yes" aria-label="Yes">&#10003;</span>{{ else }}<span class="comparison-no" aria-label="No">&#10007;</span>{{ end }}</td>
+                    {{/* ChatGPT */}}
+                    {{ if .chatgpt_platforms }}<td class="comparison-platforms-cell">{{ range .chatgpt_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                    {{ else if .chatgpt }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
+                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
+                    {{/* Claude AI */}}
+                    {{ if .claude_platforms }}<td class="comparison-platforms-cell">{{ range .claude_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                    {{ else if .claude }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
+                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
+                    {{/* Okara */}}
+                    {{ if .okara_platforms }}<td class="comparison-platforms-cell">{{ range .okara_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                    {{ else if .okara }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
+                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
+                    {{/* Lumo */}}
+                    {{ if .lumo_platforms }}<td class="comparison-platforms-cell">{{ range .lumo_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                    {{ else if .lumo }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
+                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
+                    {{/* Chuk Chat */}}
+                    {{ if .chuk_platforms }}<td class="comparison-highlight-col comparison-platforms-cell">{{ range .chuk_platforms }}<span class="platform-tag platform-tag-highlight">{{ . }}</span>{{ end }}</td>
+                    {{ else if .chuk }}<td class="comparison-highlight-col"><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
+                    {{ else }}<td class="comparison-highlight-col"><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
                 </tr>
                 {{ end }}
             </tbody>
