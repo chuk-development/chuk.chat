@@ -44,7 +44,7 @@ comparison:
   - feature: "Open Source"
     chatgpt: false
     claude: false
-    okara: true
+    okara: false
     lumo: true
     chuk: true
   - feature: "Nur Open-Weight-Modelle"
