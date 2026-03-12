@@ -837,6 +837,102 @@ button:disabled {
     }
 }
 
+/* Comparison Table */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    margin-top: 24px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    min-width: 480px;
+}
+
+.comparison-table thead th {
+    padding: 14px 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--text-color);
+    background: var(--highlight-bg);
+}
+
+.comparison-table thead th.comparison-feature-col {
+    text-align: left;
+}
+
+.comparison-table thead th.comparison-highlight-col {
+    background: var(--accent);
+    color: #fff;
+}
+
+.comparison-table tbody td {
+    padding: 12px 20px;
+    text-align: center;
+    border-bottom: 1px dotted var(--border-dotted);
+    color: var(--text-secondary);
+}
+
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tbody tr:hover {
+    background: var(--highlight-bg);
+}
+
+.comparison-table td.comparison-feature-col {
+    text-align: left;
+    font-weight: bold;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+.comparison-table td.comparison-highlight-col {
+    background: rgba(184, 134, 11, 0.06);
+}
+
+.comparison-table tbody tr:hover td.comparison-highlight-col {
+    background: rgba(184, 134, 11, 0.12);
+}
+
+.comparison-yes {
+    color: var(--success);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.comparison-no {
+    color: var(--error);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .comparison-table {
+        font-size: 14px;
+        min-width: 360px;
+    }
+
+    .comparison-table thead th,
+    .comparison-table tbody td {
+        padding: 10px 12px;
+    }
+
+    .comparison-table thead th {
+        font-size: 14px;
+    }
+
+    .comparison-yes,
+    .comparison-no {
+        font-size: 17px;
+    }
+}
+
 /* ===== Page-Specific Styles ===== */
 
 /* Pricing Page */

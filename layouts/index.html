@@ -45,6 +45,33 @@
     </div>
 </div>
 
+<!-- Comparison Table -->
+<div class="section">
+    <h2>{{ .Params.comparison_title }}</h2>
+    <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th class="comparison-feature-col"></th>
+                    <th>ChatGPT</th>
+                    <th>Claude AI</th>
+                    <th class="comparison-highlight-col">Chuk Chat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .Params.comparison }}
+                <tr>
+                    <td class="comparison-feature-col">{{ .feature }}</td>
+                    <td>{{ if .chatgpt }}<span class="comparison-yes" aria-label="Yes">&#10003;</span>{{ else }}<span class="comparison-no" aria-label="No">&#10007;</span>{{ end }}</td>
+                    <td>{{ if .claude }}<span class="comparison-yes" aria-label="Yes">&#10003;</span>{{ else }}<span class="comparison-no" aria-label="No">&#10007;</span>{{ end }}</td>
+                    <td class="comparison-highlight-col">{{ if .chuk }}<span class="comparison-yes" aria-label="Yes">&#10003;</span>{{ else }}<span class="comparison-no" aria-label="No">&#10007;</span>{{ end }}</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <!-- Your Data Stays Yours -->
 <div class="section text-block">
     <h2>{{ .Params.data_title }}</h2>

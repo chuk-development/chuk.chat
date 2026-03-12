@@ -21,6 +21,49 @@ features:
   - title: "Einfache, fokussierte Features"
     description: "Schreiben, generieren, brainstormen, lernen, recherchieren, coden — alles in einer aufgeräumten, ablenkungsfreien Oberfläche."
 
+comparison_title: "Chuk Chat im Vergleich"
+comparison:
+  - feature: "Privatsphäre zuerst"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Sitz in Deutschland"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Open Source"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Nur Open-Weight-Modelle"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Ende-zu-Ende-verschlüsselt"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Linux Desktop-App"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Cross-Platform"
+    chatgpt: true
+    claude: true
+    chuk: true
+  - feature: "Kein Data Mining"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "Kein Tracking"
+    chatgpt: false
+    claude: false
+    chuk: true
+  - feature: "DSGVO by Design"
+    chatgpt: false
+    claude: false
+    chuk: true
+
 data_title: "Deine Daten bleiben deine"
 data_text: "Wir speichern nichts, was du nicht willst.<br>Vollständig löschbar. Vollständig kontrollierbar. Vollständig dein."
 
