@@ -51,7 +51,7 @@ comparison:
     chatgpt: false
     claude: false
     okara: true
-    lumo: false
+    lumo: true
     chuk: true
   - feature: "Ende-zu-Ende-verschlüsselt"
     chatgpt: false
