@@ -85,6 +85,13 @@ body:has(.kao-banner) {
     gap: 20px;
 }
 
+.logo-group {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
 .logo {
     font-weight: bold;
     font-size: 22px;
@@ -98,6 +105,13 @@ body:has(.kao-banner) {
 
 .logo:hover {
     color: var(--accent);
+}
+
+.logo-slogan {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .nav-links {

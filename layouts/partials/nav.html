@@ -1,7 +1,10 @@
 <!-- Top Navigation Bar -->
 <nav class="top-bar">
     <div class="nav-container">
-        <a href="{{ "/" | relLangURL }}" class="logo">Chuk Chat</a>
+        <div class="logo-group">
+            <a href="{{ "/" | relLangURL }}" class="logo">Chuk Chat</a>
+            <span class="logo-slogan">Private and Secure. Always.</span>
+        </div>
         <div class="nav-right">
             <div class="nav-links">
                 <a href="{{ "blog" | relLangURL }}" class="nav-link{{ if eq .Section "blog" }} active{{ end }}">Blog</a>
