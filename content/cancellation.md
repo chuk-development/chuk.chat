@@ -17,7 +17,7 @@ To exercise the right of withdrawal, you must inform us of your decision to with
 **Contact for withdrawal:**
 
 Chuk Development
-Email: [support@chuk.dev](mailto:support@chuk.dev)
+Email: [support@chuk.chat](mailto:support@chuk.chat)
 
 To meet the withdrawal deadline, it is sufficient for you to send your communication concerning your exercise of the right of withdrawal before the withdrawal period has expired.
 
@@ -33,7 +33,7 @@ If you requested to begin the performance of services during the withdrawal peri
 
 (Complete and return this form only if you wish to withdraw from the contract)
 
-To: Chuk Development, support@chuk.dev
+To: Chuk Development, support@chuk.chat
 
 I hereby give notice that I withdraw from my contract for the provision of the following service: Chuk Chat Subscription
 
@@ -48,6 +48,6 @@ I hereby give notice that I withdraw from my contract for the provision of the f
 Apart from the right of withdrawal, you can cancel your subscription at any time:
 
 1. **In the app:** Go to Settings → Subscription → Cancel
-2. **By email:** Send a cancellation request to [support@chuk.dev](mailto:support@chuk.dev)
+2. **By email:** Send a cancellation request to [support@chuk.chat](mailto:support@chuk.chat)
 
 Your subscription will remain active until the end of the current billing period. No refunds are provided for partial months after the 14-day withdrawal period has expired.

@@ -16,7 +16,7 @@ Welserstraße 3<br>
 
 ### Contact
 
-Email: support@chuk.dev
+Email: support@chuk.chat
 
 ### Responsible for content according to § 18 (2) MStV
 

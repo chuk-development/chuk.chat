@@ -86,8 +86,8 @@ Da deine Chats mit einem von deinem Passwort abgeleiteten Schlüssel verschlüss
 
 ### Wie bekomme ich Hilfe?
 
-Schreib uns eine E-Mail an [support@chuk.dev](mailto:support@chuk.dev). Wir antworten normalerweise innerhalb von 24 Stunden.
+Schreib uns eine E-Mail an [support@chuk.chat](mailto:support@chuk.chat). Wir antworten normalerweise innerhalb von 24 Stunden.
 
 ### Ich habe einen Fehler gefunden. Wie melde ich ihn?
 
-Bitte schreib an [support@chuk.dev](mailto:support@chuk.dev) mit Details zum Fehler, einschließlich was du erwartet hast und was tatsächlich passiert ist.
+Bitte schreib an [support@chuk.chat](mailto:support@chuk.chat) mit Details zum Fehler, einschließlich was du erwartet hast und was tatsächlich passiert ist.

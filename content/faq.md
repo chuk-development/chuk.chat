@@ -86,8 +86,8 @@ Since your chats are encrypted with a key derived from your password, we cannot 
 
 ### How do I get help?
 
-Email us at [support@chuk.dev](mailto:support@chuk.dev). We typically respond within 24 hours.
+Email us at [support@chuk.chat](mailto:support@chuk.chat). We typically respond within 24 hours.
 
 ### I found a bug. How do I report it?
 
-Please email [support@chuk.dev](mailto:support@chuk.dev) with details about the bug, including what you expected to happen and what actually happened.
+Please email [support@chuk.chat](mailto:support@chuk.chat) with details about the bug, including what you expected to happen and what actually happened.

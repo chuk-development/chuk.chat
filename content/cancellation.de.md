@@ -17,7 +17,7 @@ Um Ihr Widerrufsrecht auszuüben, müssen Sie uns mittels einer eindeutigen Erkl
 **Kontakt für den Widerruf:**
 
 Chuk Development
-E-Mail: [support@chuk.dev](mailto:support@chuk.dev)
+E-Mail: [support@chuk.chat](mailto:support@chuk.chat)
 
 Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.
 
@@ -33,7 +33,7 @@ Haben Sie verlangt, dass die Dienstleistungen während der Widerrufsfrist beginn
 
 (Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück)
 
-An: Chuk Development, support@chuk.dev
+An: Chuk Development, support@chuk.chat
 
 Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung: Chuk Chat Abonnement
 
@@ -48,6 +48,6 @@ Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über die Erbringung d
 Abgesehen vom Widerrufsrecht können Sie Ihr Abonnement jederzeit kündigen:
 
 1. **In der App:** Gehen Sie zu Einstellungen → Abonnement → Kündigen
-2. **Per E-Mail:** Senden Sie eine Kündigungsanfrage an [support@chuk.dev](mailto:support@chuk.dev)
+2. **Per E-Mail:** Senden Sie eine Kündigungsanfrage an [support@chuk.chat](mailto:support@chuk.chat)
 
 Ihr Abonnement bleibt bis zum Ende des aktuellen Abrechnungszeitraums aktiv. Nach Ablauf der 14-tägigen Widerrufsfrist werden keine Rückerstattungen für angebrochene Monate gewährt.

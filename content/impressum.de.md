@@ -16,7 +16,7 @@ Welserstraße 3<br>
 
 ### Kontakt
 
-E-Mail: support@chuk.dev
+E-Mail: support@chuk.chat
 
 ### Verantwortlich für den Inhalt gemäß § 18 (2) MStV
 
