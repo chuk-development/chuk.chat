@@ -106,7 +106,7 @@
 
 <!-- Architecture Section -->
 <section class="architecture-section">
-    <div class="architecture-intro">
+    <div class="architecture-intro" data-reveal>
         <span class="section-tag">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" x2="2" y1="12" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
             {{ .Params.architecture_tag }}
@@ -116,8 +116,8 @@
     </div>
 
     <div class="architecture-grid">
-        {{ range .Params.features }}
-        <div class="arch-card{{ if .encryption }} arch-card-encryption{{ end }}">
+        {{ range $i, $f := .Params.features }}
+        <div class="arch-card{{ if .encryption }} arch-card-encryption{{ end }}" data-reveal style="--reveal-delay: {{ mul $i 80 }}ms">
             <p class="arch-card-tag">{{ .title }}</p>
             <div class="arch-card-body">
                 <div class="arch-card-icon{{ if .encryption }} encryption-container{{ end }}">
@@ -145,51 +145,64 @@
     </div>
 </section>
 
-<!-- Comparison Table -->
-<div class="section">
-    <h2>{{ .Params.comparison_title }}</h2>
-    <div class="comparison-table-wrapper">
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th class="comparison-feature-col"></th>
-                    <th>ChatGPT</th>
-                    <th>Claude AI</th>
-                    <th>Okara</th>
-                    <th>Lumo</th>
-                    <th class="comparison-highlight-col">Chuk Chat</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{ range .Params.comparison }}
-                <tr>
-                    <td class="comparison-feature-col">{{ .feature }}</td>
-                    {{/* ChatGPT */}}
-                    {{ if .chatgpt_platforms }}<td class="comparison-platforms-cell">{{ range .chatgpt_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                    {{ else if .chatgpt }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
-                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
-                    {{/* Claude AI */}}
-                    {{ if .claude_platforms }}<td class="comparison-platforms-cell">{{ range .claude_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                    {{ else if .claude }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
-                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
-                    {{/* Okara */}}
-                    {{ if .okara_platforms }}<td class="comparison-platforms-cell">{{ range .okara_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                    {{ else if .okara }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
-                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
-                    {{/* Lumo */}}
-                    {{ if .lumo_platforms }}<td class="comparison-platforms-cell">{{ range .lumo_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                    {{ else if .lumo }}<td><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
-                    {{ else }}<td><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
-                    {{/* Chuk Chat */}}
-                    {{ if .chuk_platforms }}<td class="comparison-highlight-col comparison-platforms-cell">{{ range .chuk_platforms }}<span class="platform-tag platform-tag-highlight">{{ . }}</span>{{ end }}</td>
-                    {{ else if .chuk }}<td class="comparison-highlight-col"><span class="comparison-yes" aria-label="Yes">&#10003;</span></td>
-                    {{ else }}<td class="comparison-highlight-col"><span class="comparison-no" aria-label="No">&#10007;</span></td>{{ end }}
-                </tr>
-                {{ end }}
-            </tbody>
-        </table>
+<!-- Comparison Section -->
+<section class="comparison-section">
+    <div class="comparison-intro" data-reveal>
+        <span class="section-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            {{ if eq .Lang "de" }}Vergleich{{ else }}Comparison{{ end }}
+        </span>
+        <h2 class="comparison-title">{{ .Params.comparison_title }}</h2>
+        <p class="comparison-lead">{{ if eq .Lang "de" }}Was Mainstream-Anbieter weglassen — und wo Chuk Chat anders zieht.{{ else }}What the mainstream players skip — and where Chuk Chat draws its line.{{ end }}</p>
     </div>
-</div>
+
+    <div class="comparison-frame" data-reveal>
+        <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th class="comparison-feature-col"></th>
+                        <th>ChatGPT</th>
+                        <th>Claude</th>
+                        <th>Okara</th>
+                        <th>Lumo</th>
+                        <th class="comparison-highlight-col">
+                            <span class="comparison-highlight-ribbon">{{ if eq .Lang "de" }}Empfohlen{{ else }}Recommended{{ end }}</span>
+                            <span class="comparison-highlight-name">Chuk Chat</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range $i, $row := .Params.comparison }}
+                    <tr style="--row-delay: {{ mul $i 40 }}ms">
+                        <td class="comparison-feature-col">{{ .feature }}</td>
+                        {{/* ChatGPT */}}
+                        {{ if .chatgpt_platforms }}<td class="comparison-platforms-cell">{{ range .chatgpt_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                        {{ else if .chatgpt }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
+                        {{/* Claude */}}
+                        {{ if .claude_platforms }}<td class="comparison-platforms-cell">{{ range .claude_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                        {{ else if .claude }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
+                        {{/* Okara */}}
+                        {{ if .okara_platforms }}<td class="comparison-platforms-cell">{{ range .okara_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                        {{ else if .okara }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
+                        {{/* Lumo */}}
+                        {{ if .lumo_platforms }}<td class="comparison-platforms-cell">{{ range .lumo_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
+                        {{ else if .lumo }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
+                        {{/* Chuk Chat */}}
+                        {{ if .chuk_platforms }}<td class="comparison-highlight-col comparison-platforms-cell">{{ range .chuk_platforms }}<span class="platform-tag platform-tag-highlight">{{ . }}</span>{{ end }}</td>
+                        {{ else if .chuk }}<td class="comparison-highlight-col"><span class="comparison-yes comparison-yes-highlight" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
+                        {{ else }}<td class="comparison-highlight-col"><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
 <!-- Your Data Stays Yours -->
 <div class="section text-block">
@@ -296,6 +309,34 @@
             span.style.animationDuration = (1.4 + Math.random() * 1.2) + 's';
             rain.appendChild(span);
         }
+    });
+})();
+
+(function() {
+    const targets = document.querySelectorAll('[data-reveal]');
+    if (!targets.length) return;
+    if (!('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('is-revealed'));
+        return;
+    }
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    targets.forEach(el => io.observe(el));
+})();
+
+(function() {
+    document.querySelectorAll('.arch-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+            card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+        });
     });
 })();
 </script>
