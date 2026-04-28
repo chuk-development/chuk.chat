@@ -769,10 +769,6 @@ li {
     opacity: 1;
 }
 
-.tool-item img[src*="coingecko"] {
-    filter: none;
-}
-
 .tool-text {
     display: inline-flex;
     flex-direction: column;
