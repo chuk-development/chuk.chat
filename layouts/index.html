@@ -203,13 +203,10 @@
     </div>
 </section>
 
-<!-- Closing pitch (dashed terminal style) -->
-<div class="section text-block closing-block">
-    <h2>{{ .Params.try_title }}</h2>
-    <p class="closing-lead">{{ .Params.try_text | safeHTML }}</p>
-    <p class="closing-divider"><span>·</span></p>
-    <p class="closing-data-title">{{ .Params.data_title }}</p>
-    <p class="closing-data-text">{{ .Params.data_text | safeHTML }}</p>
+<!-- Your Data Stays Yours -->
+<div class="section text-block">
+    <h2>{{ .Params.data_title }}</h2>
+    <p>{{ .Params.data_text | safeHTML }}</p>
 </div>
 
 <p class="closing-related">
