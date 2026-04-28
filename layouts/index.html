@@ -68,13 +68,13 @@
         <div class="tools-track">
             {{ range $i := seq 1 2 }}
             {{ range $.Params.tools }}
-            <a href="{{ .href }}" target="_blank" rel="noopener noreferrer" class="tool-item" title="{{ .name }} — {{ .role }}">
+            <span class="tool-item" title="{{ .name }} — {{ .role }}">
                 <img src="/logos/tools/{{ .logo }}" alt="{{ .name }}" loading="lazy" decoding="async">
                 <span class="tool-text">
                     <span class="tool-name">{{ .name }}</span>
                     <span class="tool-role">{{ .role }}</span>
                 </span>
-            </a>
+            </span>
             {{ end }}
             {{ end }}
         </div>
@@ -93,15 +93,12 @@
     </div>
     <div class="models-grid">
         {{ range .Params.models }}
-        <a href="{{ .href }}" target="_blank" rel="noopener noreferrer" class="model-card" title="{{ .name }} — {{ .role }}">
+        <span class="model-card" title="{{ .name }}">
             <span class="model-card-logo">
                 <img src="/logos/models/{{ .logo }}" alt="{{ .name }}" loading="lazy" decoding="async">
             </span>
-            <span class="model-card-text-wrap">
-                <span class="model-card-name">{{ .name }}</span>
-                <span class="model-card-role">{{ .role }}</span>
-            </span>
-        </a>
+            <span class="model-card-name">{{ .name }}</span>
+        </span>
         {{ end }}
     </div>
 </section>
