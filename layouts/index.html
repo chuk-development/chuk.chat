@@ -39,7 +39,7 @@
                     <picture class="screenshot-picture">
                         <source srcset="/screenshots/{{ $base }}.avif" type="image/avif">
                         <source srcset="/screenshots/{{ $base }}.webp" type="image/webp">
-                        <img src="/screenshots/{{ $base }}.webp" alt="{{ .alt }}" loading="lazy" decoding="async">
+                        <img src="/screenshots/{{ $base }}.webp" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer>
                     </picture>
                 </div>
                 {{ end }}
@@ -70,8 +70,10 @@
             {{ range $.Params.tools }}
             <a href="{{ .href }}" target="_blank" rel="noopener noreferrer" class="tool-item" title="{{ .name }} — {{ .role }}">
                 <img src="/logos/{{ .logo }}.svg" alt="{{ .name }}" loading="lazy" decoding="async">
-                <span class="tool-name">{{ .name }}</span>
-                <span class="tool-role">{{ .role }}</span>
+                <span class="tool-text">
+                    <span class="tool-name">{{ .name }}</span>
+                    <span class="tool-role">{{ .role }}</span>
+                </span>
             </a>
             {{ end }}
             {{ end }}
