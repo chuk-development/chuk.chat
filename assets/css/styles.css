@@ -362,7 +362,7 @@ li {
     text-decoration: none;
 }
 
-/* Two Column Layout */
+/* Two Column Layout (legacy) */
 .two-column-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -377,11 +377,13 @@ li {
 }
 
 .brand-slogan {
-    font-size: 16px;
+    font-size: 13px;
     color: var(--text-muted);
-    letter-spacing: 1px;
-    margin: 0 0 16px 0;
-    font-style: italic;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 4px 0 24px 0;
+    font-style: normal;
+    font-weight: bold;
 }
 
 .content-column p {
@@ -394,6 +396,407 @@ li {
     display: flex;
     gap: 12px;
     margin-top: 20px;
+}
+
+/* ===== Hero (tolaria-style) ===== */
+.hero-section {
+    margin: 24px 0 40px 0;
+    padding: 0;
+}
+
+.hero-content {
+    max-width: 760px;
+}
+
+.hero-title {
+    font-size: 46px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0 0 28px 0;
+}
+
+.hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.btn-cta-primary,
+.btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.15s;
+    border: 1px solid var(--text-color);
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.btn-cta-primary {
+    background: var(--accent);
+    color: #fff !important;
+    border-color: var(--accent);
+}
+
+.btn-cta-primary:hover {
+    background: #9A7209;
+    border-color: #9A7209;
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.35);
+    text-decoration: none;
+}
+
+.btn-cta-secondary {
+    background: var(--card-bg);
+    color: var(--text-color) !important;
+}
+
+.btn-cta-secondary:hover {
+    background: var(--text-color);
+    color: var(--card-bg) !important;
+    text-decoration: none;
+}
+
+.hero-tagline {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 12px 0 0 0;
+    font-style: italic;
+}
+
+/* ===== Encryption hover effect ===== */
+.encryption-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    color: var(--accent);
+    font-weight: bold;
+    border-bottom: 1px dotted var(--accent);
+    padding: 0 2px;
+}
+
+.encryption-text {
+    transition: opacity 0.25s ease;
+    display: inline-block;
+}
+
+.encryption-container:hover .encryption-text,
+.encryption-container:focus-visible .encryption-text {
+    opacity: 0;
+}
+
+.encryption-crypto {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--accent);
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.encryption-container:hover .encryption-crypto,
+.encryption-container:focus-visible .encryption-crypto {
+    opacity: 1;
+}
+
+.crypto-rain,
+.arch-crypto-rain {
+    position: absolute;
+    inset: -8px 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.crypto-char {
+    position: absolute;
+    top: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    color: var(--accent);
+    opacity: 0.85;
+    animation: crypto-fall linear infinite;
+    transform: translateY(-100%);
+}
+
+@keyframes crypto-fall {
+    0%   { transform: translateY(-110%); opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(110%); opacity: 0; }
+}
+
+/* ===== Screenshot Slider ===== */
+.screenshot-section {
+    margin: 0 0 80px 0;
+}
+
+.screenshot-viewer {
+    background: var(--text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 6px;
+    padding: 24px 16px 18px 16px;
+    overflow: hidden;
+}
+
+.screenshot-track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.screenshot-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    padding: 0 8px;
+}
+
+.screenshot-frame {
+    background: #1f1f1f;
+    border: 1px solid #444;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.screenshot-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.screenshot-caption {
+    color: #d8d2c2;
+    font-size: 14px;
+    text-align: center;
+    margin: 14px 0 0 0;
+}
+
+.slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.slider-arrow {
+    background: transparent;
+    border: 1px solid #555;
+    color: #d8d2c2;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-arrow:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.slider-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #555;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.slider-dot.active {
+    background: var(--accent);
+}
+
+/* ===== Architecture Section ===== */
+.architecture-section {
+    margin: 0 0 80px 0;
+}
+
+.architecture-intro {
+    margin-bottom: 28px;
+}
+
+.section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--highlight-bg);
+    border: 1px dashed var(--border-dotted);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    margin-bottom: 14px;
+}
+
+.architecture-title {
+    font-size: 34px;
+    margin: 0 0 12px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    line-height: 1.2;
+}
+
+.architecture-lead {
+    font-size: 18px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 760px;
+}
+
+.architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.arch-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-solid);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+}
+
+.arch-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--text-color);
+    box-shadow: 0 12px 36px -8px rgba(184, 134, 11, 0.18);
+}
+
+.arch-card-tag {
+    margin: 0;
+    padding: 14px 18px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: bold;
+    border-bottom: 1px dotted var(--border-dotted);
+}
+
+.arch-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 22px;
+    gap: 16px;
+}
+
+.arch-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: var(--icon-bg);
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s ease;
+}
+
+.arch-card-icon svg {
+    transition: opacity 0.25s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.arch-card-encryption .arch-card-icon {
+    cursor: help;
+}
+
+.arch-card-crypto {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.arch-card-encryption .arch-card-icon:hover svg {
+    opacity: 0.15;
+}
+
+.arch-card-encryption .arch-card-icon:hover .arch-card-crypto {
+    opacity: 1;
+}
+
+.arch-card-encryption .arch-card-icon:hover {
+    background: rgba(184, 134, 11, 0.08);
+}
+
+.arch-card-text {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 32px;
+    }
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    .architecture-title {
+        font-size: 26px;
+    }
+    .architecture-grid {
+        grid-template-columns: 1fr;
+    }
+    .arch-card {
+        min-height: 240px;
+    }
+    .hero-ctas {
+        flex-direction: column;
+    }
+    .btn-cta-primary,
+    .btn-cta-secondary {
+        justify-content: center;
+    }
 }
 
 /* Screenshot */
