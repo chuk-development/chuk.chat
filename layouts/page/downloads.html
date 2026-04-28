@@ -1,93 +1,83 @@
 {{ define "main" }}
-<h1 style="text-align: center; border-bottom: none; padding-bottom: 0;">{{ .Params.heading }}</h1>
-<p class="subtitle" style="font-size: 15px; color: var(--text-secondary); margin-bottom: 40px; text-align: center; max-width: 500px; margin-left: auto; margin-right: auto;">{{ .Params.subheading }}</p>
+<section class="downloads-hero">
+    <h1>{{ .Params.heading }}</h1>
+    <p class="downloads-subheading">{{ .Params.subheading }}</p>
+</section>
 
 {{ $releasePrefix := "https://github.com/chuk-development/chuk_chat/releases/latest/download/" }}
 
-<div class="downloads-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; margin-bottom: 40px;">
-    {{ range .Params.platforms }}
-    <div class="download-card" style="background: var(--card-bg); border: 1px solid var(--border-solid); padding: 28px; display: flex; flex-direction: column; align-items: center; text-align: center; transition: all 0.15s;">
+{{/* Featured Web App banner */}}
+{{ range .Params.platforms }}
+{{ if eq .name "Web App" }}
+<a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="download-featured">
+    <div class="download-featured-icon">
         {{ .icon | safeHTML }}
-        <div style="font-size: 18px; font-weight: bold; margin-bottom: 6px; color: var(--text-color);">{{ .name }}</div>
-        <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">{{ .version }}</div>
-        <a href="{{ .link }}" class="download-btn{{ if .disabled }} disabled{{ end }}"{{ if and (not .disabled) (in .link $releasePrefix) }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }} style="background: {{ if .disabled }}var(--highlight-bg){{ else }}var(--text-color){{ end }}; color: {{ if .disabled }}var(--text-muted){{ else }}var(--card-bg){{ end }}; text-decoration: none; padding: 10px 20px; font-family: inherit; font-size: 14px; font-weight: bold; width: 100%; text-align: center; border: 1px {{ if .disabled }}dashed var(--border-dotted){{ else }}solid var(--text-color){{ end }};{{ if .disabled }} cursor: not-allowed;{{ end }}">{{ .button }}</a>
+    </div>
+    <div class="download-featured-text">
+        <span class="download-featured-tag">{{ if eq $.Lang "de" }}Sofort starten{{ else }}Instant access{{ end }}</span>
+        <h2>{{ .name }}</h2>
+        <p>{{ if eq $.Lang "de" }}Keine Installation, kein Update — direkt im Browser, mit dem gleichen Konto wie auf jedem Desktop.{{ else }}No install, no update cycle &mdash; same account as on every desktop, straight in your browser.{{ end }}</p>
+    </div>
+    <span class="download-featured-cta">{{ .button }} &rarr;</span>
+</a>
+{{ end }}
+{{ end }}
+
+<div class="downloads-grid-v2">
+    {{ range .Params.platforms }}
+    {{ if ne .name "Web App" }}
+    <div class="download-card-v2{{ if .disabled }} download-card-disabled{{ end }}">
+        <div class="download-card-head">
+            <span class="download-card-icon">{{ .icon | safeHTML }}</span>
+            <div>
+                <div class="download-card-name">{{ .name }}</div>
+                <div class="download-card-meta">{{ .version }}</div>
+            </div>
+        </div>
+        <a href="{{ .link }}" class="download-card-cta{{ if .disabled }} disabled{{ end }}"{{ if and (not .disabled) (in .link $releasePrefix) }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }}>
+            {{ if not .disabled }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>{{ end }}
+            {{ .button }}
+        </a>
         {{ if .downloads }}
-        <div class="download-links" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; justify-content: center; width: 100%;">
+        <div class="download-sub-links">
             {{ range .downloads }}
-            <a href="{{ .link }}" class="download-sub-link"{{ if in .link $releasePrefix }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }} style="font-size: 13px; color: var(--text-secondary); text-decoration: none; padding: 4px 10px; border: 1px solid var(--border-solid); transition: all 0.15s;">{{ .label }}</a>
+            <a href="{{ .link }}"{{ if in .link $releasePrefix }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }}>{{ .label }}</a>
             {{ end }}
         </div>
         {{ end }}
     </div>
     {{ end }}
+    {{ end }}
 </div>
-{{ end }}
 
-{{ define "head" }}
-<style>
-    .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .footer {
-        margin-top: auto;
-    }
-    .download-card:hover {
-        border-color: var(--text-color);
-    }
-    .download-btn:hover:not(.disabled) {
-        background: var(--accent) !important;
-        border-color: var(--accent) !important;
-    }
-    .download-sub-link:hover {
-        border-color: var(--text-color) !important;
-        color: var(--text-color) !important;
-    }
-    @media (max-width: 600px) {
-        .downloads-grid {
-            grid-template-columns: 1fr !important;
-        }
-    }
-</style>
+<p class="downloads-meta">
+    {{ if eq .Lang "de" }}
+    Alle Downloads ziehen automatisch das neueste GitHub-Release. <a href="https://github.com/chuk-development/chuk_chat/releases" target="_blank" rel="noopener noreferrer">Versionsverlauf ansehen</a>.
+    {{ else }}
+    Every link auto-resolves to the latest GitHub release. <a href="https://github.com/chuk-development/chuk_chat/releases" target="_blank" rel="noopener noreferrer">See the version history</a>.
+    {{ end }}
+</p>
 {{ end }}
 
 {{ define "scripts" }}
 <script>
     (function() {
         const links = document.querySelectorAll('a[data-github-asset]');
-        if (!links.length) {
-            return;
-        }
-
+        if (!links.length) return;
         fetch('https://api.github.com/repos/chuk-development/chuk_chat/releases/latest')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Failed to load latest release');
-                }
-                return response.json();
-            })
+            .then((r) => r.ok ? r.json() : Promise.reject())
             .then((release) => {
                 const assets = Array.isArray(release.assets) ? release.assets : [];
                 const aliasByAsset = {
                     'chuk_chat-android-armv8.apk': 'android-arm64.apk',
                     'chuk_chat-android-armv7.apk': 'android-arm32.apk'
                 };
-
                 links.forEach((link) => {
                     const requestedAsset = link.getAttribute('data-github-asset');
-                    if (!requestedAsset) {
-                        return;
-                    }
-
+                    if (!requestedAsset) return;
                     const mappedAsset = aliasByAsset[requestedAsset] || requestedAsset;
                     const suffix = mappedAsset.startsWith('chuk_chat-') ? mappedAsset.slice('chuk_chat-'.length) : mappedAsset;
-
-                    const matched = assets.find((asset) => {
-                        return typeof asset.name === 'string' && asset.name.endsWith(suffix);
-                    });
-
+                    const matched = assets.find((a) => typeof a.name === 'string' && a.name.endsWith(suffix));
                     if (matched && typeof matched.browser_download_url === 'string') {
                         link.href = matched.browser_download_url;
                     }

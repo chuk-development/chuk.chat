@@ -1,31 +1,52 @@
 {{ define "main" }}
-<h1 style="border-bottom: none; padding-bottom: 0;">{{ .Params.heading }}</h1>
-<p class="subtitle" style="font-size: 15px; color: var(--text-secondary); margin-bottom: 40px; max-width: 450px;">{{ .Params.subheading }}</p>
+<section class="support-hero">
+    <h1>{{ .Params.heading }}</h1>
+    <p class="support-subheading">{{ .Params.subheading }}</p>
+</section>
 
-<div class="support-card" style="background: var(--card-bg); border: 1px solid var(--border-solid); padding: 32px; width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-    <div class="icon-circle" style="width: 64px; height: 64px; background: var(--highlight-bg); display: flex; align-items: center; justify-content: center; color: var(--text-color); border: 1px dashed var(--border-dotted);">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-    </div>
+<div class="support-grid">
+    <a href="mailto:support@chuk.chat" class="support-tile support-tile-primary">
+        <div class="support-tile-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>{{ if eq .Lang "de" }}Direkt per E-Mail{{ else }}Email us directly{{ end }}</h3>
+        <p class="support-tile-text">{{ if eq .Lang "de" }}Antwort meist innerhalb von 24 Stunden, an Werktagen oft schneller.{{ else }}Usually answered within 24 hours — often quicker on workdays.{{ end }}</p>
+        <span class="support-tile-link">support@chuk.chat &rarr;</span>
+    </a>
 
-    <a href="mailto:support@chuk.chat" style="font-size: 20px; color: var(--accent); text-decoration: none; font-weight: bold;">support@chuk.chat</a>
+    <a href="https://github.com/chuk-development/chuk_chat/issues" target="_blank" rel="noopener noreferrer" class="support-tile">
+        <div class="support-tile-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.648.5.5 5.648.5 12A11.5 11.5 0 0 0 8.36 22.93c.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.54-3.88-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.72-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17a10.9 10.9 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.63 1.59.24 2.76.12 3.05.74.8 1.18 1.82 1.18 3.07 0 4.41-2.69 5.39-5.26 5.67.41.36.77 1.07.77 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.648 18.352.5 12 .5Z"/></svg>
+        </div>
+        <h3>{{ if eq .Lang "de" }}Bug oder Feature?{{ else }}Bug or feature?{{ end }}</h3>
+        <p class="support-tile-text">{{ if eq .Lang "de" }}Mach ein Issue auf GitHub auf — der schnellste Weg, einen Fix einzuplanen.{{ else }}Open an issue on GitHub — fastest way to get a fix scheduled.{{ end }}</p>
+        <span class="support-tile-link">{{ if eq .Lang "de" }}Issue erstellen{{ else }}Open an issue{{ end }} &rarr;</span>
+    </a>
+
+    <a href="{{ "faq" | relLangURL }}" class="support-tile">
+        <div class="support-tile-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>{{ if eq .Lang "de" }}FAQ durchstöbern{{ else }}Skim the FAQ{{ end }}</h3>
+        <p class="support-tile-text">{{ if eq .Lang "de" }}Häufig gestellte Fragen zu Privatsphäre, Abrechnung und Geräten.{{ else }}Common answers on privacy, billing, and devices in one place.{{ end }}</p>
+        <span class="support-tile-link">{{ if eq .Lang "de" }}Zur FAQ{{ else }}Read FAQ{{ end }} &rarr;</span>
+    </a>
+
+    <a href="https://wiki.chuk.dev" target="_blank" rel="noopener noreferrer" class="support-tile">
+        <div class="support-tile-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>{{ if eq .Lang "de" }}Wiki & Doku{{ else }}Wiki & docs{{ end }}</h3>
+        <p class="support-tile-text">{{ if eq .Lang "de" }}Tiefergehende Anleitungen zu Modellen, Tools und Sicherheits­details.{{ else }}Deeper guides on models, tools, and security details.{{ end }}</p>
+        <span class="support-tile-link">{{ if eq .Lang "de" }}Wiki öffnen{{ else }}Open wiki{{ end }} &rarr;</span>
+    </a>
 </div>
-{{ end }}
 
-{{ define "head" }}
-<style>
-    .container {
-        text-align: center;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .footer {
-        margin-top: auto;
-    }
-    .support-card:hover {
-        border-color: var(--text-color);
-    }
-</style>
+<p class="support-meta">
+    {{ if eq .Lang "de" }}
+    Du erreichst uns am schnellsten unter <a href="mailto:support@chuk.chat">support@chuk.chat</a>. Schreib uns gerne auf Deutsch oder Englisch.
+    {{ else }}
+    Fastest path to a human is <a href="mailto:support@chuk.chat">support@chuk.chat</a>. Write in English or German &mdash; both work.
+    {{ end }}
+</p>
 {{ end }}

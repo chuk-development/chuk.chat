@@ -69,7 +69,7 @@
             {{ range $i := seq 1 2 }}
             {{ range $.Params.tools }}
             <a href="{{ .href }}" target="_blank" rel="noopener noreferrer" class="tool-item" title="{{ .name }} — {{ .role }}">
-                <img src="/logos/{{ .logo }}.svg" alt="{{ .name }}" loading="lazy" decoding="async">
+                <img src="/logos/tools/{{ .logo }}" alt="{{ .name }}" loading="lazy" decoding="async">
                 <span class="tool-text">
                     <span class="tool-name">{{ .name }}</span>
                     <span class="tool-role">{{ .role }}</span>
@@ -80,6 +80,32 @@
         </div>
     </div>
 </section>
+
+<!-- Models Grid -->
+{{ if .Params.models }}
+<section class="models-grid-section" aria-label="{{ .Params.models_title }}">
+    <div class="models-grid-head">
+        <span class="section-tag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            {{ if eq .Lang "de" }}Modelle{{ else }}Models{{ end }}
+        </span>
+        <h2 class="models-grid-title">{{ .Params.models_title }}</h2>
+    </div>
+    <div class="models-grid">
+        {{ range .Params.models }}
+        <a href="{{ .href }}" target="_blank" rel="noopener noreferrer" class="model-card" title="{{ .name }} — {{ .role }}">
+            <span class="model-card-logo">
+                <img src="/logos/models/{{ .logo }}" alt="{{ .name }}" loading="lazy" decoding="async">
+            </span>
+            <span class="model-card-text-wrap">
+                <span class="model-card-name">{{ .name }}</span>
+                <span class="model-card-role">{{ .role }}</span>
+            </span>
+        </a>
+        {{ end }}
+    </div>
+</section>
+{{ end }}
 
 <!-- Architecture Section -->
 <section class="architecture-section">
