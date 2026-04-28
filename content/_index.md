@@ -74,13 +74,19 @@ comparison:
     chatgpt: false
     claude: false
     okara: false
-    lumo: false
+    lumo: true
     chuk: true
   - feature: "Open Source"
     chatgpt: false
     claude: false
     okara: false
     lumo: true
+    chuk: true
+  - feature: "Frontier-Class Models"
+    chatgpt: true
+    claude: true
+    okara: false
+    lumo: false
     chuk: true
   - feature: "Open-Weight Models Only"
     chatgpt: false
@@ -109,7 +115,7 @@ comparison:
   - feature: "GDPR by Design"
     chatgpt: false
     claude: false
-    okara: false
+    okara: true
     lumo: true
     chuk: true
   - feature: "Platforms"
