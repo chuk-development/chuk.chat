@@ -101,10 +101,6 @@ models:
     role: "Magistral · EU"
     logo: "mistral.svg"
     href: "https://mistral.ai"
-  - name: "Alibaba Tongyi"
-    role: "Open-weight stack"
-    logo: "alibaba-tongyi.png"
-    href: "https://tongyi.aliyun.com"
 
 architecture_tag: "Architecture"
 architecture_title: "Built for privacy from day one"
