@@ -203,36 +203,21 @@
     </div>
 </section>
 
-<!-- Closing CTA -->
-<section class="closing-section" data-reveal>
-    <div class="closing-card">
-        <div class="closing-glow" aria-hidden="true"></div>
-        <span class="closing-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-            {{ .Params.data_title }}
-        </span>
-        <h2 class="closing-title">{{ .Params.try_title }}</h2>
-        <p class="closing-lead">{{ .Params.try_text | safeHTML }}</p>
-        <p class="closing-sub">{{ .Params.data_text | safeHTML }}</p>
-        <div class="closing-ctas">
-            <a href="{{ "downloads" | relLangURL }}" class="btn-cta-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                {{ .Params.cta_download }}
-            </a>
-            <a href="https://chat.chuk.chat" target="_blank" rel="noopener noreferrer" class="btn-cta-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                {{ if eq .Lang "de" }}Im Browser starten{{ else }}Open in Browser{{ end }}
-            </a>
-        </div>
-    </div>
+<!-- Closing pitch (dashed terminal style) -->
+<div class="section text-block closing-block">
+    <h2>{{ .Params.try_title }}</h2>
+    <p class="closing-lead">{{ .Params.try_text | safeHTML }}</p>
+    <p class="closing-divider"><span>·</span></p>
+    <p class="closing-data-title">{{ .Params.data_title }}</p>
+    <p class="closing-data-text">{{ .Params.data_text | safeHTML }}</p>
+</div>
 
-    <p class="closing-related">
-        {{ if eq .Lang "de" }}Verwandt:{{ else }}Related:{{ end }}
-        <a href="{{ "private-chatgpt-alternative" | relLangURL }}">{{ if eq .Lang "de" }}Private ChatGPT-Alternative{{ else }}Private ChatGPT Alternative{{ end }}</a>
-        <span class="closing-related-sep">·</span>
-        {{ if eq .Lang "de" }}<a href="{{ "deutscher-ki-chat" | relLangURL }}">Deutscher KI-Chat</a>{{ else }}<a href="{{ "german-ai-chat" | relLangURL }}">German AI Chat</a>{{ end }}
-    </p>
-</section>
+<p class="closing-related">
+    {{ if eq .Lang "de" }}Verwandt:{{ else }}Related:{{ end }}
+    <a href="{{ "private-chatgpt-alternative" | relLangURL }}">{{ if eq .Lang "de" }}Private ChatGPT-Alternative{{ else }}Private ChatGPT Alternative{{ end }}</a>
+    <span class="closing-related-sep">·</span>
+    {{ if eq .Lang "de" }}<a href="{{ "deutscher-ki-chat" | relLangURL }}">Deutscher KI-Chat</a>{{ else }}<a href="{{ "german-ai-chat" | relLangURL }}">German AI Chat</a>{{ end }}
+</p>
 
 {{ end }}
 
