@@ -799,16 +799,15 @@ li {
     .model-logo-frame img { width: 24px; height: 24px; }
 }
 
-/* ===== Models — list with brand logos, distinct from tools strip ===== */
+/* ===== Models — vertical cards, paper feel ===== */
 .models-grid-section {
     margin: 0 0 96px 0;
-    padding: 40px 36px;
+    padding: 48px 40px 44px 40px;
     background:
-        radial-gradient(circle at 0% 0%, rgba(184, 134, 11, 0.06), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(184, 134, 11, 0.04), transparent 55%),
+        radial-gradient(ellipse at 50% -20%, rgba(184, 134, 11, 0.10), transparent 55%),
         var(--card-bg);
     border: 1px solid var(--border-solid);
-    border-radius: 14px;
+    border-radius: 16px;
     position: relative;
     overflow: hidden;
 }
@@ -817,22 +816,21 @@ li {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
     height: 4px;
-    background: linear-gradient(90deg,
-        transparent,
-        var(--accent) 30%,
-        var(--accent) 70%,
-        transparent);
+    background: var(--accent);
+    border-radius: 0 0 4px 4px;
 }
 
 .models-grid-head {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 10px;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
     position: relative;
 }
 
@@ -841,53 +839,74 @@ li {
 }
 
 .models-grid-title {
-    font-size: 30px;
+    font-size: 32px;
     margin: 0;
     padding-bottom: 0;
     border-bottom: none;
     color: var(--text-color);
     line-height: 1.15;
-    letter-spacing: -0.4px;
+    letter-spacing: -0.5px;
+    max-width: 640px;
 }
 
 .models-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
     position: relative;
 }
 
 .model-card {
     background: var(--bg-color);
     border: 1px solid var(--border-solid);
-    border-radius: 8px;
-    padding: 14px 16px;
+    border-radius: 12px;
+    padding: 24px 16px 20px 16px;
     text-decoration: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    text-align: left;
-    gap: 14px;
-    transition: transform 0.2s ease, border-color 0.2s, background 0.2s;
+    text-align: center;
+    gap: 12px;
+    transition: transform 0.25s ease, border-color 0.2s, box-shadow 0.25s, background 0.25s;
     position: relative;
+    overflow: hidden;
+}
+
+.model-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 60%;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 0 0 3px 3px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
 }
 
 .model-card::after {
     content: '↗';
     position: absolute;
-    top: 10px;
-    right: 12px;
+    top: 12px;
+    right: 14px;
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 13px;
     opacity: 0;
     transition: opacity 0.2s, transform 0.2s;
 }
 
 .model-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
     border-color: var(--accent);
     background: var(--card-bg);
+    box-shadow: 0 18px 40px -14px rgba(184, 134, 11, 0.28);
     text-decoration: none;
+}
+
+.model-card:hover::before {
+    transform: translateX(-50%) scaleX(1);
 }
 
 .model-card:hover::after {
@@ -897,58 +916,81 @@ li {
 }
 
 .model-card-logo {
-    width: 44px;
-    height: 44px;
+    width: 64px;
+    height: 64px;
     background: var(--card-bg);
     border: 1px solid var(--border-dotted);
-    border-radius: 10px;
+    border-radius: 14px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     overflow: hidden;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.25s, border-color 0.2s, background 0.25s;
+    margin-top: 4px;
 }
 
 .model-card:hover .model-card-logo {
     border-color: var(--accent);
-    transform: scale(1.04);
+    background: var(--highlight-bg);
+    transform: scale(1.06) rotate(-2deg);
 }
 
 .model-card-logo img {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     display: block;
     filter: brightness(0);
 }
 
-.model-card-name {
-    font-size: 15px;
-    font-weight: bold;
-    color: var(--text-color);
-    line-height: 1.2;
-}
-
-.model-card-role {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.3;
-    margin-top: 2px;
-    letter-spacing: 0.1px;
-}
-
 .model-card-text-wrap {
     display: inline-flex;
     flex-direction: column;
+    align-items: center;
+    gap: 6px;
     min-width: 0;
+    width: 100%;
+}
+
+.model-card-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+    line-height: 1.15;
+    letter-spacing: -0.1px;
+}
+
+.model-card-role {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    background: var(--highlight-bg);
+    border: 1px dashed var(--border-dotted);
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.model-card:hover .model-card-role {
+    background: rgba(184, 134, 11, 0.1);
+    border-color: rgba(184, 134, 11, 0.4);
+    color: var(--accent);
 }
 
 @media (max-width: 600px) {
-    .models-grid-section { padding: 28px 16px; }
+    .models-grid-section { padding: 32px 16px 28px 16px; }
     .models-grid-title { font-size: 22px; }
-    .models-grid { grid-template-columns: 1fr; gap: 8px; }
-    .model-card { padding: 12px 14px; }
+    .models-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .model-card { padding: 18px 10px 16px 10px; }
+    .model-card-logo { width: 52px; height: 52px; }
+    .model-card-logo img { width: 32px; height: 32px; }
+    .model-card-name { font-size: 14px; }
 }
 
 /* ===== Architecture Section ===== */
