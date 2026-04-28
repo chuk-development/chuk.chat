@@ -61,6 +61,24 @@
     </div>
 </section>
 
+<!-- Tools Marquee -->
+<section class="tools-section" aria-label="{{ .Params.tools_title }}">
+    <p class="tools-heading">{{ .Params.tools_title }}</p>
+    <div class="tools-marquee">
+        <div class="tools-track">
+            {{ range $i := seq 1 2 }}
+            {{ range $.Params.tools }}
+            <a href="{{ .href }}" target="_blank" rel="noopener noreferrer" class="tool-item" title="{{ .name }} — {{ .role }}">
+                <img src="/logos/{{ .logo }}.svg" alt="{{ .name }}" loading="lazy" decoding="async">
+                <span class="tool-name">{{ .name }}</span>
+                <span class="tool-role">{{ .role }}</span>
+            </a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</section>
+
 <!-- Architecture Section -->
 <section class="architecture-section">
     <div class="architecture-intro">
