@@ -22,7 +22,7 @@ included:
   - "16 € KI-Guthaben jeden Monat"
   - "Sync auf Web, Mac, Windows, Linux, Android"
   - "Tool-Calling — Suche, Charts, Bildgen., Voice"
-  - "Jederzeit kündbar, 14 Tage Rückerstattung"
+  - "Jederzeit kündbar — keine Rückerstattung, aber Guthaben bleibt"
 
 excluded_title: "Was du nicht bekommst"
 excluded:

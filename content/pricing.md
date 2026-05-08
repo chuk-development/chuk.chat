@@ -22,7 +22,7 @@ included:
   - "€16 of AI credits each month"
   - "Sync across Web, Mac, Windows, Linux, Android"
   - "Tool calling — search, charts, image gen, voice"
-  - "Cancel any time, refund within 14 days"
+  - "Cancel any time — no refunds, but keep any remaining credits"
 
 excluded_title: "What you don't get"
 excluded:

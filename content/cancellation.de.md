@@ -1,53 +1,26 @@
 ---
-title: "Widerrufsbelehrung"
+title: "Kündigung"
 layout: "legal"
 type: "page"
 translationKey: "cancellation"
-updated: "Zuletzt aktualisiert: 23. November 2025"
+updated: "Zuletzt aktualisiert: 8. Mai 2026"
 ---
-
-## Widerrufsrecht
-
-Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.
-
-Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.
-
-Um Ihr Widerrufsrecht auszuüben, müssen Sie uns mittels einer eindeutigen Erklärung (z.B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
-
-**Kontakt für den Widerruf:**
-
-Chuk Development
-E-Mail: [support@chuk.chat](mailto:support@chuk.chat)
-
-Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.
-
-## Folgen des Widerrufs
-
-Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist.
-
-Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.
-
-Haben Sie verlangt, dass die Dienstleistungen während der Widerrufsfrist beginnen sollen, so haben Sie uns einen angemessenen Betrag zu zahlen, der dem Anteil der bis zu dem Zeitpunkt, zu dem Sie uns von der Ausübung des Widerrufsrechts hinsichtlich dieses Vertrags unterrichten, bereits erbrachten Dienstleistungen im Vergleich zum Gesamtumfang der im Vertrag vorgesehenen Dienstleistungen entspricht.
-
-## Muster-Widerrufsformular
-
-(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück)
-
-An: Chuk Development, support@chuk.chat
-
-Hiermit widerrufe ich den von mir abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung: Chuk Chat Abonnement
-
-- Bestellt am / erhalten am: _______________
-- Name des Verbrauchers: _______________
-- Anschrift des Verbrauchers: _______________
-- Unterschrift des Verbrauchers (nur bei Mitteilung auf Papier): _______________
-- Datum: _______________
 
 ## Kündigung des Abonnements
 
-Abgesehen vom Widerrufsrecht können Sie Ihr Abonnement jederzeit kündigen:
+Sie können Ihr Abonnement jederzeit kündigen:
 
 1. **In der App:** Gehen Sie zu Einstellungen → Abonnement → Kündigen
 2. **Per E-Mail:** Senden Sie eine Kündigungsanfrage an [support@chuk.chat](mailto:support@chuk.chat)
 
-Ihr Abonnement bleibt bis zum Ende des aktuellen Abrechnungszeitraums aktiv. Nach Ablauf der 14-tägigen Widerrufsfrist werden keine Rückerstattungen für angebrochene Monate gewährt.
+Ihr Abonnement bleibt bis zum Ende des aktuellen Abrechnungszeitraums aktiv. Nach der Kündigung behalten Sie alle verbleibenden KI-Guthaben auf Ihrem Konto und können den Dienst weiter nutzen, bis Ihr Guthaben aufgebraucht ist.
+
+## Rückerstattung
+
+Wir gewähren keine Rückerstattungen für Abonnement-Zahlungen. Aber:
+
+- Ungenutzte KI-Guthaben verbleiben auf Ihrem Konto nach der Kündigung
+- Sie können den Dienst mit Ihrem verbleibenden Guthaben weiter nutzen
+- Guthaben verfällt nicht
+
+Bei Fragen zu Ihrem Abonnement oder bei Unterstützungsbedarf kontaktieren Sie uns bitte unter [support@chuk.chat](mailto:support@chuk.chat).
