@@ -39,7 +39,7 @@
 <title>{{ $pageTitle }}</title>
 <meta name="description" content="{{ $pageDescription }}">
 {{- with $pageKeywords }}
-<meta name="keywords" content="{{ if reflect.IsSlice . }}{{ delimit . " " }}{{ else }}{{ . }}{{ end }}">
+<meta name="keywords" content="{{ . }}">
 {{- end }}
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="author" content="{{ .Site.Params.author }}">
@@ -136,50 +136,20 @@
             }
         },
         {
-            "@type": "ItemList",
-            "name": "Chuk products",
-            "itemListElement": [
-                {
-                    "@type": "SoftwareApplication",
-                    "name": "Chuk Chat",
-                    "applicationCategory": "CommunicationApplication",
-                    "operatingSystem": "Windows, macOS, Linux, Android, Web",
-                    "url": "{{ .Site.BaseURL }}chuk-chat/",
-                    "offers": {
-                        "@type": "Offer",
-                        "price": "20",
-                        "priceCurrency": "EUR"
-                    }
-                },
-                {
-                    "@type": "WebApplication",
-                    "name": "Vielstimmig",
-                    "applicationCategory": "NewsApplication",
-                    "url": "https://vielstimmig.eu/"
-                }
-            ]
+            "@type": "SoftwareApplication",
+            "name": "Chuk Chat",
+            "applicationCategory": "CommunicationApplication",
+            "operatingSystem": "Windows, macOS, Linux, iOS, Android, Web",
+            "description": {{ $pageDescription | jsonify }},
+            "url": {{ .Permalink | jsonify }},
+            "offers": {
+                "@type": "Offer",
+                "price": "20",
+                "priceCurrency": "EUR"
+            },
+            "keywords": {{ $pageKeywords | jsonify }}
         }
     ]
-}
-</script>
-{{- end }}
-
-{{- if eq .Params.layout "chuk-chat" }}
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Chuk Chat",
-    "applicationCategory": "CommunicationApplication",
-    "operatingSystem": "Windows, macOS, Linux, Android, Web",
-    "description": {{ $pageDescription | jsonify }},
-    "url": {{ .Permalink | jsonify }},
-    "offers": {
-        "@type": "Offer",
-        "price": "20",
-        "priceCurrency": "EUR"
-    },
-    "keywords": {{ $pageKeywords | jsonify }}
 }
 </script>
 {{- end }}
