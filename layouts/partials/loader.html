@@ -1,0 +1,66 @@
+<!-- Brand boot loader: Chuk mark, dim base with a bright fill wiping left to right.
+     Font-independent (mark is an SVG mask). Removed on window load. -->
+<style>
+  #chuk-loader{
+    position:fixed; inset:0; z-index:3000;
+    display:grid; place-items:center;
+    background:#FDFBF7;
+    transition:opacity .5s ease;
+  }
+  #chuk-loader.is-done{opacity:0}
+  #chuk-loader.is-gone{display:none}
+  .chuk-loader-lockup{display:flex; align-items:center; gap:16px; position:relative}
+  .chuk-lk-mark{
+    width:52px; height:52px; flex:none;
+    -webkit-mask:url('/favicon.svg') center/contain no-repeat;
+            mask:url('/favicon.svg') center/contain no-repeat;
+  }
+  .chuk-lk-word{
+    font-family:'Courier New',Courier,monospace;
+    font-weight:bold; font-size:40px; line-height:1; letter-spacing:1px;
+  }
+  /* dim base */
+  .chuk-loader-base .chuk-lk-mark{background:#D0C8B8}
+  .chuk-loader-base .chuk-lk-word{color:#D0C8B8}
+  /* bright copy, revealed by a looping left to right clip wipe */
+  .chuk-loader-fill{
+    position:absolute; inset:0; display:flex; align-items:center; gap:16px;
+    clip-path:inset(0 100% 0 0);
+    animation:chuk-wipe 1.9s cubic-bezier(.7,0,.3,1) infinite;
+  }
+  .chuk-loader-fill .chuk-lk-mark{background:#B8860B}
+  .chuk-loader-fill .chuk-lk-word{color:#B8860B}
+  @keyframes chuk-wipe{
+    0%{clip-path:inset(0 100% 0 0)}
+    55%,100%{clip-path:inset(0 0 0 0)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .chuk-loader-fill{animation:none; clip-path:none}
+  }
+</style>
+<div id="chuk-loader" role="status" aria-label="Loading">
+  <div class="chuk-loader-lockup">
+    <div class="chuk-loader-base">
+      <span class="chuk-lk-mark"></span><span class="chuk-lk-word">Chuk</span>
+    </div>
+    <div class="chuk-loader-fill" aria-hidden="true">
+      <span class="chuk-lk-mark"></span><span class="chuk-lk-word">Chuk</span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var el=document.getElementById('chuk-loader');
+  if(!el)return;
+  var start=Date.now(), MIN=450;
+  function done(){
+    var wait=Math.max(0,MIN-(Date.now()-start));
+    setTimeout(function(){
+      el.classList.add('is-done');
+      setTimeout(function(){el.classList.add('is-gone')},550);
+    },wait);
+  }
+  if(document.readyState==='complete'){done();}
+  else{window.addEventListener('load',done);setTimeout(done,4000);}
+})();
+</script>

@@ -14,3 +14,6 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Playwright MCP output
+.playwright-mcp/

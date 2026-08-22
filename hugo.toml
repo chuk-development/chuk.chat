@@ -1,6 +1,6 @@
 baseURL = 'https://chuk.chat/'
 languageCode = 'en'
-title = 'Chuk Chat'
+title = 'Chuk'
 defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 enableRobotsTXT = true

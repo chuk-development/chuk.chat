@@ -1,307 +1,81 @@
 {{ define "main" }}
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="hero-content">
-        <h1 class="hero-title">{{ .Params.hero_title | safeHTML }}</h1>
-        <p class="brand-slogan">{{ .Params.brand_slogan }}</p>
-        <p class="hero-subtitle">
-            {{ .Params.hero_lead_pre | safeHTML }}
-            <span class="encryption-container" tabindex="0" aria-label="{{ .Params.encryption_label }}">
-                <span class="encryption-text">{{ .Params.encryption_text }}</span>
-                <span class="encryption-crypto" aria-hidden="true">
-                    <span class="crypto-rain"></span>
-                </span>
-            </span>{{ .Params.hero_lead_post | safeHTML }}
-        </p>
-
-        <div class="hero-ctas">
-            <a href="{{ "downloads" | relLangURL }}" class="btn-cta-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                {{ .Params.cta_download }}
-            </a>
+<!-- Hub Hero -->
+<section class="hub-hero">
+    <div class="hub-hero-inner">
+        <p class="hub-kicker">{{ .Params.hero_kicker }}</p>
+        <h1 class="hub-hero-title">{{ .Params.hero_title | safeHTML }}</h1>
+        <p class="hub-hero-sub">{{ .Params.hero_sub }}</p>
+        <div class="hub-hero-ctas">
+            <a href="#products" class="btn-cta-primary">{{ .Params.hero_cta_primary }}</a>
             <a href="https://github.com/chuk-development/chuk_chat" target="_blank" rel="noopener noreferrer" class="btn-cta-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.648.5.5 5.648.5 12A11.5 11.5 0 0 0 8.36 22.93c.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.54-3.88-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.72-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17a10.9 10.9 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.63 1.59.24 2.76.12 3.05.74.8 1.18 1.82 1.18 3.07 0 4.41-2.69 5.39-5.26 5.67.41.36.77 1.07.77 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.648 18.352.5 12 .5Z"/></svg>
-                {{ .Params.cta_github }}
+                {{ .Params.hero_cta_secondary }}
             </a>
         </div>
-        <p class="hero-tagline">{{ .Params.open_source_line }}</p>
+    </div>
+    <div class="hub-hero-mark" aria-hidden="true">
+        <img src="/favicon.svg" alt="" width="440" height="440">
     </div>
 </section>
 
-<!-- Screenshot Slider -->
-<section class="screenshot-section">
-    <div class="screenshot-stage">
-        <div class="screenshot-viewer">
-            <div class="screenshot-track" id="screenshotTrack">
-                {{ range .Params.screenshots }}
-                {{ $base := replaceRE "\\.[^.]+$" "" .src }}
-                <div class="screenshot-slide">
-                    <picture class="screenshot-picture">
-                        <source srcset="/screenshots/{{ $base }}.avif" type="image/avif">
-                        <source srcset="/screenshots/{{ $base }}.webp" type="image/webp">
-                        <img src="/screenshots/{{ $base }}.webp" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer>
-                    </picture>
-                </div>
-                {{ end }}
+<!-- Product Regions -->
+<section class="hub-products" id="products">
+    <p class="hub-section-kicker">{{ .Params.products_kicker }}</p>
+    {{ range $i, $p := .Params.products }}
+    <article class="product-region product-region--{{ $p.key }}{{ if eq (mod $i 2) 1 }} is-reversed{{ end }}" data-reveal>
+        <div class="product-copy">
+            <p class="product-kicker">{{ $p.kicker }}</p>
+            <h2 class="product-name">{{ $p.name }}</h2>
+            <p class="product-line">{{ $p.line }}</p>
+            <ul class="product-points">
+                {{ range $p.points }}<li>{{ . }}</li>{{ end }}
+            </ul>
+            <div class="product-actions">
+                <a href="{{ $p.href | relLangURL }}" class="product-enter">
+                    {{ $p.cta }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="{{ $p.external }}" target="_blank" rel="noopener noreferrer" class="product-external">{{ $p.external_label }}</a>
             </div>
-            <button class="slider-arrow slider-arrow-prev" id="prevSlide" aria-label="Previous">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button class="slider-arrow slider-arrow-next" id="nextSlide" aria-label="Next">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
         </div>
-        <div class="slider-controls">
-            <p class="screenshot-caption" id="screenshotCaption"></p>
-            <div class="slider-dots" id="sliderDots"></div>
-        </div>
-        <div class="screenshot-captions-data" id="screenshotCaptions" hidden>
-            {{ range .Params.screenshots }}<span data-caption>{{ .caption }}</span>{{ end }}
-        </div>
-    </div>
-</section>
-
-<!-- Tools Marquee -->
-<section class="tools-section" aria-label="{{ .Params.tools_title }}">
-    <p class="tools-heading">{{ .Params.tools_title }}</p>
-    <div class="tools-marquee">
-        <div class="tools-track">
-            {{ range $i := seq 1 2 }}
-            {{ range $.Params.tools }}
-            <span class="tool-item" title="{{ .name }} — {{ .role }}">
-                <img src="/logos/tools/{{ .logo }}" alt="{{ .name }}" loading="lazy" decoding="async">
-                <span class="tool-text">
-                    <span class="tool-name">{{ .name }}</span>
-                    <span class="tool-role">{{ .role }}</span>
-                </span>
+        <a class="product-visual product-visual--{{ $p.shot }}" href="{{ $p.href | relLangURL }}" aria-label="{{ $p.cta }}">
+            <span class="device-frame device-frame--{{ $p.shot }}">
+                <img src="{{ $p.image }}" alt="{{ $p.image_alt }}" loading="lazy" decoding="async">
             </span>
-            {{ end }}
-            {{ end }}
-        </div>
-    </div>
+        </a>
+    </article>
+    {{ end }}
 </section>
 
-<!-- Models Grid -->
-{{ if .Params.models }}
-<section class="models-grid-section" aria-label="{{ .Params.models_title }}">
-    <div class="models-grid-head">
-        <span class="section-tag">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            {{ if eq .Lang "de" }}Modelle{{ else }}Models{{ end }}
-        </span>
-        <h2 class="models-grid-title">{{ .Params.models_title }}</h2>
+<!-- One principle -->
+<section class="hub-principle" data-reveal>
+    <div class="hub-principle-head">
+        <h2 class="hub-principle-title">{{ .Params.principle_title }}</h2>
+        <p class="hub-principle-text">{{ .Params.principle_text }}</p>
     </div>
-    <div class="models-grid">
-        {{ range .Params.models }}
-        <span class="model-card" title="{{ .name }}">
-            <span class="model-card-logo">
-                <img src="/logos/models/{{ .logo }}" alt="{{ .name }}" loading="lazy" decoding="async">
-            </span>
-            <span class="model-card-name">{{ .name }}</span>
-        </span>
-        {{ end }}
-    </div>
-</section>
-{{ end }}
-
-<!-- Architecture Section -->
-<section class="architecture-section">
-    <div class="architecture-intro" data-reveal>
-        <span class="section-tag">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" x2="2" y1="12" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
-            {{ .Params.architecture_tag }}
-        </span>
-        <h2 class="architecture-title">{{ .Params.architecture_title }}</h2>
-        <p class="architecture-lead">{{ .Params.architecture_lead | safeHTML }}</p>
-    </div>
-
-    <div class="architecture-grid">
-        {{ range $i, $f := .Params.features }}
-        <div class="arch-card{{ if .encryption }} arch-card-encryption{{ end }}" data-reveal style="--reveal-delay: {{ mul $i 80 }}ms">
-            <p class="arch-card-tag">{{ .title }}</p>
-            <div class="arch-card-body">
-                <div class="arch-card-icon{{ if .encryption }} encryption-container{{ end }}">
-                    {{ if eq .icon "shield" }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    {{ else if eq .icon "lock" }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        <span class="arch-card-crypto" aria-hidden="true">
-                            <span class="arch-crypto-rain"></span>
-                        </span>
-                    {{ else if eq .icon "layers" }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    {{ else if eq .icon "tool" }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                    {{ else if eq .icon "globe" }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    {{ else }}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                    {{ end }}
-                </div>
-                <p class="arch-card-text">{{ .description }}</p>
-            </div>
+    <div class="hub-principle-grid">
+        {{ range .Params.principle_points }}
+        <div class="principle-item">
+            <h3>{{ .title }}</h3>
+            <p>{{ .text }}</p>
         </div>
         {{ end }}
     </div>
 </section>
 
-<!-- Comparison Section -->
-<section class="comparison-section">
-    <div class="comparison-intro" data-reveal>
-        <span class="section-tag">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-            {{ if eq .Lang "de" }}Vergleich{{ else }}Comparison{{ end }}
-        </span>
-        <h2 class="comparison-title">{{ .Params.comparison_title }}</h2>
-        <p class="comparison-lead">{{ if eq .Lang "de" }}Was Mainstream-Anbieter weglassen — und wo Chuk Chat anders zieht.{{ else }}What the mainstream players skip — and where Chuk Chat draws its line.{{ end }}</p>
-    </div>
-
-    <div class="comparison-frame" data-reveal>
-        <div class="comparison-table-wrapper">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th class="comparison-feature-col"></th>
-                        <th>ChatGPT</th>
-                        <th>Claude</th>
-                        <th>Okara</th>
-                        <th>Lumo</th>
-                        <th class="comparison-highlight-col">
-                            <span class="comparison-highlight-name">Chuk Chat</span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{ range $i, $row := .Params.comparison }}
-                    <tr style="--row-delay: {{ mul $i 40 }}ms">
-                        <td class="comparison-feature-col">{{ .feature }}</td>
-                        {{/* ChatGPT */}}
-                        {{ if .chatgpt_platforms }}<td class="comparison-platforms-cell">{{ range .chatgpt_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                        {{ else if .chatgpt }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
-                        {{/* Claude */}}
-                        {{ if .claude_platforms }}<td class="comparison-platforms-cell">{{ range .claude_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                        {{ else if .claude }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
-                        {{/* Okara */}}
-                        {{ if .okara_platforms }}<td class="comparison-platforms-cell">{{ range .okara_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                        {{ else if .okara }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
-                        {{/* Lumo */}}
-                        {{ if .lumo_platforms }}<td class="comparison-platforms-cell">{{ range .lumo_platforms }}<span class="platform-tag">{{ . }}</span>{{ end }}</td>
-                        {{ else if .lumo }}<td><span class="comparison-yes" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                        {{ else }}<td><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
-                        {{/* Chuk Chat */}}
-                        {{ if .chuk_platforms }}<td class="comparison-highlight-col comparison-platforms-cell">{{ range .chuk_platforms }}<span class="platform-tag platform-tag-highlight">{{ . }}</span>{{ end }}</td>
-                        {{ else if .chuk }}<td class="comparison-highlight-col"><span class="comparison-yes comparison-yes-highlight" aria-label="Yes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span></td>
-                        {{ else }}<td class="comparison-highlight-col"><span class="comparison-no" aria-label="No"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></td>{{ end }}
-                    </tr>
-                    {{ end }}
-                </tbody>
-            </table>
-        </div>
-    </div>
+<!-- Closing / open source -->
+<section class="hub-closing" data-reveal>
+    <h2 class="hub-closing-title">{{ .Params.closing_title }}</h2>
+    <p class="hub-closing-text">{{ .Params.closing_text }}</p>
+    <a href="https://github.com/chuk-development/chuk_chat" target="_blank" rel="noopener noreferrer" class="btn-cta-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.648.5.5 5.648.5 12A11.5 11.5 0 0 0 8.36 22.93c.58.11.79-.25.79-.56v-2.17c-3.2.7-3.88-1.54-3.88-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.72-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17a10.9 10.9 0 0 1 5.74 0c2.18-1.48 3.14-1.17 3.14-1.17.63 1.59.24 2.76.12 3.05.74.8 1.18 1.82 1.18 3.07 0 4.41-2.69 5.39-5.26 5.67.41.36.77 1.07.77 2.16v3.2c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.648 18.352.5 12 .5Z"/></svg>
+        {{ .Params.closing_cta }}
+    </a>
 </section>
-
-<!-- Your Data Stays Yours -->
-<div class="section text-block">
-    <h2>{{ .Params.data_title }}</h2>
-    <p>{{ .Params.data_text | safeHTML }}</p>
-</div>
-
-<p class="closing-related">
-    {{ if eq .Lang "de" }}Verwandt:{{ else }}Related:{{ end }}
-    <a href="{{ "private-chatgpt-alternative" | relLangURL }}">{{ if eq .Lang "de" }}Private ChatGPT-Alternative{{ else }}Private ChatGPT Alternative{{ end }}</a>
-    <span class="closing-related-sep">·</span>
-    {{ if eq .Lang "de" }}<a href="{{ "deutscher-ki-chat" | relLangURL }}">Deutscher KI-Chat</a>{{ else }}<a href="{{ "german-ai-chat" | relLangURL }}">German AI Chat</a>{{ end }}
-</p>
-
 {{ end }}
 
 {{ define "scripts" }}
 <script>
-(function() {
-    const track = document.getElementById('screenshotTrack');
-    if (!track) return;
-    const slides = track.querySelectorAll('.screenshot-slide');
-    const dotsContainer = document.getElementById('sliderDots');
-    const prev = document.getElementById('prevSlide');
-    const next = document.getElementById('nextSlide');
-    const captionEl = document.getElementById('screenshotCaption');
-    const captionsData = document.getElementById('screenshotCaptions');
-    const captions = captionsData
-        ? Array.from(captionsData.querySelectorAll('[data-caption]')).map(el => el.textContent)
-        : [];
-    const total = slides.length;
-    let current = 0;
-    let timer;
-
-    for (let i = 0; i < total; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-    }
-    const dots = dotsContainer.querySelectorAll('.slider-dot');
-
-    function update() {
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d, i) => d.classList.toggle('active', i === current));
-        if (captionEl && captions[current] !== undefined) {
-            captionEl.textContent = captions[current];
-        }
-    }
-    function goTo(i) { current = (i + total) % total; update(); reset(); }
-    function reset() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 6000); }
-
-    prev.addEventListener('click', () => goTo(current - 1));
-    next.addEventListener('click', () => goTo(current + 1));
-    update();
-    reset();
-})();
-
-(function() {
-    const cards = document.querySelectorAll('.arch-card-encryption .arch-card-icon');
-    if (!cards.length) return;
-    const chars = '01ABCDEF0123456789';
-    cards.forEach(card => {
-        let last = 0;
-        card.addEventListener('mouseenter', () => card.classList.add('is-tracking'));
-        card.addEventListener('mouseleave', () => card.classList.remove('is-tracking'));
-        card.addEventListener('mousemove', (e) => {
-            const now = performance.now();
-            if (now - last < 50) return;
-            last = now;
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const span = document.createElement('span');
-            span.className = 'crypto-trail-char';
-            span.textContent = chars[Math.floor(Math.random() * chars.length)];
-            span.style.left = (x + (Math.random() * 10 - 5)) + 'px';
-            span.style.top = (y + (Math.random() * 10 - 5)) + 'px';
-            card.appendChild(span);
-            setTimeout(() => span.remove(), 1100);
-        });
-    });
-})();
-
-(function() {
-    const chars = '01ABCDEF';
-    document.querySelectorAll('.crypto-rain, .arch-crypto-rain').forEach(rain => {
-        for (let i = 0; i < 14; i++) {
-            const span = document.createElement('span');
-            span.className = 'crypto-char';
-            span.textContent = chars[Math.floor(Math.random() * chars.length)];
-            span.style.left = (i * 7.5) + '%';
-            span.style.animationDelay = (Math.random() * 2) + 's';
-            span.style.animationDuration = (1.4 + Math.random() * 1.2) + 's';
-            rain.appendChild(span);
-        }
-    });
-})();
-
 (function() {
     const targets = document.querySelectorAll('[data-reveal]');
     if (!targets.length) return;
@@ -316,18 +90,8 @@
                 io.unobserve(entry.target);
             }
         });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
     targets.forEach(el => io.observe(el));
-})();
-
-(function() {
-    document.querySelectorAll('.arch-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
-            card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
-        });
-    });
 })();
 </script>
 {{ end }}

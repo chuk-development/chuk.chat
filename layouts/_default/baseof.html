@@ -4,6 +4,7 @@
     {{- partial "head.html" . -}}
 </head>
 <body{{ with .Params.bodyClass }} class="{{ . }}"{{ end }}>
+    {{- partial "loader.html" . -}}
     {{- partial "nav.html" . -}}
 
     <div class="container">

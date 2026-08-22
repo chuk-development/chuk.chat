@@ -1,187 +1,58 @@
 ---
-title: "Chuk Chat — Private AI Chat from Germany | Secure & Anonymous"
-description: "Chuk Chat is a private AI chat app from Germany with no data mining, no tracking, and end-to-end encryption. Use a secure ChatGPT alternative powered only by open-weight models."
-keywords: "private ai chat, german ai chat, private chatgpt, private gemini, private claude alternative, private chatgpt alternative, encrypted ai chat, privacy ai assistant, no tracking ai chat, chat gbt alternative"
+title: "Chuk — Private Software You Actually Own"
+description: "Chuk builds private software from Germany. Chuk Chat is a private, encrypted AI assistant on open-weight models. Vielstimmig makes German news legible. No tracking, no data mining."
+keywords: "chuk, chuk development, private software germany, private ai chat, chuk chat, vielstimmig, open-weight ai, encrypted software, gdpr software"
 
-hero_title: "Private AI That<br>Actually Belongs to You."
-brand_slogan: "Private and Secure. Always."
-hero_lead_pre: "Open-weight models only. "
-encryption_text: "End-to-End"
-encryption_label: "End-to-End encrypted"
-hero_lead_post: " encrypted.<br>No tracking, no data mining, no compromises."
-cta_download: "Download for Mac / Windows / Linux"
-cta_github: "Check on GitHub"
-open_source_line: "100% open source · monthly subscription · no token stress"
+hero_kicker: "Chuk Development"
+hero_title: "Private software you<br>actually own."
+hero_sub: "Two products, one rule: your data stays yours. Open by default, encrypted, run from Germany."
+hero_cta_primary: "See the products"
+hero_cta_secondary: "Open source on GitHub"
 
-screenshots:
-  - src: "screenshot_home_ui.png"
-    alt: "Clean chat interface"
-    caption: "Clean, distraction-free chat interface"
-  - src: "screenshot_model_selection.png"
-    alt: "Model selection"
-    caption: "Pick from a curated set of open-weight models"
-  - src: "screenshot_tool_calling_ui.png"
-    alt: "Tool calling"
-    caption: "Powerful tool calling with built-in integrations"
-  - src: "screenshot_weather_ui.png"
-    alt: "Weather"
-    caption: "Rich visual responses, not just walls of text"
-  - src: "screenshot_bitcoin_chart.png"
-    alt: "Bitcoin chart"
-    caption: "Live charts and market data on demand"
-  - src: "screenshot_customization.png"
-    alt: "Customization"
-    caption: "Deep customization for power users"
-  - src: "screenshot_theme_settings.png"
-    alt: "Theme settings"
-    caption: "Themes that match your vibe"
+products_kicker: "The products"
+products:
+  - key: "chuk-chat"
+    name: "Chuk Chat"
+    kicker: "Private AI chat"
+    line: "A private AI assistant on open-weight models only. End-to-end encrypted, no tracking, no data mining."
+    points:
+      - "Open-weight models only"
+      - "End-to-end encrypted"
+      - "Made in Germany, GDPR by design"
+    cta: "Explore Chuk Chat"
+    href: "/chuk-chat/"
+    external: "https://chat.chuk.chat/"
+    external_label: "Open web app"
+    image: "/screenshots/screenshot_home_ui.webp"
+    image_alt: "Chuk Chat clean chat interface"
+    shot: "desktop"
+  - key: "vielstimmig"
+    name: "Vielstimmig"
+    kicker: "German news, made legible"
+    line: "Every German outlet on one story, side by side. See the political spread, compare the wording, watch each version change over time."
+    points:
+      - "One topic, all sources"
+      - "Left, centre and right at a glance"
+      - "Every version kept, changes stay visible"
+    cta: "Explore Vielstimmig"
+    href: "/vielstimmig/"
+    external: "https://vielstimmig.eu/"
+    external_label: "Read today's edition"
+    image: "/vielstimmig/mobile-home.png"
+    image_alt: "Vielstimmig front page on mobile with a left, centre and right report count"
+    shot: "phone"
 
-tools_title: "Built on tools we trust"
-tools:
-  - name: "OpenRouter"
-    role: "AI model routing"
-    logo: "openrouter.svg"
-    href: "https://openrouter.ai"
-  - name: "Brave Search"
-    role: "Private web search"
-    logo: "brave.svg"
-    href: "https://search.brave.com"
-  - name: "CoinGecko"
-    role: "Live crypto data"
-    logo: "coingecko.svg"
-    href: "https://www.coingecko.com"
-  - name: "Black Forest Labs"
-    role: "Image generation"
-    logo: "blackforestlabs.svg"
-    href: "https://blackforestlabs.ai"
-  - name: "Groq"
-    role: "Speech-to-text"
-    logo: "groq.svg"
-    href: "https://groq.com"
-  - name: "Stripe"
-    role: "Payments"
-    logo: "stripe.svg"
-    href: "https://stripe.com"
-  - name: "Supabase"
-    role: "Database & auth"
-    logo: "supabase.svg"
-    href: "https://supabase.com"
-  - name: "Hetzner"
-    role: "EU-based hosting"
-    logo: "hetzner.svg"
-    href: "https://hetzner.com"
-  - name: "LiveKit"
-    role: "Voice & video (soon)"
-    logo: "livekit.svg"
-    href: "https://livekit.io"
+principle_title: "One company. One principle."
+principle_text: "No black boxes, no silent data harvesting. Everything Chuk builds is transparent by default and runs under EU law from German soil."
+principle_points:
+  - title: "Open by default"
+    text: "Open-weight models, open source, no hidden pipelines. You can see what runs."
+  - title: "Yours to keep"
+    text: "We store nothing you don't want. Fully deletable, fully controllable, fully yours."
+  - title: "Made in Germany"
+    text: "Operated under EU law with ULD oversight. No transatlantic data drift."
 
-models_title: "Trusted open-weight models"
-models:
-  - name: "DeepSeek"
-    logo: "deepseek.svg"
-  - name: "Moonshot · Kimi"
-    logo: "moonshot.png"
-  - name: "Qwen"
-    logo: "qwen.svg"
-  - name: "Z.AI"
-    logo: "zai.svg"
-  - name: "MiniMax"
-    logo: "minimax.svg"
-  - name: "Mistral"
-    logo: "mistral.svg"
-
-architecture_tag: "Architecture"
-architecture_title: "Built for privacy from day one"
-architecture_lead: "No black-box models. No silent data harvesting. Just transparent open-weight AI<br>running through a German-hosted, GDPR-by-design pipeline."
-
-features_title: "Why Chuk Chat?"
-features:
-  - title: "Open-Weight Models Only"
-    icon: "layers"
-    description: "Only transparent, open-weight models. No closed APIs, no hidden data policies. You always know what's running your AI."
-  - title: "End-to-End Encrypted"
-    icon: "lock"
-    encryption: true
-    description: "Messages are encrypted in transit with industry-standard ciphers. Hover the lock — that's your data, scrambled."
-  - title: "Made in Germany · GDPR by Design"
-    icon: "shield"
-    description: "Operated from Germany under EU law. ULD oversight, Kleinunternehmerregelung, no transatlantic data drift."
-  - title: "No Tracking, No Profiling"
-    icon: "globe"
-    description: "No ads, no analytics graveyard, no behavioral profiling. A tool, not a marketing funnel."
-
-comparison_title: "How Chuk Chat Compares"
-comparison:
-  - feature: "Privacy First"
-    chatgpt: false
-    claude: false
-    okara: true
-    lumo: true
-    chuk: true
-  - feature: "Based in Germany"
-    chatgpt: false
-    claude: false
-    okara: false
-    lumo: false
-    chuk: true
-  - feature: "Based in EU"
-    chatgpt: false
-    claude: false
-    okara: false
-    lumo: true
-    chuk: true
-  - feature: "Open Source"
-    chatgpt: false
-    claude: false
-    okara: false
-    lumo: true
-    chuk: true
-  - feature: "Frontier-Class Models"
-    chatgpt: true
-    claude: true
-    okara: false
-    lumo: false
-    chuk: true
-  - feature: "Open-Weight Models Only"
-    chatgpt: false
-    claude: false
-    okara: true
-    lumo: true
-    chuk: true
-  - feature: "End-to-End Encrypted"
-    chatgpt: false
-    claude: false
-    okara: true
-    lumo: true
-    chuk: true
-  - feature: "Never Trains on Your Data"
-    chatgpt: false
-    claude: false
-    okara: true
-    lumo: true
-    chuk: true
-  - feature: "No User Tracking"
-    chatgpt: false
-    claude: false
-    okara: false
-    lumo: true
-    chuk: true
-  - feature: "GDPR by Design"
-    chatgpt: false
-    claude: false
-    okara: true
-    lumo: true
-    chuk: true
-  - feature: "Platforms"
-    chatgpt_platforms: ["iOS", "Android", "Mac", "Windows", "Web"]
-    claude_platforms: ["iOS", "Android", "Mac", "Windows", "Web"]
-    okara_platforms: ["Web"]
-    lumo_platforms: ["iOS", "Android", "Web"]
-    chuk_platforms: ["Android", "Mac", "Windows", "Linux", "Web"]
-
-data_title: "Your Data Stays Yours"
-data_text: "We store nothing you don't want.<br>Fully deletable. Fully controllable. Fully yours."
-
-try_title: "Try It Out"
-try_text: "A privacy-focused AI experience built on open-weight models.<br>Download Chuk Chat today and get started — open source on <a href='https://github.com/chuk-development/chuk_chat' target='_blank' rel='noopener noreferrer'>GitHub</a>."
+closing_title: "Built in the open."
+closing_text: "Chuk is a small German studio. The code is public, the roadmap is public, and both products ship on the same privacy-first foundation."
+closing_cta: "Chuk Chat on GitHub"
 ---

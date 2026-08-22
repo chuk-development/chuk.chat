@@ -2,18 +2,15 @@
 <nav class="top-bar">
     <div class="nav-container">
         <div class="logo-group">
-            <a href="{{ "/" | relLangURL }}" class="logo">Chuk Chat</a>
-            <span class="logo-slogan">Private and Secure. Always.</span>
+            <a href="{{ "/" | relLangURL }}" class="logo">Chuk</a>
+            <span class="logo-slogan">{{ if eq .Lang "de" }}Private Software aus Deutschland{{ else }}Private software, from Germany{{ end }}</span>
         </div>
         <div class="nav-right">
             <div class="nav-links">
+                <a href="{{ "chuk-chat" | relLangURL }}" class="nav-link{{ if eq .Params.layout "chuk-chat" }} active{{ end }}">Chuk Chat</a>
+                <a href="{{ "vielstimmig" | relLangURL }}" class="nav-link{{ if eq .Params.layout "vielstimmig" }} active{{ end }}">Vielstimmig</a>
                 <a href="{{ "blog" | relLangURL }}" class="nav-link{{ if eq .Section "blog" }} active{{ end }}">Blog</a>
-                <a href="{{ "pricing" | relLangURL }}" class="nav-link{{ if eq .Section "pricing" }} active{{ end }}">{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
-                <a href="{{ "downloads" | relLangURL }}" class="nav-link{{ if eq .Section "downloads" }} active{{ end }}">Downloads</a>
-                <a href="https://docs.chuk.chat/" class="nav-link" target="_blank">Docs</a>
-                <a href="https://wiki.chuk.dev" class="nav-link" target="_blank">Wiki</a>
-                <a href="{{ "support" | relLangURL }}" class="nav-link{{ if eq .Section "support" }} active{{ end }}">{{ if eq .Lang "de" }}Support{{ else }}Support{{ end }}</a>
-                <a href="https://chat.chuk.chat/" class="nav-link nav-cta" target="_blank">Web App</a>
+                <a href="https://chat.chuk.chat/" class="nav-link nav-cta" target="_blank" rel="noopener noreferrer">Web App</a>
             </div>
             <div class="lang-switcher">
                 {{- if eq .Lang "en" -}}
@@ -42,14 +39,13 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+    <a href="{{ "chuk-chat" | relLangURL }}"{{ if eq .Params.layout "chuk-chat" }} class="active"{{ end }}>Chuk Chat</a>
+    <a href="{{ "vielstimmig" | relLangURL }}"{{ if eq .Params.layout "vielstimmig" }} class="active"{{ end }}>Vielstimmig</a>
     <a href="{{ "blog" | relLangURL }}"{{ if eq .Section "blog" }} class="active"{{ end }}>Blog</a>
     <a href="{{ "pricing" | relLangURL }}"{{ if eq .Section "pricing" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
     <a href="{{ "downloads" | relLangURL }}"{{ if eq .Section "downloads" }} class="active"{{ end }}>Downloads</a>
-    <a href="https://docs.chuk.chat/" target="_blank">Docs</a>
-    <a href="https://wiki.chuk.dev" target="_blank">Wiki</a>
     <a href="https://github.com/chuk-development/chuk_chat" target="_blank" rel="noopener noreferrer">{{ if eq .Lang "de" }}Open Source auf GitHub{{ else }}Open Source on GitHub{{ end }}</a>
-    <a href="https://chat.chuk.chat/" target="_blank" class="nav-cta">Web App</a>
-    <a href="{{ "support" | relLangURL }}"{{ if eq .Section "support" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Support{{ else }}Support{{ end }}</a>
+    <a href="https://chat.chuk.chat/" target="_blank" rel="noopener noreferrer" class="nav-cta">Web App</a>
     <div class="mobile-lang">
         {{- if eq .Lang "en" -}}
         <a href="{{ .Permalink }}" class="active">EN</a>
