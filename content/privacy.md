@@ -3,7 +3,7 @@ title: "Privacy Policy"
 layout: "legal"
 type: "page"
 translationKey: "privacy"
-updated: "Last Updated: January 27, 2026"
+updated: "Last Updated: September 23, 2026"
 tldr: "Your chats are encrypted end-to-end on your device before being stored. We cannot read your messages. We collect minimal data necessary to provide the service."
 ---
 
@@ -47,14 +47,19 @@ We collect the following usage data for billing and service operation:
 
 This data is stored in Supabase to calculate your usage and billing. We do NOT store the actual message content in these logs - only the token counts and metadata.
 
-**We do NOT collect:** Device information, operating system details, app version, platform type, error logs, crash reports, or analytics data.
+**Operational metrics (PostHog):** To keep the service running we send pseudonymous technical events to PostHog: model and provider used, token counts, latency, cost, HTTP status, error type, API endpoint and app version. Your account is replaced by a keyed hash (HMAC) that PostHog cannot trace back to you. These events never contain your prompts, AI responses, email address, name, IP address or payment identifiers.
+
+**We do NOT collect:** Advertising identifiers, device fingerprints, or the content of your messages for analytics. There is no tracking script on this website and no analytics SDK in the apps.
 
 ### 2.4 Third-Party AI Services
 
 When you use AI features, your data is processed by specialized third-party services:
 
-- **Text Generation (LLMs):** Messages are sent to OpenRouter, which routes them to open-weight AI model providers only. **We only support open-weight models** (e.g., Llama, Mistral, Qwen, DeepSeek). Closed/proprietary models (Claude, GPT-4, Gemini) are not available. **Model training is disabled** - your data is not used to train AI models.
+- **Text Generation (LLMs):** Messages are sent either to OpenRouter, which routes them to open-weight AI model providers only, or directly to one of these inference providers: DeepInfra, Baseten, Fireworks AI, OrcaRouter or RunAnywhere. Through OpenRouter, other inference providers can also process a request. **We only support open-weight models** (e.g., Llama, Mistral, Qwen, DeepSeek). Closed/proprietary models (Claude, GPT-4, Gemini) are not available. **Model training is disabled** - your data is not used to train AI models.
 - **Speech-to-Text:** Audio is processed by Whisper running on Groq infrastructure for transcription. Audio is not stored after transcription.
+- **Image Generation:** Image prompts and, for image editing, the source image are processed by Replicate. Generated images are delivered to you.
+- **Web Search:** When the AI searches the web, the search query is sent to the Brave Search API. Your account data is not sent with it.
+- **Embeddings:** Text that must be searchable by meaning is converted into vectors by DeepInfra or Fireworks AI.
 - **Text-to-Speech:** Text is converted to speech using Inworld TTS. Generated audio is delivered to you but not permanently stored.
 - **Voice and Video Modes (Coming Soon):** Real-time voice and video communication will be processed through LiveKit infrastructure. Audio/video streams are transmitted in real-time but not permanently stored.
 
@@ -79,7 +84,7 @@ We use collected information to:
 We process your personal data on the following legal bases:
 
 - **Contract Performance (Art. 6(1)(b) GDPR):** Processing of account data, chat data, payment information, and usage data is necessary to provide our Service and fulfill our contractual obligations to you.
-- **Legitimate Interest (Art. 6(1)(f) GDPR):** We process data for fraud detection, security measures, and service improvement. Our legitimate interest is maintaining a secure and functional service.
+- **Legitimate Interest (Art. 6(1)(f) GDPR):** We process data for fraud detection, security measures, and service improvement, including the pseudonymous operational metrics sent to PostHog. Our legitimate interest is maintaining a secure and functional service.
 - **Legal Obligation (Art. 6(1)(c) GDPR):** We may process data to comply with legal requirements such as tax regulations and law enforcement requests.
 - **Consent (Art. 6(1)(a) GDPR):** Where required, we obtain your explicit consent before processing. You may withdraw consent at any time.
 
@@ -138,13 +143,21 @@ In accordance with GDPR Article 8, users must be at least 16 years old to use ou
 
 ## 10. International Data Transfers
 
-Your data may be stored and processed in Supabase infrastructure located in different countries. We ensure appropriate safeguards are in place to protect your data in accordance with this Privacy Policy.
+Your data may be stored and processed in Supabase infrastructure located in different countries. Several of the services listed in section 11 (for example OpenRouter, DeepInfra, Baseten, Fireworks AI, Replicate, Groq and PostHog) are based in the United States. Transfers to these providers are based on the EU-U.S. Data Privacy Framework where the provider is certified, and otherwise on the EU Commission's standard contractual clauses (Art. 46(2)(c) GDPR).
 
 ## 11. Third-Party Services
 
 We use the following third-party services:
 
 - **OpenRouter:** AI model routing and access. [Privacy Policy](https://openrouter.ai/privacy)
+- **DeepInfra:** AI inference and embeddings, directly and via OpenRouter. [Privacy Policy](https://deepinfra.com/privacy)
+- **Baseten:** AI inference, directly and via OpenRouter. [Privacy Policy](https://www.baseten.co/privacy-policy/)
+- **Fireworks AI:** AI inference and embeddings. [Privacy Policy](https://fireworks.ai/privacy-policy)
+- **OrcaRouter:** AI inference. [Website](https://orcarouter.ai)
+- **RunAnywhere:** AI inference. [Website](https://runanywhere.ai)
+- **Replicate:** Image generation and editing. [Privacy Policy](https://replicate.com/privacy)
+- **Brave Search:** Web search for AI answers. [Privacy Policy](https://search.brave.com/help/privacy-policy)
+- **PostHog:** Pseudonymous operational metrics, see section 2.3. [Privacy Policy](https://posthog.com/privacy)
 - **Groq:** Speech-to-text transcription. [Privacy Policy](https://groq.com/privacy-policy/)
 - **Inworld:** Text-to-speech generation. [Privacy Policy](https://www.inworld.ai/privacy-policy)
 - **LiveKit:** Real-time voice and video (coming soon). [Privacy Policy](https://livekit.io/legal/privacy)

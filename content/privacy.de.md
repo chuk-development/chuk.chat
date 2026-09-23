@@ -3,7 +3,7 @@ title: "Datenschutzerklärung"
 layout: "legal"
 type: "page"
 translationKey: "privacy"
-updated: "Zuletzt aktualisiert: 27. Januar 2026"
+updated: "Zuletzt aktualisiert: 23. September 2026"
 tldr: "Ihre Chats werden auf Ihrem Gerät Ende-zu-Ende-verschlüsselt, bevor sie gespeichert werden. Wir können Ihre Nachrichten nicht lesen. Wir sammeln nur die minimal notwendigen Daten zur Bereitstellung des Dienstes."
 ---
 
@@ -47,14 +47,19 @@ Wir sammeln die folgenden Nutzungsdaten für Abrechnungs- und Dienstbetriebszwec
 
 Diese Daten werden in Supabase gespeichert, um Ihre Nutzung und Abrechnung zu berechnen. Wir speichern NICHT den tatsächlichen Nachrichteninhalt in diesen Protokollen - nur die Token-Anzahl und Metadaten.
 
-**Wir sammeln NICHT:** Geräteinformationen, Betriebssystemdetails, App-Version, Plattformtyp, Fehlerprotokolle, Absturzberichte oder Analysedaten.
+**Betriebsmetriken (PostHog):** Um den Dienst stabil zu betreiben, senden wir pseudonyme technische Ereignisse an PostHog: verwendetes Modell und Anbieter, Token-Anzahl, Latenz, Kosten, HTTP-Status, Fehlertyp, API-Endpunkt und App-Version. Ihr Konto wird dabei durch einen verschlüsselten Hash (HMAC) ersetzt, den PostHog nicht auf Sie zurückführen kann. Diese Ereignisse enthalten nie Ihre Prompts, KI-Antworten, E-Mail-Adresse, Ihren Namen, Ihre IP-Adresse oder Zahlungskennungen.
+
+**Wir sammeln NICHT:** Werbe-IDs, Geräte-Fingerprints oder den Inhalt Ihrer Nachrichten zu Analysezwecken. Diese Website enthält kein Tracking-Skript und die Apps kein Analyse-SDK.
 
 ### 2.4 Drittanbieter-KI-Dienste
 
 Wenn Sie KI-Funktionen verwenden, werden Ihre Daten von spezialisierten Drittanbieterdiensten verarbeitet:
 
-- **Textgenerierung (LLMs):** Nachrichten werden an OpenRouter gesendet, das sie nur an Anbieter von open-weight KI-Modellen weiterleitet. **Wir unterstützen nur open-weight Modelle** (z.B. Llama, Mistral, Qwen, DeepSeek). Geschlossene/proprietäre Modelle (Claude, GPT-4, Gemini) sind nicht verfügbar. **Modelltraining ist deaktiviert**.
+- **Textgenerierung (LLMs):** Nachrichten werden entweder an OpenRouter gesendet, das sie nur an Anbieter von open-weight KI-Modellen weiterleitet, oder direkt an einen dieser Inferenz-Anbieter: DeepInfra, Baseten, Fireworks AI, OrcaRouter oder RunAnywhere. Über OpenRouter können auch weitere Inferenz-Anbieter eine Anfrage verarbeiten. **Wir unterstützen nur open-weight Modelle** (z.B. Llama, Mistral, Qwen, DeepSeek). Geschlossene/proprietäre Modelle (Claude, GPT-4, Gemini) sind nicht verfügbar. **Modelltraining ist deaktiviert**.
 - **Sprach-zu-Text:** Audio wird von Whisper auf der Groq-Infrastruktur zur Transkription verarbeitet.
+- **Bildgenerierung:** Bild-Prompts und bei der Bildbearbeitung das Ausgangsbild werden von Replicate verarbeitet. Die erzeugten Bilder werden an Sie ausgeliefert.
+- **Websuche:** Wenn die KI im Web sucht, wird die Suchanfrage an die Brave-Search-API gesendet. Ihre Kontodaten werden dabei nicht übermittelt.
+- **Embeddings:** Text, der nach Bedeutung durchsuchbar sein soll, wird von DeepInfra oder Fireworks AI in Vektoren umgewandelt.
 - **Text-zu-Sprache:** Text wird mit Inworld TTS in Sprache umgewandelt.
 - **Sprach- und Videomodi (Demnächst):** Echtzeit-Sprach- und Videokommunikation wird über die LiveKit-Infrastruktur verarbeitet.
 
@@ -76,7 +81,7 @@ Wir verwenden gesammelte Informationen, um:
 Wir verarbeiten Ihre personenbezogenen Daten auf folgenden Rechtsgrundlagen:
 
 - **Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO):** Die Verarbeitung von Kontodaten, Chat-Daten, Zahlungsinformationen und Nutzungsdaten ist zur Erbringung unseres Dienstes und zur Erfüllung unserer vertraglichen Verpflichtungen erforderlich.
-- **Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO):** Wir verarbeiten Daten zur Betrugserkennung, für Sicherheitsmaßnahmen und zur Dienstverbesserung. Unser berechtigtes Interesse ist die Aufrechterhaltung eines sicheren und funktionsfähigen Dienstes.
+- **Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO):** Wir verarbeiten Daten zur Betrugserkennung, für Sicherheitsmaßnahmen und zur Dienstverbesserung. Dazu gehören auch die pseudonymen Betriebsmetriken an PostHog. Unser berechtigtes Interesse ist die Aufrechterhaltung eines sicheren und funktionsfähigen Dienstes.
 - **Rechtliche Verpflichtung (Art. 6 Abs. 1 lit. c DSGVO):** Wir können Daten verarbeiten, um gesetzliche Anforderungen wie Steuervorschriften und Anfragen von Strafverfolgungsbehörden zu erfüllen.
 - **Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):** Wo erforderlich, holen wir Ihre ausdrückliche Einwilligung vor der Verarbeitung ein. Sie können Ihre Einwilligung jederzeit widerrufen.
 
@@ -127,12 +132,22 @@ Wir verwenden keine Werbe-Cookies oder Tracking-Skripte von Drittanbietern.
 Wir verwenden die folgenden Drittanbieterdienste:
 
 - **OpenRouter:** KI-Modell-Routing. [Datenschutz](https://openrouter.ai/privacy)
+- **DeepInfra:** KI-Inferenz und Embeddings, direkt und über OpenRouter. [Datenschutz](https://deepinfra.com/privacy)
+- **Baseten:** KI-Inferenz, direkt und über OpenRouter. [Datenschutz](https://www.baseten.co/privacy-policy/)
+- **Fireworks AI:** KI-Inferenz und Embeddings. [Datenschutz](https://fireworks.ai/privacy-policy)
+- **OrcaRouter:** KI-Inferenz. [Website](https://orcarouter.ai)
+- **RunAnywhere:** KI-Inferenz. [Website](https://runanywhere.ai)
+- **Replicate:** Bildgenerierung und -bearbeitung. [Datenschutz](https://replicate.com/privacy)
+- **Brave Search:** Websuche für KI-Antworten. [Datenschutz](https://search.brave.com/help/privacy-policy)
+- **PostHog:** Pseudonyme Betriebsmetriken, siehe Abschnitt 2.3. [Datenschutz](https://posthog.com/privacy)
 - **Groq:** Sprach-zu-Text. [Datenschutz](https://groq.com/privacy-policy/)
 - **Inworld:** Text-zu-Sprache. [Datenschutz](https://www.inworld.ai/privacy-policy)
 - **Supabase:** Datenbank und Authentifizierung. [Datenschutz](https://supabase.com/privacy)
 - **Stripe:** Zahlungsabwicklung. [Datenschutz](https://stripe.com/privacy)
 - **Lexoffice:** Rechnungserstellung. [Datenschutz](https://www.lexoffice.de/datenschutz/)
 - **Hetzner:** API-Server-Hosting. [Datenschutz](https://www.hetzner.com/legal/privacy-policy)
+
+**Übermittlung in Drittländer:** Mehrere dieser Dienste (zum Beispiel OpenRouter, DeepInfra, Baseten, Fireworks AI, Replicate, Groq und PostHog) haben ihren Sitz in den USA. Die Übermittlung an diese Anbieter erfolgt auf Grundlage des EU-US Data Privacy Framework, sofern der Anbieter zertifiziert ist, und andernfalls auf Grundlage der Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).
 
 ## 10. Datenschutz von Kindern
 
