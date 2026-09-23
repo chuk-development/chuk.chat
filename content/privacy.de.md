@@ -60,8 +60,17 @@ Wenn Sie KI-Funktionen verwenden, werden Ihre Daten von spezialisierten Drittanb
 - **Bildgenerierung:** Bild-Prompts und bei der Bildbearbeitung das Ausgangsbild werden von Replicate verarbeitet. Die erzeugten Bilder werden an Sie ausgeliefert.
 - **Websuche:** Wenn die KI im Web sucht, wird die Suchanfrage an die Brave-Search-API gesendet. Ihre Kontodaten werden dabei nicht übermittelt.
 - **Embeddings:** Text, der nach Bedeutung durchsuchbar sein soll, wird von DeepInfra oder Fireworks AI in Vektoren umgewandelt.
+- **Webseiten lesen:** Wenn die KI eine Webseite öffnet und unser eigener Abruf sie nicht laden kann, wird die Seitenadresse an Firecrawl gesendet, das die Seite für uns lädt.
+- **Code-Ausführung:** Wenn die KI Code ausführt oder mit Dateien in einer Sandbox arbeitet, werden dieser Code und diese Dateien in einer isolierten E2B-Sandbox verarbeitet, die nach der Sitzung gelöscht wird.
 - **Text-zu-Sprache:** Text wird mit Inworld TTS in Sprache umgewandelt.
 - **Sprach- und Videomodi (Demnächst):** Echtzeit-Sprach- und Videokommunikation wird über die LiveKit-Infrastruktur verarbeitet.
+
+**Zero Data Retention (ZDR):** Wir bieten nur KI-Modell-Anbieter an, die Ihre Prompts und KI-Antworten nicht speichern:
+
+- **Über OpenRouter:** Wir bieten ein Modell nur bei einem Anbieter an, den OpenRouter als Zero-Data-Retention-Endpunkt führt, und jede Anfrage trägt OpenRouters Zero-Data-Retention-Vorgabe, sodass OpenRouter sie nur an solche Endpunkte weiterleitet. Siehe [ZDR-Richtlinie von OpenRouter](https://openrouter.ai/docs/guides/features/zdr).
+- **Direkte Anbieter:** DeepInfra, Baseten, Fireworks AI, OrcaRouter und RunAnywhere erklären jeweils, dass sie Prompts und Antworten nur für die Dauer der Anfrage im Arbeitsspeicher verarbeiten, sie nicht speichern und nicht zum Training verwenden. Sie behalten nur Metadaten wie Token-Zahlen für die Abrechnung. OrcaRouter leitet Anfragen an einen vorgelagerten Anbieter weiter; wir bieten ein Modell über OrcaRouter nur an, wenn OpenRouter dafür einen Zero-Data-Retention-Endpunkt führt.
+
+Die Links zur ZDR-Richtlinie jedes Anbieters stehen in Abschnitt 9.
 
 ## 3. Wie wir Ihre Informationen verwenden
 
@@ -131,14 +140,16 @@ Wir verwenden keine Werbe-Cookies oder Tracking-Skripte von Drittanbietern.
 
 Wir verwenden die folgenden Drittanbieterdienste:
 
-- **OpenRouter:** KI-Modell-Routing. [Datenschutz](https://openrouter.ai/privacy)
-- **DeepInfra:** KI-Inferenz und Embeddings, direkt und über OpenRouter. [Datenschutz](https://deepinfra.com/privacy)
-- **Baseten:** KI-Inferenz, direkt und über OpenRouter. [Datenschutz](https://www.baseten.co/privacy-policy/)
-- **Fireworks AI:** KI-Inferenz und Embeddings. [Datenschutz](https://fireworks.ai/privacy-policy)
-- **OrcaRouter:** KI-Inferenz. [Website](https://orcarouter.ai)
-- **RunAnywhere:** KI-Inferenz. [Website](https://runanywhere.ai)
+- **OpenRouter:** KI-Modell-Routing. [Datenschutz](https://openrouter.ai/privacy) · [Zero Data Retention](https://openrouter.ai/docs/guides/features/zdr)
+- **DeepInfra:** KI-Inferenz und Embeddings, direkt und über OpenRouter. [Datenschutz](https://deepinfra.com/privacy) · [Zero Data Retention](https://deepinfra.com/docs/data)
+- **Baseten:** KI-Inferenz, direkt und über OpenRouter. [Datenschutz](https://www.baseten.co/privacy-policy/) · [Zero Data Retention](https://docs.baseten.co/observability/security)
+- **Fireworks AI:** KI-Inferenz und Embeddings. [Datenschutz](https://fireworks.ai/privacy-policy) · [Zero Data Retention](https://docs.fireworks.ai/guides/security_compliance/data_handling)
+- **OrcaRouter:** KI-Inferenz. [Datenschutz](https://www.orcarouter.ai/privacy.html) · [Trust Center](https://www.orcarouter.ai/trust)
+- **RunAnywhere:** KI-Inferenz. [Datenschutz](https://www.runanywhere.ai/legal/privacy) (enthält die Zero-Data-Retention-Zusage)
 - **Replicate:** Bildgenerierung und -bearbeitung. [Datenschutz](https://replicate.com/privacy)
 - **Brave Search:** Websuche für KI-Antworten. [Datenschutz](https://search.brave.com/help/privacy-policy)
+- **Firecrawl:** Laden von Webseiten, die die KI öffnet, als Ausweichweg. [Datenschutz](https://www.firecrawl.dev/privacy-policy)
+- **E2B:** Isolierte Sandbox für Code-Ausführung. [Datenschutz](https://e2b.dev/privacy)
 - **PostHog:** Pseudonyme Betriebsmetriken, siehe Abschnitt 2.3. [Datenschutz](https://posthog.com/privacy)
 - **Groq:** Sprach-zu-Text. [Datenschutz](https://groq.com/privacy-policy/)
 - **Inworld:** Text-zu-Sprache. [Datenschutz](https://www.inworld.ai/privacy-policy)
@@ -147,7 +158,7 @@ Wir verwenden die folgenden Drittanbieterdienste:
 - **Lexoffice:** Rechnungserstellung. [Datenschutz](https://www.lexoffice.de/datenschutz/)
 - **Hetzner:** API-Server-Hosting. [Datenschutz](https://www.hetzner.com/legal/privacy-policy)
 
-**Übermittlung in Drittländer:** Mehrere dieser Dienste (zum Beispiel OpenRouter, DeepInfra, Baseten, Fireworks AI, Replicate, Groq und PostHog) haben ihren Sitz in den USA. Die Übermittlung an diese Anbieter erfolgt auf Grundlage des EU-US Data Privacy Framework, sofern der Anbieter zertifiziert ist, und andernfalls auf Grundlage der Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).
+**Übermittlung in Drittländer:** Mehrere dieser Dienste (zum Beispiel OpenRouter, DeepInfra, Baseten, Fireworks AI, Replicate, Groq, Firecrawl, E2B und PostHog) haben ihren Sitz in den USA. Die Übermittlung an diese Anbieter erfolgt auf Grundlage des EU-US Data Privacy Framework, sofern der Anbieter zertifiziert ist, und andernfalls auf Grundlage der Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).
 
 ## 10. Datenschutz von Kindern
 

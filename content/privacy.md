@@ -60,8 +60,17 @@ When you use AI features, your data is processed by specialized third-party serv
 - **Image Generation:** Image prompts and, for image editing, the source image are processed by Replicate. Generated images are delivered to you.
 - **Web Search:** When the AI searches the web, the search query is sent to the Brave Search API. Your account data is not sent with it.
 - **Embeddings:** Text that must be searchable by meaning is converted into vectors by DeepInfra or Fireworks AI.
+- **Web Page Reading:** When the AI opens a web page and our own fetcher cannot load it, the page address is sent to Firecrawl, which loads the page for us.
+- **Code Execution:** When the AI runs code or works with files in a sandbox, that code and those files are processed in an isolated E2B sandbox, which is deleted after the session.
 - **Text-to-Speech:** Text is converted to speech using Inworld TTS. Generated audio is delivered to you but not permanently stored.
 - **Voice and Video Modes (Coming Soon):** Real-time voice and video communication will be processed through LiveKit infrastructure. Audio/video streams are transmitted in real-time but not permanently stored.
+
+**Zero Data Retention (ZDR):** We only offer AI model providers that do not store your prompts or AI responses:
+
+- **Through OpenRouter:** We only offer a model on a provider that OpenRouter lists as a zero-data-retention endpoint, and every request carries OpenRouter's zero-data-retention requirement, so OpenRouter only routes it to such endpoints. See [OpenRouter's ZDR policy](https://openrouter.ai/docs/guides/features/zdr).
+- **Direct providers:** DeepInfra, Baseten, Fireworks AI, OrcaRouter and RunAnywhere each state that they process prompts and responses only in memory for the request and do not store them or use them for training. They keep only metadata such as token counts for billing. OrcaRouter forwards requests to an upstream provider; we only offer a model through OrcaRouter if OpenRouter lists a zero-data-retention endpoint for it.
+
+Links to each provider's ZDR policy are in section 11.
 
 **Important:** Your prompts and AI responses pass through our API but are not stored in plaintext in Supabase (encrypted only). We recommend not sharing sensitive personal information in AI conversations.
 
@@ -143,20 +152,22 @@ In accordance with GDPR Article 8, users must be at least 16 years old to use ou
 
 ## 10. International Data Transfers
 
-Your data may be stored and processed in Supabase infrastructure located in different countries. Several of the services listed in section 11 (for example OpenRouter, DeepInfra, Baseten, Fireworks AI, Replicate, Groq and PostHog) are based in the United States. Transfers to these providers are based on the EU-U.S. Data Privacy Framework where the provider is certified, and otherwise on the EU Commission's standard contractual clauses (Art. 46(2)(c) GDPR).
+Your data may be stored and processed in Supabase infrastructure located in different countries. Several of the services listed in section 11 (for example OpenRouter, DeepInfra, Baseten, Fireworks AI, Replicate, Groq, Firecrawl, E2B and PostHog) are based in the United States. Transfers to these providers are based on the EU-U.S. Data Privacy Framework where the provider is certified, and otherwise on the EU Commission's standard contractual clauses (Art. 46(2)(c) GDPR).
 
 ## 11. Third-Party Services
 
 We use the following third-party services:
 
-- **OpenRouter:** AI model routing and access. [Privacy Policy](https://openrouter.ai/privacy)
-- **DeepInfra:** AI inference and embeddings, directly and via OpenRouter. [Privacy Policy](https://deepinfra.com/privacy)
-- **Baseten:** AI inference, directly and via OpenRouter. [Privacy Policy](https://www.baseten.co/privacy-policy/)
-- **Fireworks AI:** AI inference and embeddings. [Privacy Policy](https://fireworks.ai/privacy-policy)
-- **OrcaRouter:** AI inference. [Website](https://orcarouter.ai)
-- **RunAnywhere:** AI inference. [Website](https://runanywhere.ai)
+- **OpenRouter:** AI model routing and access. [Privacy Policy](https://openrouter.ai/privacy) · [Zero Data Retention](https://openrouter.ai/docs/guides/features/zdr)
+- **DeepInfra:** AI inference and embeddings, directly and via OpenRouter. [Privacy Policy](https://deepinfra.com/privacy) · [Zero Data Retention](https://deepinfra.com/docs/data)
+- **Baseten:** AI inference, directly and via OpenRouter. [Privacy Policy](https://www.baseten.co/privacy-policy/) · [Zero Data Retention](https://docs.baseten.co/observability/security)
+- **Fireworks AI:** AI inference and embeddings. [Privacy Policy](https://fireworks.ai/privacy-policy) · [Zero Data Retention](https://docs.fireworks.ai/guides/security_compliance/data_handling)
+- **OrcaRouter:** AI inference. [Privacy Policy](https://www.orcarouter.ai/privacy.html) · [Trust Center](https://www.orcarouter.ai/trust)
+- **RunAnywhere:** AI inference. [Privacy Policy](https://www.runanywhere.ai/legal/privacy) (includes the zero data retention commitment)
 - **Replicate:** Image generation and editing. [Privacy Policy](https://replicate.com/privacy)
 - **Brave Search:** Web search for AI answers. [Privacy Policy](https://search.brave.com/help/privacy-policy)
+- **Firecrawl:** Loading web pages the AI opens, as a fallback. [Privacy Policy](https://www.firecrawl.dev/privacy-policy)
+- **E2B:** Isolated sandbox for code execution. [Privacy Policy](https://e2b.dev/privacy)
 - **PostHog:** Pseudonymous operational metrics, see section 2.3. [Privacy Policy](https://posthog.com/privacy)
 - **Groq:** Speech-to-text transcription. [Privacy Policy](https://groq.com/privacy-policy/)
 - **Inworld:** Text-to-speech generation. [Privacy Policy](https://www.inworld.ai/privacy-policy)
