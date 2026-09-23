@@ -34,12 +34,9 @@
     <p class="h-center-label">{{ .Params.tools_title }}</p>
     <div class="h-logo-grid">
         {{ range .Params.tools }}
-        <a class="h-logo-tile" href="{{ .href }}" target="_blank" rel="noopener noreferrer" title="{{ .name }} · {{ .role }}">
-            <img src="/logos/tools/{{ .logo }}?v={{ readFile (printf "static/logos/tools/%s" .logo) | md5 | truncate 8 "" }}" alt="" width="22" height="22" loading="lazy" decoding="async">
-            <span class="h-logo-text">
-                <span class="h-logo-name">{{ .name }}</span>
-                <span class="h-logo-role">{{ .role }}</span>
-            </span>
+        <a class="h-logo-tile" href="{{ .href }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
+            <img src="/logos/tools/{{ .logo }}?v={{ readFile (printf "static/logos/tools/%s" .logo) | md5 | truncate 8 "" }}" alt="" width="24" height="24" loading="lazy" decoding="async">
+            <span class="h-logo-name">{{ .name }}</span>
         </a>
         {{ end }}
     </div>

@@ -1395,21 +1395,9 @@ a.h-logo-tile:hover {
     flex-shrink: 0;
 }
 
-.h-logo-text {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
 .h-logo-name {
     font-size: 15px;
     font-weight: 500;
-    line-height: 1.3;
-}
-
-.h-logo-role {
-    font-size: 13px;
-    color: var(--ink-faint);
     line-height: 1.3;
 }
 
