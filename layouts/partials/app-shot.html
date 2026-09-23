@@ -1,0 +1,12 @@
+{{- /*
+  URL of an app screenshot that lives in the public chuk_chat repo on GitHub.
+  Production: nginx fetches it from GitHub, resizes it and caches it (see
+  nginx.conf, /app-shots/). The visitor's browser never talks to GitHub.
+  `hugo server` has no nginx, so it links the raw file instead.
+  Params: path (repo-relative), width (480, 960, 1600 or 2400).
+*/ -}}
+{{- if hugo.IsServer -}}
+https://raw.githubusercontent.com/chuk-development/chuk_chat/master/{{ .path }}
+{{- else -}}
+/app-shots/{{ .width }}/{{ .path }}
+{{- end -}}
