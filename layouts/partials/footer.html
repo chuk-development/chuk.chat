@@ -1,10 +1,40 @@
+{{ $de := eq .Lang "de" }}
 <footer class="footer">
-    <span>&copy; {{ now.Year }} <a href="https://chuk.dev">Chuk Development</a></span>
-    <a href="{{ "privacy" | relLangURL }}">{{ if eq .Lang "de" }}Datenschutz{{ else }}Privacy{{ end }}</a>
-    <a href="{{ "terms" | relLangURL }}">{{ if eq .Lang "de" }}AGB{{ else }}Terms{{ end }}</a>
-    <a href="{{ "cancellation" | relLangURL }}">{{ if eq .Lang "de" }}Widerruf{{ else }}Cancellation{{ end }}</a>
-    <a href="{{ "faq" | relLangURL }}">FAQ</a>
-    <a href="{{ "impressum" | relLangURL }}">Impressum</a>
-    <a href="https://status.chuk.chat" target="_blank">Status</a>
-    <img src="/badge_chuk_chat.gif" alt="Chuk Chat" style="height: 31px;">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="{{ "/" | relLangURL }}" class="logo">Chuk Chat</a>
+            <p class="footer-slogan">Private and Secure. Always.</p>
+        </div>
+        <div class="footer-col">
+            <p class="footer-head">{{ if $de }}Produkt{{ else }}Product{{ end }}</p>
+            <a href="{{ "downloads" | relLangURL }}">Downloads</a>
+            <a href="https://chat.chuk.chat/" target="_blank" rel="noopener">Web App</a>
+            <a href="{{ "pricing" | relLangURL }}">{{ if $de }}Preise{{ else }}Pricing{{ end }}</a>
+            <a href="{{ "blog" | relLangURL }}">Blog</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-head">{{ if $de }}Ressourcen{{ else }}Resources{{ end }}</p>
+            <a href="https://docs.chuk.chat/" target="_blank" rel="noopener">Docs</a>
+            <a href="https://wiki.chuk.dev" target="_blank" rel="noopener">Wiki</a>
+            <a href="{{ "faq" | relLangURL }}">FAQ</a>
+            <a href="{{ "support" | relLangURL }}">Support</a>
+            <a href="https://status.chuk.chat" target="_blank" rel="noopener">Status</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-head">{{ if $de }}Rechtliches{{ else }}Legal{{ end }}</p>
+            <a href="{{ "privacy" | relLangURL }}">{{ if $de }}Datenschutz{{ else }}Privacy{{ end }}</a>
+            <a href="{{ "terms" | relLangURL }}">{{ if $de }}AGB{{ else }}Terms{{ end }}</a>
+            <a href="{{ "cancellation" | relLangURL }}">{{ if $de }}Widerruf{{ else }}Cancellation{{ end }}</a>
+            <a href="{{ "impressum" | relLangURL }}">Impressum</a>
+        </div>
+        <div class="footer-col">
+            <p class="footer-head">Open Source</p>
+            <a href="https://github.com/chuk-development/chuk_chat" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://chuk.dev">Chuk Development</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; {{ now.Year }} Chuk Development</span>
+        <img src="/badge_chuk_chat.gif" alt="Chuk Chat" width="88" height="31">
+    </div>
 </footer>
