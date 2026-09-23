@@ -1,46 +1,50 @@
 {{ define "main" }}
-<section class="downloads-hero">
-    <h1>{{ .Params.heading }}</h1>
-    <p class="downloads-subheading">{{ .Params.subheading }}</p>
-</section>
-
+{{ $de := eq .Lang "de" }}
 {{ $releasePrefix := "https://github.com/chuk-development/chuk_chat/releases/latest/download/" }}
 
-{{/* Featured Web App banner */}}
+<section class="p-hero">
+    <p class="h-eyebrow">Downloads</p>
+    <h1 class="p-title">{{ .Params.heading }}</h1>
+    <p class="p-lead">{{ .Params.subheading }}</p>
+</section>
+
+{{/* Web App first, as a wide tile */}}
 {{ range .Params.platforms }}
 {{ if eq .name "Web App" }}
-<a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="download-featured">
-    <div class="download-featured-icon">
-        {{ .icon | safeHTML }}
+<div class="h-panel dl-featured" id="web-app">
+    <div class="dl-featured-text">
+        <p class="h-eyebrow">{{ if $de }}Sofort starten{{ else }}Instant access{{ end }}</p>
+        <h2 class="dl-featured-title">{{ .name }}</h2>
+        <p class="dl-featured-copy">{{ if $de }}Keine Installation, kein Update — direkt im Browser, mit dem gleichen Konto wie auf jedem Desktop.{{ else }}No install, no update cycle &mdash; same account as on every desktop, straight in your browser.{{ end }}</p>
     </div>
-    <div class="download-featured-text">
-        <span class="download-featured-tag">{{ if eq $.Lang "de" }}Sofort starten{{ else }}Instant access{{ end }}</span>
-        <h2>{{ .name }}</h2>
-        <p>{{ if eq $.Lang "de" }}Keine Installation, kein Update — direkt im Browser, mit dem gleichen Konto wie auf jedem Desktop.{{ else }}No install, no update cycle &mdash; same account as on every desktop, straight in your browser.{{ end }}</p>
-    </div>
-    <span class="download-featured-cta">{{ .button }} &rarr;</span>
-</a>
+    <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="h-btn h-btn-dark">{{ .button }} <span aria-hidden="true">&rarr;</span></a>
+</div>
 {{ end }}
 {{ end }}
 
-<div class="downloads-grid-v2">
+<div class="dl-grid">
     {{ range .Params.platforms }}
     {{ if ne .name "Web App" }}
-    <div class="download-card-v2{{ if .disabled }} download-card-disabled{{ end }}">
-        <div class="download-card-head">
-            <span class="download-card-icon">{{ .icon | safeHTML }}</span>
+    <div class="dl-card{{ if .disabled }} is-disabled{{ end }}" id="{{ .name | lower | urlize }}" data-platform="{{ .name | lower | urlize }}">
+        <div class="dl-card-head">
+            <span class="dl-card-icon" aria-hidden="true">{{ .icon | safeHTML }}</span>
             <div>
-                <div class="download-card-name">{{ .name }}</div>
-                <div class="download-card-meta">{{ .version }}</div>
+                <p class="dl-card-name">{{ .name }}</p>
+                <p class="dl-card-meta">{{ .version }}</p>
             </div>
+            <span class="dl-card-badge">{{ if $de }}Dein System{{ else }}Your system{{ end }}</span>
         </div>
-        <a href="{{ .link }}" class="download-card-cta{{ if .disabled }} disabled{{ end }}"{{ if and (not .disabled) (in .link $releasePrefix) }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }}>
-            {{ if not .disabled }}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>{{ end }}
+        {{ if .disabled }}
+        <span class="h-btn h-btn-light dl-card-cta" aria-disabled="true">{{ .button }}</span>
+        {{ else }}
+        <a href="{{ .link }}" class="h-btn h-btn-dark dl-card-cta"{{ if in .link $releasePrefix }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }}>
             {{ .button }}
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg>
         </a>
-        {{ if .downloads }}
-        <div class="download-sub-links">
-            {{ range .downloads }}
+        {{ end }}
+        {{ with .downloads }}
+        <div class="dl-card-links">
+            {{ range . }}
             <a href="{{ .link }}"{{ if in .link $releasePrefix }} data-github-asset="{{ replace .link $releasePrefix "" }}"{{ end }}>{{ .label }}</a>
             {{ end }}
         </div>
@@ -50,8 +54,8 @@
     {{ end }}
 </div>
 
-<p class="downloads-meta">
-    {{ if eq .Lang "de" }}
+<p class="p-meta">
+    {{ if $de }}
     Alle Downloads ziehen automatisch das neueste GitHub-Release. <a href="https://github.com/chuk-development/chuk_chat/releases" target="_blank" rel="noopener noreferrer">Versionsverlauf ansehen</a>.
     {{ else }}
     Every link auto-resolves to the latest GitHub release. <a href="https://github.com/chuk-development/chuk_chat/releases" target="_blank" rel="noopener noreferrer">See the version history</a>.
@@ -61,6 +65,19 @@
 
 {{ define "scripts" }}
 <script>
+    (function() {
+        const ua = navigator.userAgent || '';
+        const platform = /Android/i.test(ua) ? 'android'
+            : /iPhone|iPad|iPod/i.test(ua) ? 'ios'
+            : /Windows/i.test(ua) ? 'windows'
+            : /Mac OS X|Macintosh/i.test(ua) ? 'macos'
+            : /Linux|X11/i.test(ua) ? 'linux' : '';
+        const card = platform && document.querySelector('.dl-card[data-platform="' + platform + '"]');
+        if (card && !card.classList.contains('is-disabled')) {
+            card.classList.add('is-recommended');
+        }
+    })();
+
     (function() {
         const links = document.querySelectorAll('a[data-github-asset]');
         if (!links.length) return;

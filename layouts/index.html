@@ -24,7 +24,7 @@
         <img src="{{ partial "app-shot.html" (dict "path" $path "width" 1600) }}"
              srcset="{{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w, {{ partial "app-shot.html" (dict "path" $path "width" 1600) }} 1600w, {{ partial "app-shot.html" (dict "path" $path "width" 2400) }} 2400w"
              sizes="(max-width: 1240px) 100vw, 1200px"
-             width="1600" height="900" alt="{{ .alt }}" fetchpriority="high" decoding="async" data-image-viewer>
+             width="1600" height="900" alt="{{ .alt }}" fetchpriority="high" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 2400) }}">
     </figure>
     {{ end }}
 </section>
@@ -35,7 +35,7 @@
     <div class="h-logo-grid">
         {{ range .Params.tools }}
         <a class="h-logo-tile" href="{{ .href }}" target="_blank" rel="noopener noreferrer" title="{{ .name }} · {{ .role }}">
-            <img src="/logos/tools/{{ .logo }}" alt="" width="22" height="22" loading="lazy" decoding="async">
+            <img src="/logos/tools/{{ .logo }}?v={{ readFile (printf "static/logos/tools/%s" .logo) | md5 | truncate 8 "" }}" alt="" width="22" height="22" loading="lazy" decoding="async">
             <span class="h-logo-text">
                 <span class="h-logo-name">{{ .name }}</span>
                 <span class="h-logo-role">{{ .role }}</span>
@@ -58,7 +58,7 @@
             <img src="{{ partial "app-shot.html" (dict "path" $path "width" 1600) }}"
                  srcset="{{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w, {{ partial "app-shot.html" (dict "path" $path "width" 1600) }} 1600w"
                  sizes="(max-width: 900px) 100vw, 780px"
-                 width="1600" height="900" alt="{{ $s.alt }}" loading="lazy" decoding="async" data-image-viewer>
+                 width="1600" height="900" alt="{{ $s.alt }}" loading="lazy" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 2400) }}">
         </div>
     </div>
     {{ end }}
@@ -73,7 +73,7 @@
                 <img src="{{ partial "app-shot.html" (dict "path" $path "width" 960) }}"
                      srcset="{{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w, {{ partial "app-shot.html" (dict "path" $path "width" 1600) }} 1600w"
                      sizes="(max-width: 900px) 100vw, 600px"
-                     width="960" height="540" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer>
+                     width="960" height="540" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 2400) }}">
             </div>
         </div>
         {{ end }}
@@ -93,7 +93,7 @@
                 <img src="{{ partial "app-shot.html" (dict "path" $path "width" 480) }}"
                      srcset="{{ partial "app-shot.html" (dict "path" $path "width" 480) }} 480w, {{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w"
                      sizes="(max-width: 768px) 62vw, 220px"
-                     width="480" height="949" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer>
+                     width="480" height="949" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 960) }}">
                 <figcaption>{{ .caption }}</figcaption>
             </figure>
             {{ end }}
@@ -109,7 +109,7 @@
     <div class="h-logo-grid h-logo-grid-models">
         {{ range . }}
         <span class="h-logo-tile">
-            <img src="/logos/models/{{ .logo }}" alt="" width="24" height="24" loading="lazy" decoding="async">
+            <img src="/logos/models/{{ .logo }}?v={{ readFile (printf "static/logos/models/%s" .logo) | md5 | truncate 8 "" }}" alt="" width="24" height="24" loading="lazy" decoding="async">
             <span class="h-logo-name">{{ .name }}</span>
         </span>
         {{ end }}
@@ -174,7 +174,7 @@
                     {{ $platforms := index $row (printf "%s_platforms" $c) }}
                     <td{{ if eq $c "chuk" }} class="is-us"{{ end }}>
                         {{ if $platforms }}
-                        <span class="h-platforms">{{ range $platforms }}<span>{{ . }}</span>{{ end }}</span>
+                        <span class="h-platforms">{{ range $platforms }}{{ if eq $c "chuk" }}{{ if eq . "Web" }}<a href="https://chat.chuk.chat/" target="_blank" rel="noopener">{{ . }}</a>{{ else }}<a href="{{ "downloads" | relLangURL }}#{{ cond (eq . "Mac") "macos" (lower .) }}">{{ . }}</a>{{ end }}{{ else }}<span>{{ . }}</span>{{ end }}{{ end }}</span>
                         {{ else if index $row $c }}
                         <svg class="h-yes" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{ if $de }}Ja{{ else }}Yes{{ end }}"><polyline points="20 6 9 17 4 12"/></svg>
                         {{ else }}

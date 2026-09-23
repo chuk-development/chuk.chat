@@ -3,7 +3,9 @@
 <head>
     {{- partial "head.html" . -}}
 </head>
-<body{{ with .Params.bodyClass }} class="{{ . }}"{{ end }}>
+{{- /* Every page except the blog uses the 2026 design ("page"). */ -}}
+{{- $bodyClass := cond (eq .Section "blog") "blog" "page" -}}
+<body class="{{ $bodyClass }}{{ with .Params.bodyClass }} {{ . }}{{ end }}">
     {{- partial "nav.html" . -}}
 
     <div class="container">
@@ -20,8 +22,8 @@
                 <span class="image-viewer-zoom-level" id="imageViewerZoomLevel">100%</span>
                 <button type="button" class="image-viewer-btn" id="imageViewerZoomIn" aria-label="{{ if eq .Lang "de" }}Vergroessern{{ else }}Zoom in{{ end }}">+</button>
                 <button type="button" class="image-viewer-btn image-viewer-fit" id="imageViewerReset">{{ if eq .Lang "de" }}Anpassen{{ else }}Fit{{ end }}</button>
-                <button type="button" class="image-viewer-btn image-viewer-close" id="imageViewerClose" aria-label="{{ if eq .Lang "de" }}Schliessen{{ else }}Close{{ end }}">&times;</button>
             </div>
+            <button type="button" class="image-viewer-btn image-viewer-close" id="imageViewerClose" aria-label="{{ if eq .Lang "de" }}Schliessen{{ else }}Close{{ end }}">&times;</button>
             <div class="image-viewer-stage" id="imageViewerStage">
                 <div class="image-viewer-canvas" id="imageViewerCanvas">
                     <img id="imageViewerImg" src="" alt="">
@@ -96,8 +98,9 @@
                     return 1;
                 }
 
-                const viewportWidth = Math.max(stage.clientWidth - 24, 1);
-                const viewportHeight = Math.max(stage.clientHeight - 24, 1);
+                // Leave room around the image for the backdrop and the toolbar.
+                const viewportWidth = Math.max(stage.clientWidth - 96, 1);
+                const viewportHeight = Math.max(stage.clientHeight - 150, 1);
                 return Math.min(viewportWidth / naturalWidth, viewportHeight / naturalHeight, 1);
             }
 
@@ -142,7 +145,7 @@
             }
 
             function openViewer(image) {
-                const source = image.currentSrc || image.src;
+                const source = image.dataset.full || image.currentSrc || image.src;
                 if (!source) {
                     return;
                 }
@@ -217,6 +220,11 @@
             });
 
             backdrop.addEventListener('click', closeViewer);
+            stage.addEventListener('click', (event) => {
+                if (event.target === stage || event.target === canvas) {
+                    closeViewer();
+                }
+            });
             closeBtn.addEventListener('click', closeViewer);
 
             zoomInBtn.addEventListener('click', () => {

@@ -1,7 +1,8 @@
 {{ define "main" }}
-<section class="support-hero">
-    <h1>{{ .Params.heading }}</h1>
-    <p class="support-subheading">{{ .Params.subheading }}</p>
+<section class="p-hero">
+    <p class="h-eyebrow">Support</p>
+    <h1 class="p-title">{{ .Params.heading }}</h1>
+    <p class="p-lead">{{ .Params.subheading }}</p>
 </section>
 
 <div class="support-grid">
@@ -32,17 +33,17 @@
         <span class="support-tile-link">{{ if eq .Lang "de" }}Zur FAQ{{ else }}Read FAQ{{ end }} &rarr;</span>
     </a>
 
-    <a href="https://wiki.chuk.dev" target="_blank" rel="noopener noreferrer" class="support-tile">
+    <a href="https://status.chuk.chat" target="_blank" rel="noopener noreferrer" class="support-tile">
         <div class="support-tile-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h3>{{ if eq .Lang "de" }}Wiki & Doku{{ else }}Wiki & docs{{ end }}</h3>
-        <p class="support-tile-text">{{ if eq .Lang "de" }}Tiefergehende Anleitungen zu Modellen, Tools und Sicherheits­details.{{ else }}Deeper guides on models, tools, and security details.{{ end }}</p>
-        <span class="support-tile-link">{{ if eq .Lang "de" }}Wiki öffnen{{ else }}Open wiki{{ end }} &rarr;</span>
+        <h3>{{ if eq .Lang "de" }}Systemstatus{{ else }}System status{{ end }}</h3>
+        <p class="support-tile-text">{{ if eq .Lang "de" }}Läuft gerade etwas nicht? Hier siehst du live, ob App und API erreichbar sind.{{ else }}Something not working? See live whether the app and the API are up.{{ end }}</p>
+        <span class="support-tile-link">status.chuk.chat &rarr;</span>
     </a>
 </div>
 
-<p class="support-meta">
+<p class="p-meta">
     {{ if eq .Lang "de" }}
     Du erreichst uns am schnellsten unter <a href="mailto:support@chuk.chat">support@chuk.chat</a>. Schreib uns gerne auf Deutsch oder Englisch.
     {{ else }}

@@ -1,31 +1,18 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ with .Params.updated }}
-<p class="updated" style="color: var(--text-muted); margin-bottom: 32px; font-size: 13px;">{{ . }}</p>
-{{ end }}
+<article class="p-doc">
+    <h1 class="p-title">{{ .Title }}</h1>
+    {{ with .Params.updated }}
+    <p class="p-doc-updated">{{ . }}</p>
+    {{ end }}
 
-{{ with .Params.tldr }}
-<div class="highlight">
-    <p style="margin-bottom: 0;">
-        <strong>TL;DR:</strong> {{ . }}
-    </p>
-</div>
-{{ end }}
+    {{ with .Params.tldr }}
+    <div class="p-doc-tldr">
+        <p><strong>TL;DR:</strong> {{ . }}</p>
+    </div>
+    {{ end }}
 
-{{ .Content }}
-{{ end }}
-
-{{ define "head" }}
-<style>
-    h2 {
-        margin-top: 32px;
-        border-bottom: 1px dotted var(--border-dotted);
-    }
-    h3 {
-        font-size: 16px;
-        margin-top: 24px;
-        margin-bottom: 8px;
-        border-bottom: none;
-    }
-</style>
+    <div class="prose">
+        {{ .Content }}
+    </div>
+</article>
 {{ end }}
