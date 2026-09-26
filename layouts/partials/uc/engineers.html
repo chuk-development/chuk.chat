@@ -1,0 +1,41 @@
+<div class="app app--dev">
+    <div class="dev-side">
+        <div class="dev-side-head"><svg class="i"><use href="#i-menu"/></svg><svg class="i ac"><use href="#i-edit"/></svg></div>
+        {{ range $i, $c := .m.chats }}
+        <div class="dev-chat{{ if $c.live }} is-live{{ end }}{{ if $c.finishes }} is-finishing{{ end }}{{ if eq $i 0 }} is-active{{ end }}">
+            <span class="dev-chat-title">{{ $c.title }}</span>
+            <span class="dots"><i></i><i></i><i></i></span>
+            <svg class="i dev-done"><use href="#i-check"/></svg>
+        </div>
+        {{ end }}
+    </div>
+    <div class="dev-main">
+        <div class="panel-tabs">
+            <span class="panel-file"><svg class="i"><use href="#i-code"/></svg>{{ .m.file }}</span>
+            <span class="panel-tab is-on">Code</span>
+        </div>
+        <pre class="code"><span class="ln f at2" style="--d: 0"><em>class</em> <u>AuthService</u> {</span>
+<span class="ln f at2" style="--d: 1">  <u>AuthService</u>(<em>this</em>._store);</span>
+<span class="ln f at2" style="--d: 2">  <em>final</em> <u>TokenStore</u> _store;</span>
+<span class="ln f at2" style="--d: 3"> </span>
+<span class="ln f at2" style="--d: 4">  <u>Future</u>&lt;<u>Session</u>&gt; <s>refresh</s>() <em>async</em> {</span>
+<span class="ln f at2" style="--d: 5">    <em>final</em> token = <em>await</em> _store.<s>read</s>();</span>
+<span class="ln f at3" style="--d: 0">    <em>if</em> (token.isExpired) {</span>
+<span class="ln f at3" style="--d: 1">      <em>return</em> <s>_renew</s>(token);</span>
+<span class="ln f at3" style="--d: 2">    }</span>
+<span class="ln f at3" style="--d: 3">    <em>return</em> <u>Session</u>(token);</span>
+<span class="ln f at3" style="--d: 4">  }</span>
+<span class="ln f at3" style="--d: 5"> </span>
+<span class="ln f at3" style="--d: 6">  <u>Future</u>&lt;<u>Session</u>&gt; <s>_renew</s>(<u>Token</u> old) <em>async</em> {</span>
+<span class="ln f at3" style="--d: 7">    <em>final</em> fresh = <em>await</em> _api.<s>refresh</s>(old);</span>
+<span class="ln f at3" style="--d: 8">    <em>await</em> _store.<s>write</s>(fresh);</span>
+<span class="ln f at3" style="--d: 9">    <em>return</em> <u>Session</u>(fresh);</span>
+<span class="ln f at3" style="--d: 10">  }</span>
+<span class="ln f at3" style="--d: 11">}</span></pre>
+        <div class="dev-term f at4">
+            <span class="t-cmd"><svg class="i"><use href="#i-terminal"/></svg>{{ .m.shell }}</span>
+            <span class="t-out">{{ .m.shell_out }}</span>
+        </div>
+    </div>
+    <div class="dev-toast f at5"><svg class="i"><use href="#i-bell"/></svg>{{ .m.toast }}</div>
+</div>

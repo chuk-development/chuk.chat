@@ -1,0 +1,35 @@
+<div class="app app--models">
+    {{ partial "uc/rail.html" .p }}
+    <div class="app-main">
+        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
+        <div class="app-thread">
+            {{ range $k, $s := .m.sent }}
+            {{ $model := index $.m.models $s.model }}
+            <div class="r at{{ add $k 1 }}"><div>
+                <div class="sent">
+                    <p class="bubble">{{ $s.text }}</p>
+                    <span class="sent-model"><img src="/logos/models/{{ $model.logo }}" alt="" width="14" height="14" loading="lazy" decoding="async">{{ $model.name }}</span>
+                </div>
+            </div></div>
+            {{ end }}
+        </div>
+        <div class="picker-wrap">
+            <div class="picker f at1">
+                <div class="picker-row is-mode"><svg class="i"><use href="#i-bolt"/></svg>{{ index .m.modes 0 }}<svg class="i pk-check"><use href="#i-check"/></svg></div>
+                <div class="picker-row is-mode"><svg class="i"><use href="#i-brain"/></svg>{{ index .m.modes 1 }}</div>
+                <div class="picker-sep"></div>
+                {{ range $j, $mdl := .m.models }}
+                <div class="picker-row pk-model{{ range $k, $s := $.m.sent }}{{ if eq $s.model $j }} hl-{{ add $k 1 }}{{ end }}{{ end }}">
+                    <img src="/logos/models/{{ $mdl.logo }}" alt="" width="16" height="16" loading="lazy" decoding="async">{{ $mdl.name }}
+                </div>
+                {{ end }}
+            </div>
+            {{ partial "uc/input.html" .p }}
+        </div>
+        <div class="credits">
+            <span>{{ .m.credits_label }}</span>
+            <b>{{ range $k, $c := .m.credits }}<span class="cr cr-{{ $k }}">{{ $c }}</span>{{ end }}</b>
+            <span class="credits-bar"><i></i></span>
+        </div>
+    </div>
+</div>

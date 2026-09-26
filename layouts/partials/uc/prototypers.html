@@ -1,0 +1,49 @@
+<div class="app app--split">
+    {{ partial "uc/rail.html" .p }}
+    <div class="app-main">
+        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
+        <div class="app-thread">
+            <div class="r at1"><div><p class="bubble type">{{ .m.ask }}</p></div></div>
+            <div class="r at2"><div>
+                <p class="toolline"><svg class="i"><use href="#i-sparkle"/></svg><code>{{ .m.diagram }}</code><svg class="i ok"><use href="#i-check"/></svg></p>
+            </div></div>
+            <div class="r at3"><div><p class="bubble type">{{ .m.ask2 }}</p></div></div>
+            <div class="r at4"><div>
+                <p class="toolline"><svg class="i"><use href="#i-code"/></svg><code>{{ .m.proto }}</code><svg class="i ok"><use href="#i-check"/></svg></p>
+            </div></div>
+            <div class="r at5"><div>
+                <p class="toolline"><svg class="i"><use href="#i-image"/></svg><code>generate_image</code><svg class="i ok"><use href="#i-check"/></svg></p>
+            </div></div>
+        </div>
+        {{ partial "uc/input.html" .p }}
+    </div>
+    <div class="app-panel app-panel--canvas f at2">
+        <div class="panel-tabs">
+            <span class="panel-file"><svg class="i"><use href="#i-code"/></svg><span class="pf-a">{{ .m.diagram }}</span><span class="pf-b">{{ .m.proto }}</span></span>
+            <span class="panel-tab is-on">{{ if .de }}Vorschau{{ else }}Preview{{ end }}</span>
+        </div>
+        <div class="canvas">
+            <svg class="flow" viewBox="0 0 300 340">
+                {{ range $i, $n := .m.nodes }}
+                {{ $y := add 14 (mul $i 84) }}
+                <rect class="dr" pathLength="1" x="50" y="{{ $y }}" width="200" height="48" rx="12" style="--d: {{ $i }}"/>
+                <text class="dt" x="150" y="{{ add $y 29 }}" text-anchor="middle" style="--d: {{ $i }}">{{ $n }}</text>
+                {{ if lt $i 3 }}<path class="dr" pathLength="1" d="M150 {{ add $y 50 }} V{{ add $y 80 }} M143 {{ add $y 72 }} L150 {{ add $y 80 }} L157 {{ add $y 72 }}" style="--d: {{ $i }}"/>{{ end }}
+                {{ end }}
+            </svg>
+            <div class="proto">
+                <div class="proto-phone">
+                    <span class="proto-hero r at5"><span><span class="genimg-art"><span></span><span></span><span></span></span></span></span>
+                    <span class="proto-logo"></span>
+                    <p class="proto-title">{{ .m.proto_title }}</p>
+                    <span class="proto-input">{{ .m.proto_input }}</span>
+                    <span class="proto-btn">{{ .m.proto_btn }}</span>
+                </div>
+            </div>
+            <div class="genimg f at5">
+                <div class="genimg-art"><span></span><span></span><span></span></div>
+                <p>{{ .m.image }}</p>
+            </div>
+        </div>
+    </div>
+</div>

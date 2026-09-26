@@ -1,0 +1,28 @@
+<div class="phone">
+    <div class="phone-screen">
+        <div class="ph-status"><span>{{ .m.clock }}</span><span class="ph-sys"><i></i><i></i><i></i></span></div>
+        <div class="ph-home">
+            {{ range seq 16 }}<span class="ph-app" style="--h: {{ mul . 23 }}"></span>{{ end }}
+        </div>
+        <div class="ph-scrim f at1"></div>
+        <div class="ph-sheet f at1">
+            <div class="ph-wave">{{ range seq 14 }}<i style="--i: {{ . }}"></i>{{ end }}</div>
+            <p class="ph-listen">{{ .m.listening }}</p>
+            <div class="r at2"><div><p class="ph-heard type">{{ .m.heard }}</p></div></div>
+            <div class="r at3"><div>
+                <div class="ph-map">
+                    <svg viewBox="0 0 280 150" preserveAspectRatio="xMidYMid slice">
+                        <rect width="280" height="150" fill="#2E3240"/>
+                        <g stroke="#454A5C" stroke-width="7" fill="none" stroke-linecap="round"><path d="M-10 40 H300"/><path d="M-10 110 H300"/><path d="M60 -10 V160"/><path d="M190 -10 V160"/><path d="M-10 150 L120 20 L300 -10"/></g>
+                        <path class="ph-route" pathLength="1" d="M34 110 H190 V40 H232" stroke="#E0765A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="34" cy="110" r="6" fill="#8AB4F8" stroke="#fff" stroke-width="2"/>
+                        <g class="ph-pin"><circle cx="232" cy="40" r="9" fill="#E0765A"/><circle cx="232" cy="40" r="3.5" fill="#fff"/></g>
+                    </svg>
+                    <p class="ph-place"><b>{{ .m.place }}</b><small>{{ .m.place_meta }}</small></p>
+                </div>
+            </div></div>
+            <div class="ph-action f at4"><svg class="i"><use href="#i-nav"/></svg>{{ .m.action }}</div>
+        </div>
+        <span class="ph-bar"></span>
+    </div>
+</div>

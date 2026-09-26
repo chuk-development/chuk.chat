@@ -210,4 +210,8 @@
 
 {{- $styles := resources.Get "css/styles.css" | fingerprint }}
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+{{- if eq .Layout "usecases" }}
+{{- $uc := resources.Get "css/usecases.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $uc.RelPermalink }}" integrity="{{ $uc.Data.Integrity }}">
+{{- end }}
 {{- block "head" . }}{{- end }}

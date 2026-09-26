@@ -1,0 +1,356 @@
+<script>
+(function () {
+    var root = document.getElementById('uc');
+    if (!root) {
+        return;
+    }
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var sky = document.getElementById('ucSky');
+    var progress = document.getElementById('ucProgress');
+    var worlds = Array.prototype.slice.call(root.querySelectorAll('.uc-world'));
+    var segs = {};
+    var B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+    if (progress) {
+        progress.querySelectorAll('.uc-progress-seg').forEach(function (s) {
+            segs[s.dataset.for] = s;
+        });
+    }
+
+    function clamp(v, lo, hi) {
+        return Math.min(hi, Math.max(lo, v));
+    }
+
+    function smooth(t) {
+        return t * t * (3 - 2 * t);
+    }
+
+    // Hero: the input types the prompt of every world in turn.
+    (function heroTyping() {
+        var el = document.getElementById('ucHeroType');
+        var data = document.getElementById('ucHeroPrompts');
+        if (!el || !data) {
+            return;
+        }
+        var prompts = [];
+        try {
+            prompts = JSON.parse(data.textContent);
+        } catch (e) {
+            return;
+        }
+        if (!prompts.length) {
+            return;
+        }
+        if (reduce) {
+            el.textContent = prompts[0];
+            return;
+        }
+        var i = 0;
+        var pos = 0;
+        var dir = 1;
+        var hold = 6;
+        var visible = true;
+        var box = el.closest('.uc-hero-input');
+        if (box && 'IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                visible = entries[0].isIntersecting;
+            }).observe(box);
+        }
+        el.textContent = '';
+        setInterval(function () {
+            if (!visible) {
+                return;
+            }
+            if (hold > 0) {
+                hold -= 1;
+                return;
+            }
+            var s = prompts[i];
+            if (dir > 0) {
+                pos += 1;
+                if (pos >= s.length) {
+                    pos = s.length;
+                    dir = -1;
+                    hold = 48;
+                }
+            } else {
+                pos = Math.max(0, pos - 3);
+                if (pos === 0) {
+                    dir = 1;
+                    i = (i + 1) % prompts.length;
+                    hold = 8;
+                }
+            }
+            el.textContent = s.slice(0, pos);
+        }, 36);
+    })();
+
+    // With reduced motion the page stays static: every world already carries
+    // all of its step classes, so it shows its final state.
+    if (reduce) {
+        return;
+    }
+
+    // Answers stream in word by word.
+    function splitWords(el) {
+        var i = 0;
+        var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        var nodes = [];
+        while (walker.nextNode()) {
+            nodes.push(walker.currentNode);
+        }
+        nodes.forEach(function (node) {
+            if (!node.nodeValue.trim()) {
+                return;
+            }
+            var frag = document.createDocumentFragment();
+            node.nodeValue.split(/(\s+)/).forEach(function (part) {
+                if (!part) {
+                    return;
+                }
+                if (/^\s+$/.test(part)) {
+                    frag.appendChild(document.createTextNode(part));
+                    return;
+                }
+                var span = document.createElement('span');
+                span.className = 'w';
+                span.style.setProperty('--i', i);
+                i += 1;
+                span.textContent = part;
+                frag.appendChild(span);
+            });
+            node.parentNode.replaceChild(frag, node);
+        });
+    }
+
+    function stepOf(el) {
+        for (var n = el; n && !n.classList.contains('uc-world'); n = n.parentElement) {
+            var m = (n.getAttribute('class') || '').match(/\bat(\d)\b/);
+            if (m) {
+                return Number(m[1]);
+            }
+        }
+        return 1;
+    }
+
+    root.querySelectorAll('.stream').forEach(splitWords);
+
+    // Typewriter for the user's messages.
+    function stopType(el) {
+        clearInterval(el._typeTimer);
+        el._typeTimer = null;
+    }
+
+    function finishType(el) {
+        stopType(el);
+        el.textContent = el._full;
+        el._typed = el._full.length;
+    }
+
+    function typeIn(el) {
+        if (el._typeTimer || el._typed >= el._full.length) {
+            return;
+        }
+        el._typeTimer = setInterval(function () {
+            el._typed = Math.min(el._full.length, el._typed + 2);
+            el.textContent = el._full.slice(0, el._typed);
+            if (el._typed >= el._full.length) {
+                stopType(el);
+            }
+        }, 16);
+    }
+
+    function resetType(el) {
+        stopType(el);
+        el._typed = 0;
+        el.textContent = '';
+    }
+
+    // Private world: the chat turns into the ciphertext the server keeps.
+    function collectText(el, out) {
+        var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        while (walker.nextNode()) {
+            if (walker.currentNode.nodeValue.trim()) {
+                out.push(walker.currentNode);
+            }
+        }
+    }
+
+    function scramble(w, on) {
+        clearInterval(w._scrTimer);
+        if (!on) {
+            (w._scrNodes || []).forEach(function (node) {
+                if (node._orig != null) {
+                    node.nodeValue = node._orig;
+                }
+            });
+            return;
+        }
+        w._types.forEach(function (t) {
+            if (t.el.hasAttribute('data-scramble') && w._step >= t.at) {
+                finishType(t.el);
+            }
+        });
+        var nodes = [];
+        w.querySelectorAll('[data-scramble]').forEach(function (el) {
+            collectText(el, nodes);
+        });
+        var total = 0;
+        nodes.forEach(function (node) {
+            if (node._orig == null) {
+                node._orig = node.nodeValue;
+            }
+            node._cipher = node._orig.replace(/\S/g, function () {
+                return B64.charAt(Math.floor(Math.random() * B64.length));
+            });
+            node._offset = total;
+            total += node._orig.length;
+        });
+        w._scrNodes = nodes;
+        var start = performance.now();
+        var duration = 1100;
+        w._scrTimer = setInterval(function () {
+            var k = Math.min(1, (performance.now() - start) / duration);
+            var cut = Math.floor(total * k);
+            nodes.forEach(function (node) {
+                var local = clamp(cut - node._offset, 0, node._orig.length);
+                node.nodeValue = node._cipher.slice(0, local) + node._orig.slice(local);
+            });
+            if (k >= 1) {
+                clearInterval(w._scrTimer);
+            }
+        }, 40);
+    }
+
+    worlds.forEach(function (w) {
+        w._at = (w.dataset.at || '').split(',').filter(Boolean).map(Number);
+        w._step = -1;
+        w._scrAt = Number(w.dataset.scrambleAt || 0);
+        w._vars = {};
+        w._types = Array.prototype.slice.call(w.querySelectorAll('.type')).map(function (el) {
+            el._full = el.textContent;
+            el._typed = 0;
+            el.textContent = '';
+            return { el: el, at: stepOf(el) };
+        });
+    });
+
+    function setStep(w, n) {
+        if (n === w._step) {
+            return;
+        }
+        var prev = w._step;
+        w._step = n;
+        for (var k = 1; k <= w._at.length; k += 1) {
+            w.classList.toggle('s' + k, k <= n);
+        }
+        w._types.forEach(function (t) {
+            if (n >= t.at) {
+                typeIn(t.el);
+            } else {
+                resetType(t.el);
+            }
+        });
+        if (w._scrAt) {
+            if (n >= w._scrAt && prev < w._scrAt) {
+                scramble(w, true);
+            } else if (n < w._scrAt && prev >= w._scrAt) {
+                scramble(w, false);
+            }
+        }
+    }
+
+    function setVar(el, cache, name, value) {
+        if (cache[name] !== value) {
+            cache[name] = value;
+            el.style.setProperty(name, value);
+        }
+    }
+
+    root.classList.add('uc-live');
+
+    var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--top-bar-height')) || 56;
+    var skyVars = {};
+    var ticking = false;
+
+    function frame() {
+        ticking = false;
+        var vh = window.innerHeight;
+        var mid = vh * 0.5;
+        var scene = 'paper';
+        var sceneProgress = 0;
+        var onWorld = false;
+
+        worlds.forEach(function (w) {
+            var r = w.getBoundingClientRect();
+            var span = r.height - (vh - navH);
+            var p = span > 0 ? clamp((navH - r.top) / span, 0, 1) : 0;
+            var seg = segs[w.id];
+            if (seg) {
+                seg.style.setProperty('--f', p.toFixed(3));
+            }
+            if (r.bottom < -vh * 0.25 || r.top > vh * 1.25) {
+                return;
+            }
+            var enter = smooth(clamp((vh - r.top) / (vh * 0.7), 0, 1));
+            var leave = smooth(clamp((vh - r.bottom) / (vh * 0.45), 0, 1));
+            setVar(w, w._vars, '--p', p.toFixed(3));
+            setVar(w, w._vars, '--in', enter.toFixed(3));
+            setVar(w, w._vars, '--out', leave.toFixed(3));
+            var n = 0;
+            for (var k = 0; k < w._at.length; k += 1) {
+                if (p >= w._at[k]) {
+                    n = k + 1;
+                }
+            }
+            setStep(w, n);
+            if (r.top <= mid && r.bottom > mid) {
+                scene = w.dataset.scene;
+                sceneProgress = p;
+                onWorld = Boolean(seg);
+            }
+        });
+
+        if (sky) {
+            if (sky.dataset.scene !== scene) {
+                sky.dataset.scene = scene;
+            }
+            setVar(sky, skyVars, '--sp', sceneProgress.toFixed(3));
+        }
+        if (progress) {
+            progress.classList.toggle('is-on', onWorld);
+        }
+    }
+
+    function request() {
+        if (!ticking) {
+            ticking = true;
+            window.requestAnimationFrame(frame);
+        }
+    }
+
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    frame();
+
+    // World links jump into the world, past its first steps.
+    root.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (event) {
+            var target = document.getElementById(a.getAttribute('href').slice(1));
+            if (!target || worlds.indexOf(target) === -1) {
+                return;
+            }
+            event.preventDefault();
+            var vh = window.innerHeight;
+            var span = Math.max(0, target.offsetHeight - (vh - navH));
+            var top = target.getBoundingClientRect().top + window.pageYOffset - navH;
+            var into = target._at.length > 1 ? target._at[1] : 0.2;
+            window.scrollTo({ top: top + span * into + 2, behavior: 'smooth' });
+            if (history.replaceState) {
+                history.replaceState(null, '', '#' + target.id);
+            }
+        });
+    });
+})();
+</script>

@@ -1,0 +1,36 @@
+<div class="app">
+    {{ partial "uc/rail.html" .p }}
+    <div class="app-main">
+        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
+        <div class="app-thread">
+            <div class="r at1"><div>
+                <div class="attach">{{ range .m.files }}<span class="att"><svg class="i"><use href="#i-file"/></svg>{{ . }}</span>{{ end }}</div>
+                <p class="bubble type">{{ .m.ask }}</p>
+            </div></div>
+            <div class="r at2"><div>
+                <p class="meta">{{ .m.meta }} <svg class="i i-sm"><use href="#i-chevron-right"/></svg></p>
+                <p class="sources">{{ range $i, $s := .m.sources }}<span class="src f at2" style="--d: {{ $i }}"><i></i>{{ $s }}</span>{{ end }}</p>
+            </div></div>
+            <div class="r at3"><div>
+                <div class="mcard chart">
+                    <p class="chart-title">{{ .m.chart_title }}</p>
+                    <div class="bars">
+                        {{ range $i, $b := .m.bars }}
+                        <span class="bar" style="--v: {{ $b.value }}; --d: {{ $i }}"><i><b>{{ $b.value }}%</b></i><small>{{ $b.label }}</small></span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div></div>
+            <div class="r at4"><div>
+                <div class="mcard pdf pdf--mini">
+                    <div class="pdf-head">
+                        <span class="pdf-ico">PDF</span>
+                        <span class="pdf-name">{{ .m.export }}<small>{{ .m.export_note }}</small></span>
+                        <span class="pdf-dl"><svg class="i"><use href="#i-download"/></svg></span>
+                    </div>
+                </div>
+            </div></div>
+        </div>
+        {{ partial "uc/input.html" .p }}
+    </div>
+</div>
