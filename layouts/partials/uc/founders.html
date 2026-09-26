@@ -1,47 +1,35 @@
-<div class="app app--split">
-    {{ partial "uc/rail.html" .p }}
-    <div class="app-main">
-        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
-        <div class="app-thread">
-            <div class="r at1"><div><p class="bubble type">{{ .m.ask }}</p></div></div>
-            <div class="r at2"><div>
-                <p class="meta">{{ .m.meta }} <svg class="i i-sm"><use href="#i-chevron-right"/></svg></p>
-                <p class="toolline"><svg class="i"><use href="#i-code"/></svg><code>{{ .m.tool }}</code><span class="spin done-at4"></span><svg class="i ok ok-at4"><use href="#i-check"/></svg></p>
-            </div></div>
-            <div class="r at4"><div><p class="answer stream at4">{{ .m.done }}</p></div></div>
-            <div class="r at5"><div>
-                <p class="connected"><span>{{ .m.connected }}</span>{{ range .m.connectors }}<img src="/logos/connectors/{{ . }}.png" alt="" width="20" height="20" loading="lazy" decoding="async">{{ end }}</p>
-            </div></div>
-        </div>
-        {{ partial "uc/input.html" .p }}
+{{ $steps := slice }}{{ range .m.steps }}{{ $steps = $steps | append (dict "kind" "run" "name" .) }}{{ end }}
+<div class="app app--split" data-shut="4">
+    {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
+    <div class="a-chat">
+        <div class="a-thread"><div class="a-col">
+            <div class="r at1"><div><div class="a-user"><p class="a-bubble type">{{ .m.ask }}</p></div></div></div>
+            {{ partial "uc/a-tl.html" (dict "at" 2 "fold" 4 "running" .m.running "meta" .m.meta "steps" $steps) }}
+            <div class="r at4"><div>{{ partial "uc/a-art.html" (dict "icon" "code-m" "title" .m.art_title "sub" .m.art_sub "p" .p) }}</div></div>
+            <div class="r at4"><div><div class="a-ai stream at4"><p>{{ .m.done }} <a>{{ .m.url }}</a></p></div></div></div>
+            <div class="r at5"><div>{{ partial "uc/a-acts.html" (dict) }}</div></div>
+        </div></div>
+        {{ partial "uc/a-composer.html" .p }}
     </div>
-    <div class="app-panel f at2">
-        <div class="panel-tabs">
-            <span class="panel-file"><svg class="i"><use href="#i-code"/></svg>{{ .m.file }}</span>
-            <span class="panel-tab is-on">{{ .m.tab_preview }}</span>
-            <span class="panel-tab">{{ .m.tab_code }}</span>
-        </div>
-        <div class="panel-body">
+    <div class="a-scrim pan3"></div>
+    <div class="a-panel pan3"><div class="a-panel-in">
+        {{ partial "uc/a-ph.html" (dict "title" .m.art_title "type" .m.art_type "icon" "code-m" "p" .p) }}
+        <div class="a-pb">
             <div class="lp">
-                <div class="lp-nav f at3" style="--d: 0"><b>{{ .m.brand }}</b>{{ range .m.nav }}<span>{{ . }}</span>{{ end }}</div>
-                <div class="lp-hero f at3" style="--d: 1">
+                <div class="lp-nav f at3" style="--d: 2"><b>{{ .m.brand }}</b>{{ range .m.nav }}<span>{{ . }}</span>{{ end }}</div>
+                <div class="lp-hero f at3" style="--d: 4">
                     <p class="lp-title">{{ .m.headline }}</p>
                     <p class="lp-sub">{{ .m.sub }}</p>
                     <span class="lp-btn">{{ .m.cta }}</span>
                 </div>
-                <div class="lp-art f at3" style="--d: 2">
+                <div class="lp-art f at3" style="--d: 6">
                     <svg viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet"><g fill="none" stroke="#29251F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><circle cx="52" cy="74" r="26"/><circle cx="148" cy="74" r="26"/><path d="M52 74 L82 34 H132 L148 74 M82 34 L104 74 L132 34 M104 74 H52" stroke="#1F6F5C"/><path d="M76 26 H92 M126 22 L132 34 M122 22 H138"/></g></svg>
                 </div>
                 <div class="lp-feats">
-                    {{ range $i, $f := .m.features }}<span class="f at3" style="--d: {{ add $i 3 }}">{{ $f }}</span>{{ end }}
+                    {{ range $i, $f := .m.features }}<span class="f at3" style="--d: {{ add $i 8 }}">{{ $f }}</span>{{ end }}
                 </div>
             </div>
         </div>
-        <div class="panel-link f at4">
-            <svg class="i"><use href="#i-link"/></svg>
-            <span class="panel-public">{{ .m.public }}</span>
-            <code>{{ .m.url }}</code>
-            <span class="panel-copy">{{ .m.copy }}</span>
-        </div>
-    </div>
+        {{ partial "uc/a-pf.html" .p }}
+    </div></div>
 </div>

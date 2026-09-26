@@ -1,21 +1,21 @@
 <div class="app">
-    {{ partial "uc/rail.html" .p }}
-    <div class="app-main">
-        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
-        <div class="app-thread">
-            <div class="r at1"><div><p class="bubble type" data-scramble>{{ .m.ask }}</p></div></div>
+    {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
+    <div class="a-chat">
+        <div class="a-thread"><div class="a-col">
+            <div class="r at1"><div><div class="a-user"><p class="a-bubble type" data-scramble>{{ .m.ask }}</p></div></div></div>
+            {{ partial "uc/a-tl.html" (dict "at" 2 "meta" .m.meta) }}
             <div class="r at2"><div>
-                <p class="meta">{{ .m.meta }} <svg class="i i-sm"><use href="#i-chevron-right"/></svg></p>
-                <div class="answer stream at2" data-scramble>
+                <div class="a-ai stream at2" data-scramble>
                     <p><strong>{{ .m.lead }}</strong></p>
                     <ul>{{ range .m.answer }}<li>{{ . }}</li>{{ end }}</ul>
                 </div>
             </div></div>
-        </div>
-        {{ partial "uc/input.html" .p }}
+            <div class="r at3"><div>{{ partial "uc/a-acts.html" (dict) }}</div></div>
+        </div></div>
+        {{ partial "uc/a-composer.html" .p }}
     </div>
-    <div class="vault f at3">
-        <span class="vault-badge"><svg class="i"><use href="#i-lock"/></svg>{{ .m.stored }}</span>
+    <div class="vault f at4">
+        <span class="vault-badge"><svg class="i18"><use href="#h-lock"/></svg>{{ .m.stored }}</span>
         <span class="vault-note">{{ .m.cipher }}</span>
     </div>
 </div>

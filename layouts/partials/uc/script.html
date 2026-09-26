@@ -86,6 +86,44 @@
         }, 36);
     })();
 
+    // Every mock is built in the app's own pixels and zoomed to its stage,
+    // like a screenshot. The chat mock keeps its width and takes the
+    // stage's height; the phone keeps its aspect ratio.
+    function fitStages() {
+        root.querySelectorAll('.uc-stage').forEach(function (stage) {
+            var el = stage.querySelector('.app, .phone');
+            if (!el) {
+                return;
+            }
+            el.style.zoom = '';
+            el.style.height = '';
+            var sw = stage.clientWidth;
+            var sh = stage.clientHeight;
+            var cs = getComputedStyle(el);
+            var vw = parseFloat(cs.width) || 1000;
+            var k;
+            if (el.classList.contains('phone')) {
+                k = Math.min(sw / vw, sh / (parseFloat(cs.height) || 891));
+            } else {
+                var minH = vw > 600 ? 600 : 520;
+                k = sw / vw;
+                if (sh / k < minH) {
+                    k = sh / minH;
+                }
+                el.style.height = Math.floor(sh / k) + 'px';
+            }
+            el.style.zoom = k.toFixed(4);
+        });
+        // The hero composer uses the zoom of the chat mocks, so it looks the same.
+        var hero = root.querySelector('.uc-hero-input .a-composer');
+        var ref = root.querySelector('.uc-world .app:not(.app--side)');
+        if (hero && ref && ref.style.zoom) {
+            hero.style.zoom = ref.style.zoom;
+        }
+    }
+    fitStages();
+    window.addEventListener('resize', fitStages);
+
     // With reduced motion the page stays static: every world already carries
     // all of its step classes, so it shows its final state.
     if (reduce) {
@@ -269,6 +307,8 @@
     }
 
     root.classList.add('uc-live');
+    fitStages();
+
 
     var navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--top-bar-height')) || 56;
     var skyVars = {};

@@ -1,0 +1,7 @@
+{{- /* Bar under an answer: copy / regenerate / branch, and the sources pill. */ -}}
+<div class="a-acts">
+    <span class="a-act"><span><svg class="z18"><use href="#h-copy01"/></svg></span><span><svg class="z18"><use href="#h-refresh"/></svg></span><span><svg class="i18"><use href="#h-alt-route"/></svg></span></span>
+    {{- with .sources }}
+    <span class="a-srcpill"><span class="a-favs">{{ range . }}<i class="a-fav" style="background: {{ .color | safeCSS }}">{{ .letter }}</i>{{ end }}</span>{{ $.count }}</span>
+    {{- end }}
+</div>

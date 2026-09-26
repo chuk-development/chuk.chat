@@ -1,0 +1,14 @@
+{{- /* The composer, sized like the app: 760 wide, radius 30, 2px border. */ -}}
+<div class="a-foot">
+    <div class="a-composer">
+        <div class="a-field">{{ .input_placeholder }}</div>
+        <div class="a-row">
+            <span class="a-btn a-plus"><svg class="z24"><use href="#h-plus-sign"/></svg></span>
+            <span class="a-grow"></span>
+            <span class="a-pill"><svg class="z15"><use href="#h-flash"/></svg><b>{{ .mode_label }}</b><svg class="z12 a-dn"><use href="#h-arrow-down01"/></svg></span>
+            <span class="a-btn a-mic"><svg class="z22"><use href="#h-mic02"/></svg></span>
+                <span class="a-send"><svg class="z26"><use href="#h-send-horizontal"/></svg></span>
+        </div>
+    </div>
+    <p class="a-disc">{{ .disclaimer }}</p>
+</div>

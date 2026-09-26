@@ -1,0 +1,27 @@
+{{- /* The agent timeline. It shows at step "at". With "fold" set it is open
+       while the turn runs and folds to "Worked for Xs" at step "fold". */ -}}
+<div class="r at{{ .at }}"><div>
+<div class="a-tl">
+    <p class="a-tl-head">
+        {{- if .fold -}}
+        <span class="until{{ .fold }}">{{ .running }}</span><span class="from{{ .fold }}">{{ .meta }}</span>
+        <svg class="z16 until{{ .fold }}"><use href="#h-arrow-down01"/></svg><svg class="z16 from{{ .fold }}"><use href="#h-arrow-right01"/></svg>
+        {{- else -}}
+        <span>{{ .meta }}</span><svg class="z16"><use href="#h-arrow-right01"/></svg>
+        {{- end -}}
+    </p>
+    {{- with .steps }}
+    <div class="r fold{{ $.fold }}"><div><div class="a-steps">
+        {{- range $i, $s := . }}
+        <div class="a-step f at{{ $.at }}" style="--d: {{ mul $i 5 }}">
+            <span class="a-badge"><svg class="z14"><use href="#h-{{ if eq $s.kind "search" }}search01{{ else }}flash{{ end }}"/></svg></span>
+            <span class="a-step-t">{{ if eq $s.kind "search" }}Searched{{ else }}Ran {{ $s.name }}{{ end }}{{ with $s.detail }}<b>{{ . }}</b>{{ end }}</span>
+        </div>
+        {{- with $s.srcs }}
+        <div class="a-srcs f at{{ $.at }}" style="--d: {{ add (mul $i 5) 3 }}">{{ range . }}<span class="a-src"><i class="a-fav" style="background: {{ .color | safeCSS }}">{{ .letter }}</i>{{ .host }}</span>{{ end }}</div>
+        {{- end }}
+        {{- end }}
+    </div></div></div>
+    {{- end }}
+</div>
+</div></div>

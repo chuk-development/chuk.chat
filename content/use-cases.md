@@ -12,9 +12,16 @@ hero_title: "One private chat.<br>Many worlds."
 hero_lead: "Founders, small businesses, developers, students. They use the same app for very different work. Scroll down. Each world is a real use case."
 scroll_hint: "Scroll to begin"
 input_placeholder: "Ask me anything !"
+disclaimer: "You're chatting with an AI/LLM — it can be wrong. Check key info."
 mode_label: "Fast"
 worlds_label: "Jump to a world"
 of_label: "of"
+ui:
+  download: "Download"
+  open: "Open"
+  preview: "Preview"
+  code: "Code"
+  version: "Version"
 
 worlds:
   - id: "private"
@@ -26,6 +33,7 @@ worlds:
     text: "Health, money, a hard talk with your boss. People ask Chuk Chat the things they would never type into a data-hungry AI. Your chats are encrypted on your device before we store them. We keep only ciphertext."
     chips: ["End-to-end encrypted storage", "Never used for training", "No tracking"]
     mock:
+      chat_title: "Burnout talk with my boss"
       ask: "How do I tell my boss that I am burned out?"
       meta: "Thought for 4s"
       lead: "Start with facts, not with blame."
@@ -45,24 +53,22 @@ worlds:
     text: "Founders research the market, write the pitch, draft the code and publish a landing page with a public link. Connect GitHub, Stripe or Vercel and work with your real project. Your idea stays your idea. We do not train on it."
     chips: ["Web research", "Artifacts with public links", "GitHub · Stripe · Vercel"]
     mock:
+      chat_title: "Spoke landing page"
       ask: "Build a landing page for my bike repair service and publish it."
+      running: "Running create artifact"
+      steps: ["artifact manager", "create artifact"]
       meta: "Worked for 12s"
-      tool: "create_artifact"
-      done: "Done. Your page is live, and anyone with the link can open it."
-      file: "spoke-landing.html"
-      tab_preview: "Preview"
-      tab_code: "Code"
+      art_title: "Spoke landing page"
+      art_sub: "HTML · v1"
+      art_type: "HTML"
+      done: "Done. Your page is live, and anyone with the link can open it:"
+      url: "https://artifacts.chuk.chat/k7f2-spoke"
       brand: "Spoke"
       nav: ["Prices", "Areas", "Book"]
       headline: "Bike repair at your door."
       sub: "We come to you. Fixed prices, same-day visits."
       cta: "Book a repair"
       features: ["Same-day visits", "Fixed prices", "All brands"]
-      public: "Public link"
-      url: "artifacts.chuk.chat/k7f2-spoke"
-      copy: "Copy"
-      connected: "Connected"
-      connectors: ["github", "stripe", "vercel"]
 
   - id: "business"
     short: "Small business"
@@ -73,11 +79,15 @@ worlds:
     text: "A carpenter writes the invoice as a clean PDF on the way to the next customer. A café owner answers emails and plans the shifts. Appointments go straight into the calendar. No IT department needed."
     chips: ["PDF documents", "Email drafts", "Calendar and reminders"]
     mock:
+      chat_title: "Invoice Mrs Weber"
       ask: "Write the invoice for Mrs Weber: kitchen shelf, 6 hours at €58, material €140. As PDF."
+      running: "Compiling document"
+      steps: ["typst compile"]
       meta: "Worked for 6s"
-      tool: "typst_compile"
-      file: "Invoice_2026-031.pdf"
-      download: "Download"
+      art_title: "Invoice Mrs Weber"
+      art_sub: "Typst · PDF · v1"
+      art_type: "Typst · PDF"
+      doc_from: "Brandt Carpentry · Hafenstraße 12 · 24103 Kiel"
       doc_title: "Invoice"
       doc_no: "No. 2026-031"
       doc_to: "Mrs Weber"
@@ -86,10 +96,11 @@ worlds:
         - ["Material", "€140.00"]
       total_label: "Total"
       total: "€488.00"
-      ask2: "Remind me on Tuesday at 9 to call her."
-      event: "Call Mrs Weber"
-      event_time: "Tuesday · 09:00"
-      event_btn: "Save to calendar"
+      ask2: "Now write Mrs Weber a short email about it."
+      mail_subject: "Your invoice 2026-031"
+      mail_to: "weber@example.de"
+      mail_body: "Dear Mrs Weber, thank you for your order. Here is the invoice for the kitchen shelf. Total: €488.00, payable within 14 days. Kind regards, Jan Brandt"
+      mail_button: "Open in Mail App"
 
   - id: "connectors"
     short: "Connectors"
@@ -100,12 +111,12 @@ worlds:
     text: "Knowledge workers connect Notion, Linear, Todoist, Dropbox and 50 more services. You sign in once in the browser. Then you ask in plain words, and Chuk Chat does the clicking across all of them."
     chips: ["50+ connectors (MCP)", "Sign in with OAuth", "Desktop and Android"]
     mock:
+      chat_title: "This week"
       ask: "What is due this week? Check Linear, Todoist and Notion, then make me a plan."
+      running: "Running todoist find-tasks"
+      steps: ["linear list issues", "todoist find-tasks"]
+      search: "launch plan"
       meta: "Worked for 9s"
-      calls:
-        - {logo: "linear", name: "Linear", result: "7 open issues"}
-        - {logo: "todoist", name: "Todoist", result: "12 tasks"}
-        - {logo: "notion", name: "Notion", result: "3 pages"}
       lead: "Your week, in order:"
       answer:
         - "Mon: fix the login bug (Linear, high priority)"
@@ -114,7 +125,6 @@ worlds:
       orbit: ["github", "stripe", "dropbox", "figma", "calcom", "airtable", "zapier", "asana", "sentry", "canva", "supabase", "fastmail", "box", "vercel"]
 
   - id: "models"
-    prompt: "Write my cover letter with Kimi K3."
     short: "Models"
     scene: "prism"
     tone: "light"
@@ -122,25 +132,27 @@ worlds:
     title: "Stop paying for five AI subscriptions."
     text: "Some models write better. Some think deeper. Some are fast and cheap. Power users pick a different model for each message and pay from one budget: €20 per month, with €16 in AI credits included. No second account, no second invoice."
     chips: ["Frontier open-weight models", "Switch for each message", "€16 AI credits included"]
+    prompt: "Write my cover letter with Kimi K3."
     mock:
+      chat_title: "Cover letter"
       modes: ["Fast", "Thinking"]
+      reasoning: "Reasoning"
+      reasoning_value: "Medium"
+      more: "More models"
       models:
-        - {logo: "deepseek.svg", name: "DeepSeek V4 Pro"}
+        - {logo: "deepseek.svg", name: "DeepSeek V4 Pro 0813"}
         - {logo: "moonshot.svg", name: "Kimi K3"}
         - {logo: "zai.svg", name: "GLM 5.3"}
-        - {logo: "qwen.svg", name: "Qwen3.8"}
+        - {logo: "qwen.svg", name: "Qwen3.8 27B"}
         - {logo: "minimax.svg", name: "MiniMax M3"}
         - {logo: "mistral.svg", name: "Mistral Small 4"}
         - {logo: "openai.svg", name: "gpt-oss-120b"}
       sent:
-        - {text: "Write my cover letter", model: 1}
-        - {text: "Check the salary maths", model: 0}
-        - {text: "Translate it into German", model: 3}
-      credits_label: "AI credits this month"
-      credits: ["€16.00", "€15.97", "€15.92", "€15.90"]
+        - {text: "Write my cover letter for the office manager job.", model: 1, meta: "Thought for 3s", answer: "Dear Ms Berger, I am applying for the office manager position…"}
+        - {text: "Check the salary maths: €4,250 per month, 13 salaries.", model: 0, meta: "Thought for 6s", answer: "Correct: €4,250 × 13 = €55,250 per year."}
+        - {text: "Translate the letter into German.", model: 3, meta: "Thought for 2s", answer: "Sehr geehrte Frau Berger, hiermit bewerbe ich mich…"}
 
   - id: "engineers"
-    prompt: "Refactor the auth service and run the formatter."
     short: "Engineers"
     scene: "terminal"
     tone: "dark"
@@ -148,36 +160,52 @@ worlds:
     title: "Five chats running. None of them waits for you."
     text: "Engineers start a refactor in one chat, a research question in the next and a bug hunt in a third. Answers keep streaming when you switch chats. Code lands in editable panels, and on desktop a sandboxed shell runs commands for you."
     chips: ["Parallel streaming", "Code artifacts", "Sandboxed shell (desktop)"]
+    prompt: "Refactor the auth service and run the formatter."
     mock:
+      group: "Today"
       chats:
-        - {title: "Refactor the auth service", live: true}
-        - {title: "Why is the CI build slow?", live: true, finishes: true}
-        - {title: "Regex for German IBANs", live: false}
-        - {title: "Migrate to Dart 3.13", live: true}
-        - {title: "Explain this stack trace", live: false}
-      file: "auth_service.dart"
-      shell: "$ dart format lib/"
-      shell_out: "Formatted 3 files (1 changed)"
-      toast: "“Why is the CI build slow?” has an answer"
+        - {title: "Refactor the auth service", time: "14:32", live: true, active: true}
+        - {title: "Why is the CI build slow?", time: "14:28", live: true, finishes: true}
+        - {title: "Regex for German IBANs", time: "14:11", live: false}
+        - {title: "Migrate to Dart 3.13", time: "13:57", live: true}
+        - {title: "Explain this stack trace", time: "13:40", live: false}
+      ask: "Refactor the auth service and run the formatter."
+      running: "Running bash"
+      search: "dart token refresh pattern"
+      bash: "dart format lib/"
+      meta: "Worked for 21s"
+      answer: "I moved the token refresh into its own method and added a retry. The formatter changed 3 files."
+      art_title: "auth_service.dart"
+      art_sub: "Code · v2"
 
   - id: "prototypers"
     short: "Prototypers"
     scene: "blueprint"
     tone: "dark"
     label: "The prototyper"
-    title: "Ten ideas tested before lunch."
-    text: "Prototypers sketch a flow as a diagram, turn it into a clickable HTML page and generate the images for it. Each idea takes minutes, not days. Keep the good ones. Delete the rest."
-    chips: ["Diagrams (Mermaid, Excalidraw)", "HTML prototypes", "Image generation"]
+    title: "From a sketch to a clickable prototype."
+    text: "Prototypers sketch a flow, turn it into a clickable HTML page and generate the images for it. Each idea takes minutes, not days. Keep the good ones. Delete the rest."
+    chips: ["Excalidraw sketches", "HTML previews", "Image generation"]
     mock:
+      chat_title: "Signup flow"
       ask: "Sketch a signup flow with an email code."
+      steps: ["artifact manager"]
+      meta: "Worked for 8s"
+      art1_title: "Signup flow"
+      art1_sub: "Excalidraw sketch · v1"
+      art1_type: "Excalidraw sketch"
       nodes: ["Enter email", "Code sent", "Enter code", "Welcome"]
-      ask2: "Make it clickable. Add a hero image."
-      diagram: "signup-flow.mmd"
-      proto: "signup.html"
+      ask2: "Make it a clickable page."
+      meta2: "Worked for 11s"
+      art2_title: "Signup page"
+      art2_sub: "HTML · v1"
+      art2_type: "HTML"
       proto_title: "Create your account"
       proto_input: "you@example.com"
       proto_btn: "Send code"
-      image: "hero.png · generated"
+      ask3: "Add a hero image."
+      meta3: "Worked for 5s"
+      image_model: "Z-Image Turbo"
 
   - id: "research"
     short: "Research"
@@ -188,18 +216,25 @@ worlds:
     text: "Students and researchers attach PDFs, notes and papers and ask questions about them. Chuk Chat searches the web, names its sources, draws charts and writes the result as a typeset PDF. Old chats stay searchable."
     chips: ["PDF and file attachments", "Web search with sources", "Charts and PDF export"]
     mock:
+      chat_title: "Survey methods"
       files: ["thesis_draft.pdf", "miller_2024.pdf"]
       ask: "Compare the methods in both papers. Show the response rates as a chart."
+      running: "Searching the web"
+      search: "survey response rates by method"
+      sources:
+        - {host: "nature.com", letter: "n", color: "#1F1F1F"}
+        - {host: "arxiv.org", letter: "a", color: "#B31B1B"}
+        - {host: "destatis.de", letter: "D", color: "#0B5CA8"}
+        - {host: "pewresearch.org", letter: "P", color: "#2E6E8E"}
+      source_count: "8 sources"
       meta: "Worked for 14s"
-      sources: ["nature.com", "arxiv.org", "destatis.de", "+ 5"]
-      chart_title: "Response rate by survey method"
+      lead: "Both papers measure response rates, but Miller compares four survey methods. In person works best:"
+      chart_title: "Response rate by survey method (%)"
       bars:
         - {label: "Online", value: 38}
         - {label: "Phone", value: 22}
         - {label: "Mail", value: 14}
         - {label: "In person", value: 61}
-      export: "methods_comparison.pdf"
-      export_note: "Typeset PDF · 4 pages"
 
   - id: "onthego"
     short: "On the go"
@@ -210,12 +245,23 @@ worlds:
     text: "On Android, Chuk Chat can be your assistant. Hold the home gesture, and it listens, reads what is on the screen, answers out loud and acts. It sets alarms, finds places and starts the navigation."
     chips: ["Android assistant", "Voice in, voice out", "Places, routes, alarms"]
     mock:
-      listening: "Listening…"
-      heard: "Find a pharmacy that is open now and take me there."
-      place: "Pharmacy at the market"
-      place_meta: "400 m · open until 20:00"
-      action: "Navigation started"
       clock: "18:42"
+      brand: "CHUK CHAT"
+      listening: "Listening"
+      thinking: "Thinking …"
+      acting: "Working …"
+      heard: "Find a pharmacy that is open now and take me there."
+      tool: "Search places"
+      tool2: "Open maps"
+      places_title: "Places"
+      places:
+        - {name: "Pharmacy at the market", address: "Marktplatz 4", meta: "Pharmacy · open until 20:00", rating: "4.7"}
+        - {name: "Linden Pharmacy", address: "Lindenstraße 21", meta: "Pharmacy · open until 19:00", rating: "4.5"}
+        - {name: "Harbour Pharmacy", address: "Kaistraße 8", meta: "Pharmacy · open until 18:30", rating: "4.4"}
+      answer: "The pharmacy at the market is open until 8 pm and is 400 m away. I started the navigation."
+      action: "Navigation started"
+      action_detail: "Pharmacy at the market"
+      pause: "Pause"
 
 finale_eyebrow: "What connects them"
 finale_title: "Nine worlds. One rule:<br>your chats belong to you."

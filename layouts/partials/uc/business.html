@@ -1,37 +1,37 @@
-<div class="app">
-    {{ partial "uc/rail.html" .p }}
-    <div class="app-main">
-        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
-        <div class="app-thread">
-            <div class="r at1"><div><p class="bubble type">{{ .m.ask }}</p></div></div>
-            <div class="r at2"><div>
-                <p class="meta">{{ .m.meta }} <svg class="i i-sm"><use href="#i-chevron-right"/></svg></p>
-                <p class="toolline"><svg class="i"><use href="#i-file"/></svg><code>{{ .m.tool }}</code><span class="spin done-at3"></span><svg class="i ok ok-at3"><use href="#i-check"/></svg></p>
-            </div></div>
-            <div class="r at3"><div>
-                <div class="mcard pdf">
-                    <div class="pdf-head">
-                        <span class="pdf-ico">PDF</span>
-                        <span class="pdf-name">{{ .m.file }}</span>
-                        <span class="pdf-dl"><svg class="i"><use href="#i-download"/></svg>{{ .m.download }}</span>
-                    </div>
-                    <div class="pdf-page">
-                        <div class="doc-top"><b>{{ .m.doc_title }}</b><span>{{ .m.doc_no }}</span></div>
-                        <p class="doc-to">{{ .m.doc_to }}</p>
-                        {{ range .m.rows }}<div class="doc-row"><span>{{ index . 0 }}</span><span>{{ index . 1 }}</span></div>{{ end }}
-                        <div class="doc-row doc-total"><span>{{ .m.total_label }}</span><span>{{ .m.total }}</span></div>
-                    </div>
-                </div>
-            </div></div>
-            <div class="r at4"><div><p class="bubble type">{{ .m.ask2 }}</p></div></div>
+{{ $steps := slice }}{{ range .m.steps }}{{ $steps = $steps | append (dict "kind" "run" "name" .) }}{{ end }}
+<div class="app app--split" data-shut="4">
+    {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
+    <div class="a-chat">
+        <div class="a-thread"><div class="a-col">
+            <div class="r at1"><div><div class="a-user"><p class="a-bubble type">{{ .m.ask }}</p></div></div></div>
+            {{ partial "uc/a-tl.html" (dict "at" 2 "fold" 3 "running" .m.running "meta" .m.meta "steps" $steps) }}
+            <div class="r at3"><div>{{ partial "uc/a-art.html" (dict "icon" "pdf" "title" .m.art_title "sub" .m.art_sub "p" .p) }}</div></div>
+            <div class="r at4"><div><div class="a-user"><p class="a-bubble type">{{ .m.ask2 }}</p></div></div></div>
             <div class="r at5"><div>
-                <div class="mcard event">
-                    <span class="event-ico"><svg class="i"><use href="#i-calendar"/></svg></span>
-                    <span class="event-text"><b>{{ .m.event }}</b><small>{{ .m.event_time }}</small></span>
-                    <span class="btn-accent">{{ .m.event_btn }}</span>
+                <div class="a-mail">
+                    <div class="a-mail-h"><svg class="i18"><use href="#h-email"/></svg><span>{{ .m.mail_subject }}</span></div>
+                    <div class="a-mail-b">
+                        <p class="a-mail-row"><span>To</span>{{ .m.mail_to }}</p>
+                        <p class="a-mail-t">{{ .m.mail_body }}</p>
+                        <span class="a-mail-btn"><svg class="z16"><use href="#h-link01"/></svg>{{ .m.mail_button }}</span>
+                    </div>
                 </div>
             </div></div>
-        </div>
-        {{ partial "uc/input.html" .p }}
+        </div></div>
+        {{ partial "uc/a-composer.html" .p }}
     </div>
+    <div class="a-scrim pan3"></div>
+    <div class="a-panel pan3"><div class="a-panel-in">
+        {{ partial "uc/a-ph.html" (dict "title" .m.art_title "type" .m.art_type "icon" "pdf" "p" .p) }}
+        <div class="a-pb a-pb--pdf">
+            <div class="a-page f at3" style="--d: 3">
+                <p class="doc-from">{{ .m.doc_from }}</p>
+                <div class="doc-top"><b>{{ .m.doc_title }}</b><span>{{ .m.doc_no }}</span></div>
+                <p class="doc-to">{{ .m.doc_to }}</p>
+                {{ range .m.rows }}<div class="doc-row"><span>{{ index . 0 }}</span><span>{{ index . 1 }}</span></div>{{ end }}
+                <div class="doc-row doc-total"><span>{{ .m.total_label }}</span><span>{{ .m.total }}</span></div>
+            </div>
+        </div>
+        {{ partial "uc/a-pf.html" .p }}
+    </div></div>
 </div>

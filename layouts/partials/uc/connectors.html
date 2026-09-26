@@ -1,29 +1,19 @@
+{{ $steps := slice }}{{ range .m.steps }}{{ $steps = $steps | append (dict "kind" "run" "name" .) }}{{ end }}
+{{ $steps = $steps | append (dict "kind" "search" "detail" .m.search) }}
 <div class="app">
-    {{ partial "uc/rail.html" .p }}
-    <div class="app-main">
-        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
-        <div class="app-thread">
-            <div class="r at1"><div><p class="bubble type">{{ .m.ask }}</p></div></div>
-            <div class="r at2"><div>
-                <p class="meta">{{ .m.meta }} <svg class="i i-sm"><use href="#i-chevron-right"/></svg></p>
-                <ul class="calls">
-                    {{ range $i, $c := .m.calls }}
-                    <li class="f at2" style="--d: {{ $i }}">
-                        <img src="/logos/connectors/{{ $c.logo }}.png" alt="" width="22" height="22" loading="lazy" decoding="async">
-                        <span class="call-name">{{ $c.name }}</span>
-                        <span class="call-res">{{ $c.result }}</span>
-                        <span class="spin done-at3"></span><svg class="i ok ok-at3"><use href="#i-check"/></svg>
-                    </li>
-                    {{ end }}
-                </ul>
-            </div></div>
-            <div class="r at4"><div>
-                <div class="answer stream at4">
+    {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
+    <div class="a-chat">
+        <div class="a-thread"><div class="a-col">
+            <div class="r at1"><div><div class="a-user"><p class="a-bubble type">{{ .m.ask }}</p></div></div></div>
+            {{ partial "uc/a-tl.html" (dict "at" 2 "fold" 3 "running" .m.running "meta" .m.meta "steps" $steps) }}
+            <div class="r at3"><div>
+                <div class="a-ai stream at3">
                     <p><strong>{{ .m.lead }}</strong></p>
                     <ul>{{ range .m.answer }}<li>{{ . }}</li>{{ end }}</ul>
                 </div>
             </div></div>
-        </div>
-        {{ partial "uc/input.html" .p }}
+            <div class="r at4"><div>{{ partial "uc/a-acts.html" (dict) }}</div></div>
+        </div></div>
+        {{ partial "uc/a-composer.html" .p }}
     </div>
 </div>

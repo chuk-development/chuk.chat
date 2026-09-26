@@ -4,13 +4,13 @@
 {{ $total := len $p.worlds }}
 {{/* Scroll steps per world: the section progress (0..1) at which each step starts. */}}
 {{ $steps := dict
-    "private"     "0.06,0.24,0.46,0.6"
+    "private"     "0.06,0.24,0.44,0.6"
     "founders"    "0.05,0.2,0.36,0.54,0.68"
-    "business"    "0.05,0.2,0.34,0.52,0.66"
-    "connectors"  "0.06,0.22,0.4,0.56"
-    "models"      "0.06,0.26,0.46,0.62"
+    "business"    "0.05,0.2,0.36,0.52,0.66"
+    "connectors"  "0.06,0.22,0.42,0.58"
+    "models"      "0.05,0.17,0.3,0.43,0.56,0.68"
     "engineers"   "0.05,0.2,0.36,0.52,0.66"
-    "prototypers" "0.05,0.2,0.38,0.52,0.66"
+    "prototypers" "0.05,0.2,0.36,0.52,0.66"
     "research"    "0.06,0.24,0.42,0.6"
     "onthego"     "0.06,0.24,0.44,0.62"
 }}
@@ -18,6 +18,7 @@
 <div class="uc" id="uc">
 
 {{ partial "uc/sprite.html" . }}
+{{ partial "uc/app-icons.html" . }}
 
 <!-- Fixed backdrop: one scene per world, cross-faded while scrolling -->
 <div class="uc-sky" id="ucSky" data-scene="paper" aria-hidden="true">
@@ -79,15 +80,17 @@
     <h1 class="uc-hero-title">{{ $p.hero_title | safeHTML }}</h1>
     <p class="uc-hero-lead">{{ $p.hero_lead }}</p>
 
-    <div class="uc-hero-input" aria-hidden="true">
-        <span class="uc-hero-text"><span id="ucHeroType">{{ $p.input_placeholder }}</span><span class="uc-caret"></span></span>
-        <span class="uc-hero-row">
-            <span class="app-round"><svg class="i"><use href="#i-plus"/></svg></span>
-            <span class="app-grow"></span>
-            <span class="app-mode"><svg class="i"><use href="#i-bolt"/></svg>{{ $p.mode_label }}<svg class="i i-sm"><use href="#i-chevron-down"/></svg></span>
-            <span class="app-round"><svg class="i"><use href="#i-mic"/></svg></span>
-        </span>
-        <span class="app-send"><svg class="i"><use href="#i-send"/></svg></span>
+    <div class="uc-hero-input a-vars" aria-hidden="true">
+        <div class="a-composer">
+            <div class="a-field"><span id="ucHeroType">{{ $p.input_placeholder }}</span><span class="uc-caret"></span></div>
+            <div class="a-row">
+                <span class="a-btn a-plus"><svg class="z24"><use href="#h-plus-sign"/></svg></span>
+                <span class="a-grow"></span>
+                <span class="a-pill"><svg class="z15"><use href="#h-flash"/></svg><b>{{ $p.mode_label }}</b><svg class="z12 a-dn"><use href="#h-arrow-down01"/></svg></span>
+                <span class="a-btn a-mic"><svg class="z22"><use href="#h-mic02"/></svg></span>
+                <span class="a-send"><svg class="z26"><use href="#h-send-horizontal"/></svg></span>
+            </div>
+        </div>
     </div>
     {{ $prompts := slice }}
     {{ range $p.worlds }}
@@ -111,7 +114,7 @@
 {{ range $i, $w := $p.worlds }}
 {{ $at := index $steps $w.id }}
 {{ $n := len (split $at ",") }}
-<section class="uc-world w-{{ $w.id }} tone-{{ $w.tone }}{{ range seq $n }} s{{ . }}{{ end }}" id="{{ $w.id }}" data-scene="{{ $w.scene }}" data-at="{{ $at }}"{{ if eq $w.id "private" }} data-scramble-at="3"{{ end }} style="--len: {{ add 170 (mul $n 20) }}vh">
+<section class="uc-world w-{{ $w.id }} tone-{{ $w.tone }}{{ range seq $n }} s{{ . }}{{ end }}" id="{{ $w.id }}" data-scene="{{ $w.scene }}" data-at="{{ $at }}"{{ if eq $w.id "private" }} data-scramble-at="4"{{ end }} style="--len: {{ add 170 (mul $n 20) }}vh">
     <div class="uc-pin">
         <div class="uc-grid">
             <div class="uc-copy">

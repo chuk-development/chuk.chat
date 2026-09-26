@@ -1,49 +1,52 @@
-<div class="app app--split">
-    {{ partial "uc/rail.html" .p }}
-    <div class="app-main">
-        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
-        <div class="app-thread">
-            <div class="r at1"><div><p class="bubble type">{{ .m.ask }}</p></div></div>
-            <div class="r at2"><div>
-                <p class="toolline"><svg class="i"><use href="#i-sparkle"/></svg><code>{{ .m.diagram }}</code><svg class="i ok"><use href="#i-check"/></svg></p>
-            </div></div>
-            <div class="r at3"><div><p class="bubble type">{{ .m.ask2 }}</p></div></div>
+{{ $steps := slice }}{{ range .m.steps }}{{ $steps = $steps | append (dict "kind" "run" "name" .) }}{{ end }}
+<div class="app app--split" data-shut="5">
+    {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
+    <div class="a-chat">
+        <div class="a-thread"><div class="a-col">
+            <div class="r at1"><div><div class="a-user"><p class="a-bubble type">{{ .m.ask }}</p></div></div></div>
+            {{ partial "uc/a-tl.html" (dict "at" 2 "fold" 3 "running" "Running artifact manager" "meta" .m.meta "steps" $steps) }}
+            <div class="r at3"><div>{{ partial "uc/a-art.html" (dict "icon" "draw" "title" .m.art1_title "sub" .m.art1_sub "p" .p) }}</div></div>
             <div class="r at4"><div>
-                <p class="toolline"><svg class="i"><use href="#i-code"/></svg><code>{{ .m.proto }}</code><svg class="i ok"><use href="#i-check"/></svg></p>
+                <div class="a-user"><p class="a-bubble type">{{ .m.ask2 }}</p></div>
+                <div class="a-tl"><p class="a-tl-head"><span>{{ .m.meta2 }}</span><svg class="z16"><use href="#h-arrow-right01"/></svg></p></div>
+                {{ partial "uc/a-art.html" (dict "icon" "code-m" "title" .m.art2_title "sub" .m.art2_sub "p" .p) }}
             </div></div>
             <div class="r at5"><div>
-                <p class="toolline"><svg class="i"><use href="#i-image"/></svg><code>generate_image</code><svg class="i ok"><use href="#i-check"/></svg></p>
+                <div class="a-user"><p class="a-bubble type">{{ .m.ask3 }}</p></div>
+                <div class="a-tl"><p class="a-tl-head"><span>{{ .m.meta3 }}</span><svg class="z16"><use href="#h-arrow-right01"/></svg></p></div>
+                <div class="a-gen">
+                    <span class="gen-sun"></span><span class="gen-hill gen-hill--a"></span><span class="gen-hill gen-hill--b"></span><span class="gen-phone"><i></i><i></i><i></i></span>
+                    <span class="a-gen-pill"><svg class="z10"><use href="#h-sparkles"/></svg>{{ .m.image_model }}</span>
+                </div>
             </div></div>
-        </div>
-        {{ partial "uc/input.html" .p }}
+        </div></div>
+        {{ partial "uc/a-composer.html" .p }}
     </div>
-    <div class="app-panel app-panel--canvas f at2">
-        <div class="panel-tabs">
-            <span class="panel-file"><svg class="i"><use href="#i-code"/></svg><span class="pf-a">{{ .m.diagram }}</span><span class="pf-b">{{ .m.proto }}</span></span>
-            <span class="panel-tab is-on">{{ if .de }}Vorschau{{ else }}Preview{{ end }}</span>
-        </div>
-        <div class="canvas">
-            <svg class="flow" viewBox="0 0 300 340">
-                {{ range $i, $n := .m.nodes }}
-                {{ $y := add 14 (mul $i 84) }}
-                <rect class="dr" pathLength="1" x="50" y="{{ $y }}" width="200" height="48" rx="12" style="--d: {{ $i }}"/>
-                <text class="dt" x="150" y="{{ add $y 29 }}" text-anchor="middle" style="--d: {{ $i }}">{{ $n }}</text>
-                {{ if lt $i 3 }}<path class="dr" pathLength="1" d="M150 {{ add $y 50 }} V{{ add $y 80 }} M143 {{ add $y 72 }} L150 {{ add $y 80 }} L157 {{ add $y 72 }}" style="--d: {{ $i }}"/>{{ end }}
-                {{ end }}
-            </svg>
-            <div class="proto">
-                <div class="proto-phone">
-                    <span class="proto-hero r at5"><span><span class="genimg-art"><span></span><span></span><span></span></span></span></span>
+    <div class="a-scrim pan3"></div>
+    <div class="a-panel pan3"><div class="a-panel-in">
+        <div class="until4">{{ partial "uc/a-ph.html" (dict "title" .m.art1_title "type" .m.art1_type "icon" "draw" "p" .p) }}</div>
+        <div class="from4">{{ partial "uc/a-ph.html" (dict "title" .m.art2_title "type" .m.art2_type "icon" "code-m" "p" .p) }}</div>
+        <div class="a-pb">
+            <div class="xd until4">
+                <span class="xd-fit"><svg class="i16"><use href="#h-fit"/></svg></span>
+                <svg class="xd-svg" viewBox="0 0 320 360">
+                    {{ range $i, $n := .m.nodes }}
+                    {{ $y := add 18 (mul $i 86) }}
+                    <path class="xd-s" pathLength="1" style="--d: {{ $i }}" d="M{{ add 62 (mod $i 2) }} {{ add $y 2 }} C 120 {{ sub $y 1 }}, 200 {{ add $y 1 }}, {{ sub 258 (mod $i 2) }} {{ $y }} C 261 {{ add $y 18 }}, 259 {{ add $y 34 }}, 257 {{ add $y 50 }} C 190 {{ add $y 52 }}, 130 {{ add $y 49 }}, 63 {{ add $y 51 }} C 60 {{ add $y 34 }}, 61 {{ add $y 16 }}, {{ add 62 (mod $i 2) }} {{ add $y 2 }}"/>
+                    <text class="xd-t" x="160" y="{{ add $y 32 }}" text-anchor="middle" style="--d: {{ $i }}">{{ $n }}</text>
+                    {{ if lt $i 3 }}<path class="xd-s" pathLength="1" style="--d: {{ $i }}" d="M160 {{ add $y 54 }} C 161 {{ add $y 64 }}, 159 {{ add $y 72 }}, 160 {{ add $y 82 }} M152 {{ add $y 73 }} L160 {{ add $y 83 }} L168 {{ add $y 72 }}"/>{{ end }}
+                    {{ end }}
+                </svg>
+            </div>
+            <div class="proto from4">
+                <div class="proto-page">
                     <span class="proto-logo"></span>
                     <p class="proto-title">{{ .m.proto_title }}</p>
                     <span class="proto-input">{{ .m.proto_input }}</span>
                     <span class="proto-btn">{{ .m.proto_btn }}</span>
                 </div>
             </div>
-            <div class="genimg f at5">
-                <div class="genimg-art"><span></span><span></span><span></span></div>
-                <p>{{ .m.image }}</p>
-            </div>
         </div>
-    </div>
+        {{ partial "uc/a-pf.html" .p }}
+    </div></div>
 </div>

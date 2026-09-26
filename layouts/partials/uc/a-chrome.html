@@ -1,0 +1,12 @@
+{{- /* Window chrome. Desktop: menu button and the folded sidebar rail.
+       Mobile: the floating top bar. CSS shows one or the other. */ -}}
+<span class="a-menu"><svg class="z24"><use href="#h-menu01"/></svg></span>
+<span class="a-rail">
+    <span><svg class="z24"><use href="#h-pencil-edit02"/></svg></span>
+    <span><svg class="z24"><use href="#h-image01"/></svg></span>
+</span>
+<div class="a-top">
+    <span class="a-chip"><svg class="z22"><use href="#h-menu01"/></svg></span>
+    <span class="a-title">{{ .title }}</span>
+    <span class="a-chip a-new"><svg class="z22"><use href="#h-pencil-edit02"/></svg></span>
+</div>

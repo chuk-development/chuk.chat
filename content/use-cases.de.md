@@ -12,9 +12,16 @@ hero_title: "Ein privater Chat.<br>Viele Welten."
 hero_lead: "Gründer, kleine Betriebe, Entwickler, Studierende. Alle nutzen dieselbe App für ganz unterschiedliche Arbeit. Scroll nach unten. Jede Welt ist ein echter Anwendungsfall."
 scroll_hint: "Scrollen zum Start"
 input_placeholder: "Frag mich alles!"
+disclaimer: "Du chattest mit einer KI/LLM — Fehler möglich, Wichtiges prüfen."
 mode_label: "Fast"
 worlds_label: "Zu einer Welt springen"
 of_label: "von"
+ui:
+  download: "Herunterladen"
+  open: "Öffnen"
+  preview: "Vorschau"
+  code: "Code"
+  version: "Version"
 
 worlds:
   - id: "private"
@@ -26,8 +33,9 @@ worlds:
     text: "Gesundheit, Geld, ein schwieriges Gespräch mit dem Chef. Genau das fragen Leute Chuk Chat: Dinge, die sie nie in eine datenhungrige KI tippen würden. Deine Chats werden auf deinem Gerät verschlüsselt, bevor wir sie speichern. Bei uns liegt nur Chiffretext."
     chips: ["Ende-zu-Ende verschlüsselt gespeichert", "Nie fürs Training genutzt", "Kein Tracking"]
     mock:
+      chat_title: "Gespräch mit dem Chef"
       ask: "Wie sage ich meinem Chef, dass ich ausgebrannt bin?"
-      meta: "4 s nachgedacht"
+      meta: "Thought for 4s"
       lead: "Fang mit Fakten an, nicht mit Vorwürfen."
       answer:
         - "Bitte in einem ruhigen Moment um 20 Minuten."
@@ -45,24 +53,22 @@ worlds:
     text: "Gründer recherchieren den Markt, schreiben den Pitch, entwerfen den Code und veröffentlichen eine Landingpage mit öffentlichem Link. Verbinde GitHub, Stripe oder Vercel und arbeite mit deinem echten Projekt. Deine Idee bleibt deine Idee. Wir trainieren nicht damit."
     chips: ["Web-Recherche", "Artefakte mit öffentlichem Link", "GitHub · Stripe · Vercel"]
     mock:
+      chat_title: "Spoke Landingpage"
       ask: "Bau eine Landingpage für meinen Fahrrad-Reparaturservice und veröffentliche sie."
-      meta: "12 s gearbeitet"
-      tool: "create_artifact"
-      done: "Fertig. Deine Seite ist online, jeder mit dem Link kann sie öffnen."
-      file: "spoke-landing.html"
-      tab_preview: "Vorschau"
-      tab_code: "Code"
+      running: "Running create artifact"
+      steps: ["artifact manager", "create artifact"]
+      meta: "Worked for 12s"
+      art_title: "Spoke Landingpage"
+      art_sub: "HTML · v1"
+      art_type: "HTML"
+      done: "Fertig. Deine Seite ist online, jeder mit dem Link kann sie öffnen:"
+      url: "https://artifacts.chuk.chat/k7f2-spoke"
       brand: "Spoke"
       nav: ["Preise", "Gebiete", "Buchen"]
       headline: "Fahrrad-Reparatur vor deiner Tür."
       sub: "Wir kommen zu dir. Festpreise, Termin am selben Tag."
       cta: "Reparatur buchen"
       features: ["Termin am selben Tag", "Festpreise", "Alle Marken"]
-      public: "Öffentlicher Link"
-      url: "artifacts.chuk.chat/k7f2-spoke"
-      copy: "Kopieren"
-      connected: "Verbunden"
-      connectors: ["github", "stripe", "vercel"]
 
   - id: "business"
     short: "Kleine Betriebe"
@@ -73,11 +79,15 @@ worlds:
     text: "Ein Tischler schreibt die Rechnung als sauberes PDF auf dem Weg zum nächsten Kunden. Eine Café-Inhaberin beantwortet Mails und plant die Schichten. Termine landen direkt im Kalender. Ganz ohne IT-Abteilung."
     chips: ["PDF-Dokumente", "E-Mail-Entwürfe", "Kalender und Erinnerungen"]
     mock:
+      chat_title: "Rechnung Frau Weber"
       ask: "Rechnung für Frau Weber: Küchenregal, 6 Stunden à 58 €, Material 140 €. Als PDF."
-      meta: "6 s gearbeitet"
-      tool: "typst_compile"
-      file: "Rechnung_2026-031.pdf"
-      download: "Herunterladen"
+      running: "Compiling document"
+      steps: ["typst compile"]
+      meta: "Worked for 6s"
+      art_title: "Rechnung Frau Weber"
+      art_sub: "Typst · PDF · v1"
+      art_type: "Typst · PDF"
+      doc_from: "Tischlerei Brandt · Hafenstraße 12 · 24103 Kiel"
       doc_title: "Rechnung"
       doc_no: "Nr. 2026-031"
       doc_to: "Frau Weber"
@@ -86,10 +96,11 @@ worlds:
         - ["Material", "140,00 €"]
       total_label: "Gesamt"
       total: "488,00 €"
-      ask2: "Erinner mich Dienstag um 9, sie anzurufen."
-      event: "Frau Weber anrufen"
-      event_time: "Dienstag · 09:00"
-      event_btn: "Im Kalender speichern"
+      ask2: "Schreib Frau Weber noch eine kurze Mail dazu."
+      mail_subject: "Ihre Rechnung 2026-031"
+      mail_to: "weber@example.de"
+      mail_body: "Liebe Frau Weber, vielen Dank für Ihren Auftrag. Hier ist die Rechnung für das Küchenregal. Gesamt: 488,00 €, zahlbar innerhalb von 14 Tagen. Viele Grüße, Jan Brandt"
+      mail_button: "In Mail-App öffnen"
 
   - id: "connectors"
     short: "Connectors"
@@ -100,12 +111,12 @@ worlds:
     text: "Wissensarbeiter verbinden Notion, Linear, Todoist, Dropbox und 50 weitere Dienste. Du meldest dich einmal im Browser an. Dann fragst du in normalen Worten, und Chuk Chat klickt sich für dich durch alle."
     chips: ["50+ Connectors (MCP)", "Anmeldung per OAuth", "Desktop und Android"]
     mock:
+      chat_title: "Diese Woche"
       ask: "Was ist diese Woche fällig? Schau in Linear, Todoist und Notion und mach mir einen Plan."
-      meta: "9 s gearbeitet"
-      calls:
-        - {logo: "linear", name: "Linear", result: "7 offene Issues"}
-        - {logo: "todoist", name: "Todoist", result: "12 Aufgaben"}
-        - {logo: "notion", name: "Notion", result: "3 Seiten"}
+      running: "Running todoist find-tasks"
+      steps: ["linear list issues", "todoist find-tasks"]
+      search: "Launch-Plan"
+      meta: "Worked for 9s"
       lead: "Deine Woche, der Reihe nach:"
       answer:
         - "Mo: Login-Bug fixen (Linear, hohe Priorität)"
@@ -114,7 +125,6 @@ worlds:
       orbit: ["github", "stripe", "dropbox", "figma", "calcom", "airtable", "zapier", "asana", "sentry", "canva", "supabase", "fastmail", "box", "vercel"]
 
   - id: "models"
-    prompt: "Schreib mein Anschreiben mit Kimi K3."
     short: "Modelle"
     scene: "prism"
     tone: "light"
@@ -122,25 +132,27 @@ worlds:
     title: "Schluss mit fünf KI-Abos."
     text: "Manche Modelle schreiben besser. Manche denken tiefer. Manche sind schnell und günstig. Power-User wählen für jede Nachricht ein anderes Modell und zahlen aus einem Budget: 20 € im Monat, 16 € davon als KI-Guthaben. Kein zweites Konto, keine zweite Rechnung."
     chips: ["Frontier-Open-Weight-Modelle", "Wechsel pro Nachricht", "16 € KI-Guthaben inklusive"]
+    prompt: "Schreib mein Anschreiben mit Kimi K3."
     mock:
+      chat_title: "Anschreiben"
       modes: ["Fast", "Thinking"]
+      reasoning: "Reasoning"
+      reasoning_value: "Medium"
+      more: "More models"
       models:
-        - {logo: "deepseek.svg", name: "DeepSeek V4 Pro"}
+        - {logo: "deepseek.svg", name: "DeepSeek V4 Pro 0813"}
         - {logo: "moonshot.svg", name: "Kimi K3"}
         - {logo: "zai.svg", name: "GLM 5.3"}
-        - {logo: "qwen.svg", name: "Qwen3.8"}
+        - {logo: "qwen.svg", name: "Qwen3.8 27B"}
         - {logo: "minimax.svg", name: "MiniMax M3"}
         - {logo: "mistral.svg", name: "Mistral Small 4"}
         - {logo: "openai.svg", name: "gpt-oss-120b"}
       sent:
-        - {text: "Schreib mein Anschreiben", model: 1}
-        - {text: "Prüf die Gehaltsrechnung", model: 0}
-        - {text: "Übersetz es ins Englische", model: 3}
-      credits_label: "KI-Guthaben diesen Monat"
-      credits: ["16,00 €", "15,97 €", "15,92 €", "15,90 €"]
+        - {text: "Schreib mein Anschreiben für die Stelle als Büroleitung.", model: 1, meta: "Thought for 3s", answer: "Sehr geehrte Frau Berger, hiermit bewerbe ich mich als Büroleitung…"}
+        - {text: "Prüf die Gehaltsrechnung: 4.250 € im Monat, 13 Gehälter.", model: 0, meta: "Thought for 6s", answer: "Stimmt: 4.250 € × 13 = 55.250 € im Jahr."}
+        - {text: "Übersetz das Anschreiben ins Englische.", model: 3, meta: "Thought for 2s", answer: "Dear Ms Berger, I am applying for the office manager position…"}
 
   - id: "engineers"
-    prompt: "Refactor den Auth-Service und lass den Formatter laufen."
     short: "Entwickler"
     scene: "terminal"
     tone: "dark"
@@ -148,36 +160,52 @@ worlds:
     title: "Fünf Chats laufen. Keiner wartet auf dich."
     text: "Entwickler starten in einem Chat ein Refactoring, im nächsten eine Recherche und im dritten eine Fehlersuche. Antworten streamen weiter, wenn du den Chat wechselst. Code landet in bearbeitbaren Panels, und auf dem Desktop führt eine Sandbox-Shell Befehle für dich aus."
     chips: ["Paralleles Streaming", "Code-Artefakte", "Sandbox-Shell (Desktop)"]
+    prompt: "Refactor den Auth-Service und lass den Formatter laufen."
     mock:
+      group: "Heute"
       chats:
-        - {title: "Auth-Service refactoren", live: true}
-        - {title: "Warum ist der CI-Build langsam?", live: true, finishes: true}
-        - {title: "Regex für deutsche IBANs", live: false}
-        - {title: "Migration auf Dart 3.13", live: true}
-        - {title: "Stacktrace erklären", live: false}
-      file: "auth_service.dart"
-      shell: "$ dart format lib/"
-      shell_out: "Formatted 3 files (1 changed)"
-      toast: "„Warum ist der CI-Build langsam?“ hat eine Antwort"
+        - {title: "Auth-Service refactoren", time: "14:32", live: true, active: true}
+        - {title: "Warum ist der CI-Build langsam?", time: "14:28", live: true, finishes: true}
+        - {title: "Regex für deutsche IBANs", time: "14:11", live: false}
+        - {title: "Migration auf Dart 3.13", time: "13:57", live: true}
+        - {title: "Stacktrace erklären", time: "13:40", live: false}
+      ask: "Refactor den Auth-Service und lass den Formatter laufen."
+      running: "Running bash"
+      search: "dart token refresh pattern"
+      bash: "dart format lib/"
+      meta: "Worked for 21s"
+      answer: "Ich habe den Token-Refresh in eine eigene Methode gezogen und einen Retry ergänzt. Der Formatter hat 3 Dateien geändert."
+      art_title: "auth_service.dart"
+      art_sub: "Code · v2"
 
   - id: "prototypers"
     short: "Prototyper"
     scene: "blueprint"
     tone: "dark"
     label: "Der Prototyper"
-    title: "Zehn Ideen getestet, noch vor dem Mittag."
-    text: "Prototyper skizzieren einen Ablauf als Diagramm, machen daraus eine klickbare HTML-Seite und generieren die Bilder dazu. Jede Idee kostet Minuten statt Tage. Die guten bleiben. Der Rest fliegt raus."
-    chips: ["Diagramme (Mermaid, Excalidraw)", "HTML-Prototypen", "Bildgenerierung"]
+    title: "Von der Skizze zum klickbaren Prototyp."
+    text: "Prototyper skizzieren einen Ablauf, machen daraus eine klickbare HTML-Seite und generieren die Bilder dazu. Jede Idee kostet Minuten statt Tage. Die guten bleiben. Der Rest fliegt raus."
+    chips: ["Excalidraw-Skizzen", "HTML-Vorschau", "Bildgenerierung"]
     mock:
+      chat_title: "Signup-Ablauf"
       ask: "Skizzier einen Signup-Ablauf mit E-Mail-Code."
+      steps: ["artifact manager"]
+      meta: "Worked for 8s"
+      art1_title: "Signup-Ablauf"
+      art1_sub: "Excalidraw sketch · v1"
+      art1_type: "Excalidraw sketch"
       nodes: ["E-Mail eingeben", "Code gesendet", "Code eingeben", "Willkommen"]
-      ask2: "Mach es klickbar. Und ein Hero-Bild dazu."
-      diagram: "signup-flow.mmd"
-      proto: "signup.html"
+      ask2: "Mach daraus eine klickbare Seite."
+      meta2: "Worked for 11s"
+      art2_title: "Signup-Seite"
+      art2_sub: "HTML · v1"
+      art2_type: "HTML"
       proto_title: "Konto erstellen"
       proto_input: "du@beispiel.de"
       proto_btn: "Code senden"
-      image: "hero.png · generiert"
+      ask3: "Füg ein Hero-Bild hinzu."
+      meta3: "Worked for 5s"
+      image_model: "Z-Image Turbo"
 
   - id: "research"
     short: "Recherche"
@@ -188,18 +216,25 @@ worlds:
     text: "Studierende und Forschende hängen PDFs, Notizen und Paper an und stellen Fragen dazu. Chuk Chat sucht im Web, nennt seine Quellen, zeichnet Diagramme und setzt das Ergebnis als sauberes PDF. Alte Chats bleiben durchsuchbar."
     chips: ["PDFs und Dateianhänge", "Websuche mit Quellen", "Diagramme und PDF-Export"]
     mock:
+      chat_title: "Befragungsmethoden"
       files: ["masterarbeit_entwurf.pdf", "mueller_2024.pdf"]
       ask: "Vergleich die Methoden beider Paper. Zeig die Rücklaufquoten als Diagramm."
-      meta: "14 s gearbeitet"
-      sources: ["nature.com", "arxiv.org", "destatis.de", "+ 5"]
-      chart_title: "Rücklaufquote nach Befragungsmethode"
+      running: "Searching the web"
+      search: "Rücklaufquote nach Befragungsmethode"
+      sources:
+        - {host: "nature.com", letter: "n", color: "#1F1F1F"}
+        - {host: "arxiv.org", letter: "a", color: "#B31B1B"}
+        - {host: "destatis.de", letter: "D", color: "#0B5CA8"}
+        - {host: "pewresearch.org", letter: "P", color: "#2E6E8E"}
+      source_count: "8 sources"
+      meta: "Worked for 14s"
+      lead: "Beide Paper messen die Rücklaufquote, aber Müller vergleicht vier Methoden. Persönlich wirkt am besten:"
+      chart_title: "Rücklaufquote nach Befragungsmethode (%)"
       bars:
         - {label: "Online", value: 38}
         - {label: "Telefon", value: 22}
         - {label: "Post", value: 14}
         - {label: "Persönlich", value: 61}
-      export: "methodenvergleich.pdf"
-      export_note: "Gesetztes PDF · 4 Seiten"
 
   - id: "onthego"
     short: "Unterwegs"
@@ -210,12 +245,23 @@ worlds:
     text: "Auf Android kann Chuk Chat dein Assistent sein. Halte die Home-Geste gedrückt: Er hört zu, liest mit, was auf dem Bildschirm ist, antwortet laut und handelt. Er stellt Wecker, findet Orte und startet die Navigation."
     chips: ["Android-Assistent", "Sprache rein, Sprache raus", "Orte, Routen, Wecker"]
     mock:
-      listening: "Ich höre zu…"
-      heard: "Such eine Apotheke, die jetzt offen hat, und bring mich hin."
-      place: "Apotheke am Markt"
-      place_meta: "400 m · geöffnet bis 20:00"
-      action: "Navigation gestartet"
       clock: "18:42"
+      brand: "CHUK CHAT"
+      listening: "Ich höre zu"
+      thinking: "Denke nach …"
+      acting: "Führe aus …"
+      heard: "Such eine Apotheke, die jetzt offen hat, und bring mich hin."
+      tool: "Orte suchen"
+      tool2: "Karten öffnen"
+      places_title: "Orte"
+      places:
+        - {name: "Apotheke am Markt", address: "Marktplatz 4", meta: "Apotheke · geöffnet bis 20:00", rating: "4,7"}
+        - {name: "Linden-Apotheke", address: "Lindenstraße 21", meta: "Apotheke · geöffnet bis 19:00", rating: "4,5"}
+        - {name: "Hafen-Apotheke", address: "Kaistraße 8", meta: "Apotheke · geöffnet bis 18:30", rating: "4,4"}
+      answer: "Die Apotheke am Markt hat bis 20 Uhr offen und ist 400 m entfernt. Ich habe die Navigation gestartet."
+      action: "Navigation gestartet"
+      action_detail: "Apotheke am Markt"
+      pause: "Pausieren"
 
 finale_eyebrow: "Was sie verbindet"
 finale_title: "Neun Welten. Eine Regel:<br>Deine Chats gehören dir."

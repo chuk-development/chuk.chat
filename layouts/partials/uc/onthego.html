@@ -1,27 +1,44 @@
+{{ $q1 := cond .de "„" "“" }}{{ $q2 := cond .de "“" "”" }}
 <div class="phone">
     <div class="phone-screen">
         <div class="ph-status"><span>{{ .m.clock }}</span><span class="ph-sys"><i></i><i></i><i></i></span></div>
-        <div class="ph-home">
-            {{ range seq 16 }}<span class="ph-app" style="--h: {{ mul . 23 }}"></span>{{ end }}
-        </div>
-        <div class="ph-scrim f at1"></div>
-        <div class="ph-sheet f at1">
-            <div class="ph-wave">{{ range seq 14 }}<i style="--i: {{ . }}"></i>{{ end }}</div>
-            <p class="ph-listen">{{ .m.listening }}</p>
-            <div class="r at2"><div><p class="ph-heard type">{{ .m.heard }}</p></div></div>
-            <div class="r at3"><div>
-                <div class="ph-map">
-                    <svg viewBox="0 0 280 150" preserveAspectRatio="xMidYMid slice">
-                        <rect width="280" height="150" fill="#2E3240"/>
-                        <g stroke="#454A5C" stroke-width="7" fill="none" stroke-linecap="round"><path d="M-10 40 H300"/><path d="M-10 110 H300"/><path d="M60 -10 V160"/><path d="M190 -10 V160"/><path d="M-10 150 L120 20 L300 -10"/></g>
-                        <path class="ph-route" pathLength="1" d="M34 110 H190 V40 H232" stroke="#E0765A" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                        <circle cx="34" cy="110" r="6" fill="#8AB4F8" stroke="#fff" stroke-width="2"/>
-                        <g class="ph-pin"><circle cx="232" cy="40" r="9" fill="#E0765A"/><circle cx="232" cy="40" r="3.5" fill="#fff"/></g>
-                    </svg>
-                    <p class="ph-place"><b>{{ .m.place }}</b><small>{{ .m.place_meta }}</small></p>
+        <div class="ph-home">{{ range seq 16 }}<span class="ph-app" style="--h: {{ mul . 23 }}"></span>{{ end }}</div>
+        <div class="as">
+            <div class="r at3 fold4"><div>
+                <div class="as-panel as-card">
+                    <p class="as-card-h"><svg class="z16"><use href="#h-location01"/></svg><b>{{ .m.places_title }}</b><span>{{ len .m.places }}/{{ len .m.places }}</span></p>
+                    {{ range .m.places }}
+                    <div class="as-place">
+                        <span class="as-place-t"><b>{{ .name }}</b><small>{{ .address }}</small><small class="as-dim">{{ .meta }}</small></span>
+                        <span class="as-rate"><svg class="z13"><use href="#h-star"/></svg>{{ .rating }}</span>
+                        <svg class="i16 as-nav"><use href="#h-navigation"/></svg>
+                    </div>
+                    {{ end }}
                 </div>
             </div></div>
-            <div class="ph-action f at4"><svg class="i"><use href="#i-nav"/></svg>{{ .m.action }}</div>
+            <div class="r at4"><div>
+                <div class="as-panel as-card">
+                    <div class="as-action"><span class="as-action-ic"><svg class="i18"><use href="#h-navigation"/></svg></span><span class="as-place-t"><b>{{ .m.action }}</b><small>{{ .m.action_detail }}</small></span></div>
+                </div>
+            </div></div>
+            <div class="as-panel as-main">
+                <p class="as-brand">{{ .m.brand }}</p>
+                <p class="as-status"><span class="until2">{{ .m.listening }}</span><span class="from2 until3">{{ .m.thinking }}</span><span class="from3 until4">{{ .m.acting }}</span><span class="from4">{{ .m.listening }}</span></p>
+                <div class="r at2"><div><p class="as-heard">{{ $q1 }}<span class="type">{{ .m.heard }}</span>{{ $q2 }}</p></div></div>
+                <div class="r at4"><div><p class="as-answer stream at4">{{ .m.answer }}</p></div></div>
+            </div>
+            <div class="r at3"><div>
+                <div class="as-tools">
+                    <p class="as-tool"><svg class="z18 ok"><use href="#h-tick02"/></svg>{{ .m.tool }}</p>
+                    <p class="as-tool"><span class="spin done-at4"></span><svg class="z18 ok ok-at4"><use href="#h-tick02"/></svg>{{ .m.tool2 }}</p>
+                </div>
+            </div></div>
+            <div class="as-panel as-wave">{{ range seq 21 }}<i style="--i: {{ . }}"></i>{{ end }}</div>
+            <div class="as-btns">
+                <span class="as-round"><svg class="z22"><use href="#h-plus-sign"/></svg></span>
+                <span class="as-pill"><svg class="z20"><use href="#h-mic02"/></svg><span class="until2">{{ .m.pause }}</span><span class="from2 until3">{{ .m.thinking }}</span><span class="from3 until4">{{ .m.acting }}</span><span class="from4">{{ .m.pause }}</span></span>
+                <span class="as-round"><svg class="z22"><use href="#h-cancel01"/></svg></span>
+            </div>
         </div>
         <span class="ph-bar"></span>
     </div>

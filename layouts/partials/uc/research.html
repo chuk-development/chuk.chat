@@ -1,36 +1,31 @@
+{{ $steps := slice (dict "kind" "search" "detail" .m.search "srcs" .m.sources) }}
 <div class="app">
-    {{ partial "uc/rail.html" .p }}
-    <div class="app-main">
-        <div class="app-top"><svg class="i"><use href="#i-copy"/></svg></div>
-        <div class="app-thread">
+    {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
+    <div class="a-chat">
+        <div class="a-thread"><div class="a-col">
             <div class="r at1"><div>
-                <div class="attach">{{ range .m.files }}<span class="att"><svg class="i"><use href="#i-file"/></svg>{{ . }}</span>{{ end }}</div>
-                <p class="bubble type">{{ .m.ask }}</p>
+                <div class="a-user"><div class="a-bubble">
+                    <span class="a-docs">{{ range .m.files }}<span class="a-doc"><svg class="z18"><use href="#h-file01"/></svg>{{ . }}<svg class="z14 a-open"><use href="#h-link-square02"/></svg></span>{{ end }}</span>
+                    <span class="type">{{ .m.ask }}</span>
+                </div></div>
             </div></div>
-            <div class="r at2"><div>
-                <p class="meta">{{ .m.meta }} <svg class="i i-sm"><use href="#i-chevron-right"/></svg></p>
-                <p class="sources">{{ range $i, $s := .m.sources }}<span class="src f at2" style="--d: {{ $i }}"><i></i>{{ $s }}</span>{{ end }}</p>
-            </div></div>
+            {{ partial "uc/a-tl.html" (dict "at" 2 "fold" 3 "running" .m.running "meta" .m.meta "steps" $steps) }}
             <div class="r at3"><div>
-                <div class="mcard chart">
-                    <p class="chart-title">{{ .m.chart_title }}</p>
-                    <div class="bars">
-                        {{ range $i, $b := .m.bars }}
-                        <span class="bar" style="--v: {{ $b.value }}; --d: {{ $i }}"><i><b>{{ $b.value }}%</b></i><small>{{ $b.label }}</small></span>
-                        {{ end }}
+                <div class="a-ai stream at3"><p>{{ .m.lead }}</p></div>
+                <div class="a-chart">
+                    <p class="a-chart-t">{{ .m.chart_title }}</p>
+                    <div class="a-plot">
+                        <div class="a-yax"><span>70</span><span>56</span><span>42</span><span>28</span><span>14</span><span>0</span></div>
+                        <div class="a-area">
+                            {{ range seq 0 5 }}<i class="a-gl" style="--y: {{ . }}"></i>{{ end }}
+                            <div class="a-bars">{{ range $i, $b := .m.bars }}<span class="a-bar" style="--v: {{ $b.value }}; --d: {{ $i }}"></span>{{ end }}</div>
+                        </div>
                     </div>
+                    <div class="a-xax">{{ range .m.bars }}<span>{{ .label }}</span>{{ end }}</div>
                 </div>
             </div></div>
-            <div class="r at4"><div>
-                <div class="mcard pdf pdf--mini">
-                    <div class="pdf-head">
-                        <span class="pdf-ico">PDF</span>
-                        <span class="pdf-name">{{ .m.export }}<small>{{ .m.export_note }}</small></span>
-                        <span class="pdf-dl"><svg class="i"><use href="#i-download"/></svg></span>
-                    </div>
-                </div>
-            </div></div>
-        </div>
-        {{ partial "uc/input.html" .p }}
+            <div class="r at4"><div>{{ partial "uc/a-acts.html" (dict "sources" .m.sources "count" .m.source_count) }}</div></div>
+        </div></div>
+        {{ partial "uc/a-composer.html" .p }}
     </div>
 </div>
