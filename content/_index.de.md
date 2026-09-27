@@ -4,7 +4,7 @@ title: "Chuk Chat — Privater KI-Chat aus Deutschland | Sicher & Anonym"
 description: "Chuk Chat ist ein privater KI-Chat aus Deutschland ohne Data Mining, ohne Tracking und mit Ende-zu-Ende-Verschlüsselung. Nutze eine sichere ChatGPT-Alternative mit Open-Weight-Modellen."
 keywords: "privater ki chat, deutscher ki chat, deutscher ai chat, privat chatgpt, privat gemini, privat gemien, chatgpt alternative deutschland, verschlüsselter ai chat, datenschutz ki chat, chat gbt alternative"
 aliases:
-  - "/de/use-cases/"
+  - "/use-cases/"
 
 hero_eyebrow: "Privater KI-Chat aus Deutschland"
 hero_title: "Ein privater Chat.<br>Viele Welten."

@@ -4,7 +4,7 @@ title: "Chuk Chat — Private AI Chat from Germany | Secure & Anonymous"
 description: "Chuk Chat is a private AI chat app from Germany with no data mining, no tracking, and end-to-end encryption. Use a secure ChatGPT alternative powered only by open-weight models."
 keywords: "private ai chat, german ai chat, private chatgpt, private gemini, private claude alternative, private chatgpt alternative, encrypted ai chat, privacy ai assistant, no tracking ai chat, chat gbt alternative"
 aliases:
-  - "/en/use-cases/"
+  - "/use-cases/"
 
 hero_eyebrow: "Private AI chat from Germany"
 hero_title: "One private chat.<br>Many worlds."
