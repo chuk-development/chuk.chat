@@ -1,144 +1,173 @@
 {{ define "main" }}
 {{ $de := eq .Lang "de" }}
-{{ $hero := index (where .Params.screenshots "slot" "hero") 0 }}
+{{ $p := .Params }}
+{{ $total := len $p.worlds }}
+{{/* Scroll steps per world: the section progress (0..1) at which each step starts. */}}
+{{ $steps := dict
+    "private"     "0.06,0.24,0.44,0.6"
+    "founders"    "0.05,0.2,0.36,0.54,0.68"
+    "business"    "0.05,0.2,0.36,0.52,0.66"
+    "connectors"  "0.06,0.22,0.42,0.58"
+    "models"      "0.05,0.17,0.3,0.43,0.56,0.68"
+    "engineers"   "0.05,0.2,0.36,0.52,0.66"
+    "prototypers" "0.05,0.2,0.36,0.52,0.66"
+    "research"    "0.06,0.24,0.42,0.6"
+    "onthego"     "0.06,0.24,0.44,0.62"
+}}
 
-<!-- Hero -->
-<section class="h-hero">
-    <p class="h-eyebrow">{{ .Params.brand_slogan }}</p>
-    <h1 class="h-hero-title">{{ .Params.hero_title | safeHTML }}</h1>
-    <p class="h-hero-lead">{{ .Params.hero_lead_pre | safeHTML }}{{ .Params.encryption_text }}{{ .Params.hero_lead_post | safeHTML }}</p>
-    <div class="h-ctas">
-        <a href="{{ "downloads" | relLangURL }}" class="h-btn h-btn-dark">
-            {{ .Params.cta_download }}
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg>
-        </a>
-        <a href="https://github.com/chuk-development/chuk_chat" target="_blank" rel="noopener noreferrer" class="h-btn h-btn-light">
-            {{ .Params.cta_github }} <span aria-hidden="true">&rarr;</span>
-        </a>
+<div class="uc" id="uc">
+
+{{ partial "uc/sprite.html" . }}
+{{ partial "uc/app-icons.html" . }}
+
+<!-- Fixed backdrop: one scene per world, cross-faded while scrolling -->
+<div class="uc-sky" id="ucSky" data-scene="paper" aria-hidden="true">
+    <div class="uc-scene uc-scene--night">
+        <div class="sc-stars"></div>
+        <div class="sc-stars sc-stars--b"></div>
+        <div class="sc-moon"></div>
     </div>
-    <p class="h-hero-note">{{ .Params.open_source_line }}</p>
-
-    {{ with $hero }}
-    {{ $path := printf "assets/screenshots/%s" .src }}
-    <figure class="h-hero-shot">
-        <img src="{{ partial "app-shot.html" (dict "path" $path "width" 1600) }}"
-             srcset="{{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w, {{ partial "app-shot.html" (dict "path" $path "width" 1600) }} 1600w, {{ partial "app-shot.html" (dict "path" $path "width" 2400) }} 2400w"
-             sizes="(max-width: 1240px) 100vw, 1200px"
-             width="1600" height="900" alt="{{ .alt }}" fetchpriority="high" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 2400) }}">
-    </figure>
-    {{ end }}
-</section>
-
-<!-- Tools -->
-<section class="h-section h-section-tight" aria-label="{{ .Params.tools_title }}">
-    <p class="h-center-label">{{ .Params.tools_title }}</p>
-    <div class="h-logo-grid">
-        {{ range .Params.tools }}
-        <a class="h-logo-tile" href="{{ .href }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
-            <img src="/logos/tools/{{ .logo }}?v={{ readFile (printf "static/logos/tools/%s" .logo) | md5 | truncate 8 "" }}" alt="" width="24" height="24" loading="lazy" decoding="async">
-            <span class="h-logo-name">{{ .name }}</span>
-        </a>
-        {{ end }}
+    <div class="uc-scene uc-scene--dawn">
+        <div class="sc-sun"></div>
+        <svg class="sc-hills" viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0 210 C240 150 420 190 640 170 C860 150 1080 110 1440 160 L1440 320 L0 320 Z" fill="#E7B070" opacity=".55"/><path d="M0 250 C200 220 460 240 720 225 C980 210 1200 200 1440 230 L1440 320 L0 320 Z" fill="#D9955A" opacity=".6"/></svg>
     </div>
-</section>
-
-<!-- Feature rows -->
-<section class="h-section">
-    {{ range $i, $s := where .Params.screenshots "slot" "row" }}
-    {{ $path := printf "assets/screenshots/%s" $s.src }}
-    <div class="h-row{{ if modBool $i 2 }}{{ else }} h-row-flip{{ end }}">
-        <div class="h-row-text">
-            <p class="h-eyebrow">{{ $s.alt }}</p>
-            <h2 class="h-row-title">{{ $s.caption }}</h2>
-        </div>
-        <div class="h-row-media">
-            <img src="{{ partial "app-shot.html" (dict "path" $path "width" 1600) }}"
-                 srcset="{{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w, {{ partial "app-shot.html" (dict "path" $path "width" 1600) }} 1600w"
-                 sizes="(max-width: 900px) 100vw, 780px"
-                 width="1600" height="900" alt="{{ $s.alt }}" loading="lazy" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 2400) }}">
-        </div>
+    <div class="uc-scene uc-scene--day">
+        <div class="sc-awning"></div>
+        <div class="sc-beams"></div>
     </div>
-    {{ end }}
-
-    <div class="h-tiles">
-        {{ range where .Params.screenshots "slot" "tile" }}
-        {{ $path := printf "assets/screenshots/%s" .src }}
-        <div class="h-tile">
-            <p class="h-tile-title">{{ .caption }}</p>
-            <p class="h-tile-sub">{{ .alt }}</p>
-            <div class="h-tile-media">
-                <img src="{{ partial "app-shot.html" (dict "path" $path "width" 960) }}"
-                     srcset="{{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w, {{ partial "app-shot.html" (dict "path" $path "width" 1600) }} 1600w"
-                     sizes="(max-width: 900px) 100vw, 600px"
-                     width="960" height="540" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 2400) }}">
-            </div>
-        </div>
-        {{ end }}
-    </div>
-</section>
-
-<!-- Mobile (store screenshots per locale, live from the chuk_chat repo) -->
-{{ with .Params.mobile_screenshots }}
-{{ $locale := cond $de "de-DE" "en-US" }}
-<section class="h-section">
-    <div class="h-panel h-mobile">
-        <h2 class="h-section-title">{{ $.Params.mobile_title }}</h2>
-        <div class="h-phones">
-            {{ range . }}
-            {{ $path := printf "fastlane/metadata/android/%s/images/phoneScreenshots/%s" $locale .src }}
-            <figure class="h-phone">
-                <img src="{{ partial "app-shot.html" (dict "path" $path "width" 480) }}"
-                     srcset="{{ partial "app-shot.html" (dict "path" $path "width" 480) }} 480w, {{ partial "app-shot.html" (dict "path" $path "width" 960) }} 960w"
-                     sizes="(max-width: 768px) 62vw, 220px"
-                     width="480" height="949" alt="{{ .alt }}" loading="lazy" decoding="async" data-image-viewer data-full="{{ partial "app-shot.html" (dict "path" $path "width" 960) }}">
-                <figcaption>{{ .caption }}</figcaption>
-            </figure>
+    <div class="uc-scene uc-scene--network">
+        <svg class="sc-web" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><g stroke="#9DB39A" stroke-width="1" fill="none" opacity=".55"><path d="M110 140 L720 450 L1320 120"/><path d="M60 520 L720 450 L1380 560"/><path d="M200 820 L720 450 L1240 830"/><path d="M420 60 L720 450 L1010 40"/><path d="M110 140 L60 520 L200 820"/><path d="M1320 120 L1380 560 L1240 830"/></g><circle cx="720" cy="450" r="260" stroke="#B7C8B3" stroke-dasharray="3 7" fill="none"/><circle cx="720" cy="450" r="420" stroke="#C9D6C5" stroke-dasharray="2 9" fill="none"/></svg>
+        {{ with (index (where $p.worlds "id" "connectors") 0) }}
+        <div class="sc-orbit">
+            {{ range $i, $logo := .mock.orbit }}
+            <span class="sc-node" style="--i: {{ $i }}"><img src="/logos/connectors/{{ $logo }}.png" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
             {{ end }}
         </div>
-    </div>
-</section>
-{{ end }}
-
-<!-- Models -->
-{{ with .Params.models }}
-<section class="h-section" aria-label="{{ $.Params.models_title }}">
-    <h2 class="h-section-title">{{ $.Params.models_title }}</h2>
-    <div class="h-logo-grid h-logo-grid-models">
-        {{ range . }}
-        <span class="h-logo-tile">
-            <img src="/logos/models/{{ .logo }}?v={{ readFile (printf "static/logos/models/%s" .logo) | md5 | truncate 8 "" }}" alt="" width="24" height="24" loading="lazy" decoding="async">
-            <span class="h-logo-name">{{ .name }}</span>
-        </span>
         {{ end }}
     </div>
+    <div class="uc-scene uc-scene--prism">
+        <span class="sc-blob sc-blob--a"></span>
+        <span class="sc-blob sc-blob--b"></span>
+        <span class="sc-blob sc-blob--c"></span>
+        <span class="sc-blob sc-blob--d"></span>
+    </div>
+    <div class="uc-scene uc-scene--terminal">
+        <div class="sc-grid"></div>
+        <div class="sc-scan"></div>
+    </div>
+    <div class="uc-scene uc-scene--blueprint">
+        <div class="sc-grid"></div>
+        <svg class="sc-marks" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"><g stroke="rgba(255,255,255,.28)" fill="none" stroke-width="1.2"><circle cx="190" cy="180" r="70"/><path d="M120 180 H260 M190 110 V250"/><rect x="1160" y="640" width="180" height="120" rx="6"/><path d="M1160 700 H1340 M1250 640 V760"/><path d="M80 760 L300 760 M80 750 V770 M300 750 V770"/><path d="M1200 120 l60 60 l-60 60 l-60 -60 Z"/></g></svg>
+    </div>
+    <div class="uc-scene uc-scene--library">
+        <div class="sc-ruled"></div>
+    </div>
+    <div class="uc-scene uc-scene--street">
+        <svg class="sc-city" viewBox="0 0 1440 360" preserveAspectRatio="xMidYMax slice"><g fill="#141729"><path d="M0 360 V210 H70 V160 H150 V230 H210 V120 H300 V200 H350 V250 H420 V140 H520 V220 H580 V90 H660 V190 H720 V240 H800 V150 H890 V210 H950 V110 H1040 V200 H1100 V250 H1170 V130 H1260 V200 H1320 V170 H1440 V360 Z"/></g><g fill="#F6C977" class="sc-lights"><rect x="228" y="140" width="10" height="12"/><rect x="258" y="170" width="10" height="12"/><rect x="440" y="160" width="10" height="12"/><rect x="470" y="190" width="10" height="12"/><rect x="600" y="110" width="10" height="12"/><rect x="630" y="140" width="10" height="12"/><rect x="600" y="170" width="10" height="12"/><rect x="820" y="170" width="10" height="12"/><rect x="850" y="200" width="10" height="12"/><rect x="970" y="130" width="10" height="12"/><rect x="1000" y="160" width="10" height="12"/><rect x="1190" y="150" width="10" height="12"/><rect x="1220" y="180" width="10" height="12"/><rect x="90" y="180" width="10" height="12"/><rect x="120" y="210" width="10" height="12"/></g></svg>
+    </div>
+</div>
+
+<!-- Progress: one segment per world -->
+<nav class="uc-progress" id="ucProgress" aria-label="{{ $p.worlds_label }}">
+    {{ range $i, $w := $p.worlds }}
+    <a class="uc-progress-seg" href="#{{ $w.id }}" data-for="{{ $w.id }}" title="{{ $w.short }}"><span class="uc-progress-fill"></span><span class="visually-hidden">{{ $w.short }}</span></a>
+    {{ end }}
+</nav>
+
+<!-- Hero -->
+<section class="uc-hero">
+    <p class="h-eyebrow">{{ $p.hero_eyebrow }}</p>
+    <h1 class="uc-hero-title">{{ $p.hero_title | safeHTML }}</h1>
+    <p class="uc-hero-lead">{{ $p.hero_lead }}</p>
+    <div class="h-ctas h-ctas-center uc-hero-ctas">
+        <a href="{{ "downloads" | relLangURL }}" class="h-btn h-btn-dark">
+            {{ $p.hero_cta_download }}
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 21h14"/></svg>
+        </a>
+        <a href="https://chat.chuk.chat/" target="_blank" rel="noopener" class="h-btn h-btn-light">Web App <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <p class="h-hero-note uc-hero-note">{{ $p.open_source_line }}</p>
+
+    <div class="uc-hero-input a-vars" aria-hidden="true">
+        <div class="a-composer">
+            <div class="a-field"><span id="ucHeroType">{{ $p.input_placeholder }}</span><span class="uc-caret"></span></div>
+            <div class="a-row">
+                <span class="a-btn a-plus"><svg class="z24"><use href="#h-plus-sign"/></svg></span>
+                <span class="a-grow"></span>
+                <span class="a-pill"><svg class="z15"><use href="#h-flash"/></svg><b>{{ $p.mode_label }}</b><svg class="z12 a-dn"><use href="#h-arrow-down01"/></svg></span>
+                <span class="a-btn a-mic"><svg class="z22"><use href="#h-mic02"/></svg></span>
+                <span class="a-send"><svg class="z26"><use href="#h-send-horizontal"/></svg></span>
+            </div>
+        </div>
+    </div>
+    {{ $prompts := slice }}
+    {{ range $p.worlds }}
+        {{ $x := .prompt }}
+        {{ with .mock.heard }}{{ $x = . }}{{ end }}
+        {{ with .mock.ask }}{{ $x = . }}{{ end }}
+        {{ with $x }}{{ $prompts = $prompts | append . }}{{ end }}
+    {{ end }}
+    <script type="application/json" id="ucHeroPrompts">{{ $prompts | jsonify | safeJS }}</script>
+
+    <nav class="uc-worldnav" aria-label="{{ $p.worlds_label }}">
+        {{ range $i, $w := $p.worlds }}
+        <a href="#{{ $w.id }}" class="uc-worldnav-item"><span class="uc-swatch uc-swatch--{{ $w.scene }}" aria-hidden="true"></span>{{ $w.short }}</a>
+        {{ end }}
+    </nav>
+
+    <p class="uc-scrollhint"><span class="uc-mouse" aria-hidden="true"></span>{{ $p.scroll_hint }}</p>
+</section>
+
+<!-- Worlds -->
+{{ range $i, $w := $p.worlds }}
+{{ $at := index $steps $w.id }}
+{{ $n := len (split $at ",") }}
+<section class="uc-world w-{{ $w.id }} tone-{{ $w.tone }}{{ range seq $n }} s{{ . }}{{ end }}" id="{{ $w.id }}" data-scene="{{ $w.scene }}" data-at="{{ $at }}"{{ if eq $w.id "private" }} data-scramble-at="4"{{ end }} style="--len: {{ add 170 (mul $n 20) }}vh">
+    <div class="uc-pin">
+        <div class="uc-grid">
+            <div class="uc-copy">
+                <p class="uc-index"><span>{{ printf "%02d" (add $i 1) }}</span> {{ $p.of_label }} {{ printf "%02d" $total }}</p>
+                <p class="uc-label">{{ $w.label }}</p>
+                <h2 class="uc-title">{{ $w.title }}</h2>
+                <p class="uc-text">{{ $w.text }}</p>
+                <ul class="uc-chips">
+                    {{ range $w.chips }}<li>{{ . }}</li>{{ end }}
+                </ul>
+            </div>
+            <div class="uc-stage" aria-hidden="true">
+                {{ partial (printf "uc/%s.html" $w.id) (dict "w" $w "m" $w.mock "p" $p "de" $de) }}
+            </div>
+        </div>
+    </div>
 </section>
 {{ end }}
 
-<!-- Architecture -->
-<section class="h-section">
-    <div class="h-split-head">
-        <div>
-            <p class="h-eyebrow">{{ .Params.architecture_tag }}</p>
-            <h2 class="h-section-title">{{ .Params.architecture_title }}</h2>
-        </div>
-        <p class="h-section-lead">{{ replace .Params.architecture_lead "<br>" " " | safeHTML }}</p>
-    </div>
-    <div class="h-cards">
-        {{ range .Params.features }}
-        <div class="h-card">
-            <span class="h-card-icon" aria-hidden="true">
-                {{ if eq .icon "shield" }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                {{ else if eq .icon "lock" }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                {{ else if eq .icon "layers" }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                {{ else }}
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+<!-- Finale: every world folds into one lock -->
+<section class="uc-world uc-finale s1 s2 s3" id="together" data-scene="paper" data-at="0.08,0.4,0.62" style="--len: 230vh">
+    <div class="uc-pin">
+        <div class="uc-finale-inner">
+            <div class="uc-converge" aria-hidden="true">
+                {{ $logos := slice "deepseek" "moonshot" "qwen" "zai" "minimax" "mistral" "openai" "meta" "google" "xiaomi" }}
+                {{ $step := div 360.0 (len $logos) }}
+                {{ range $i, $l := $logos }}
+                <span class="uc-orb" style="--a: {{ mul $i $step }}deg"><img src="/logos/models/{{ $l }}.svg?v={{ readFile (printf "static/logos/models/%s.svg" $l) | md5 | truncate 8 "" }}" alt="" width="32" height="32" loading="lazy" decoding="async"></span>
                 {{ end }}
-            </span>
+                <span class="uc-lock"><svg class="i"><use href="#i-lock"/></svg></span>
+            </div>
+            <p class="h-eyebrow f at1">{{ $p.finale_eyebrow }}</p>
+            <h2 class="uc-finale-title f at1" style="--d: 1">{{ $p.finale_title | safeHTML }}</h2>
+            <p class="uc-finale-text f at2">{{ $p.finale_text }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="h-section uc-facts-wrap">
+    <div class="h-cards">
+        {{ range $p.facts }}
+        <div class="h-card">
+            <span class="h-card-icon" aria-hidden="true"><svg class="i i-lg"><use href="#i-{{ .icon }}"/></svg></span>
             <h3 class="h-card-title">{{ .title }}</h3>
-            <p class="h-card-text">{{ .description }}</p>
+            <p class="h-card-text">{{ .text }}</p>
         </div>
         {{ end }}
     </div>
@@ -186,21 +215,25 @@
     </div>
 </section>
 
-<!-- Data + closing CTA -->
-<section class="h-section h-closing">
-    <p class="h-eyebrow">{{ .Params.data_title }}</p>
-    <p class="h-closing-data">{{ .Params.data_text | safeHTML }}</p>
-    <h2 class="h-closing-title">{{ .Params.try_title }}</h2>
-    <p class="h-closing-text">{{ .Params.try_text | safeHTML }}</p>
+<section class="h-section h-closing uc-cta">
+    <h2 class="h-closing-title">{{ $p.cta_title }}</h2>
+    <p class="h-closing-text">{{ $p.cta_text }}</p>
     <div class="h-ctas h-ctas-center">
-        <a href="{{ "downloads" | relLangURL }}" class="h-btn h-btn-dark">{{ .Params.cta_download }}</a>
-        <a href="https://chat.chuk.chat/" target="_blank" rel="noopener" class="h-btn h-btn-light">Web App <span aria-hidden="true">&rarr;</span></a>
+        <a href="{{ "downloads" | relLangURL }}" class="h-btn h-btn-dark">{{ $p.cta_download }}</a>
+        <a href="https://chat.chuk.chat/" target="_blank" rel="noopener" class="h-btn h-btn-light">{{ $p.cta_web }} <span aria-hidden="true">&rarr;</span></a>
     </div>
     <p class="h-related">
-        {{ if $de }}Verwandt:{{ else }}Related:{{ end }}
-        <a href="{{ "private-chatgpt-alternative" | relLangURL }}">{{ if $de }}Private ChatGPT-Alternative{{ else }}Private ChatGPT Alternative{{ end }}</a>
+        <a href="{{ "pricing" | relLangURL }}">{{ if $de }}Preise{{ else }}Pricing{{ end }}</a>
         <span aria-hidden="true">·</span>
-        {{ if $de }}<a href="{{ "deutscher-ki-chat" | relLangURL }}">Deutscher KI-Chat</a>{{ else }}<a href="{{ "german-ai-chat" | relLangURL }}">German AI Chat</a>{{ end }}
+        <a href="{{ "faq" | relLangURL }}">FAQ</a>
+        <span aria-hidden="true">·</span>
+        <a href="{{ "privacy" | relLangURL }}">{{ if $de }}Datenschutz{{ else }}Privacy{{ end }}</a>
     </p>
 </section>
+
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+{{ partial "uc/script.html" . }}
 {{ end }}

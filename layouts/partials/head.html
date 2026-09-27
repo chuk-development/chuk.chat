@@ -210,8 +210,10 @@
 
 {{- $styles := resources.Get "css/styles.css" | fingerprint }}
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
-{{- if eq .Layout "usecases" }}
-{{- $uc := resources.Get "css/usecases.css" | fingerprint }}
+{{- if .IsHome }}
+{{- /* Homepage: the scroll-driven use-case worlds. uc-sidebar, uc-menu and
+       uc-assistant hold the mocks of those three app surfaces. */ -}}
+{{- $uc := slice (resources.Get "css/usecases.css") (resources.Get "css/uc-sidebar.css") (resources.Get "css/uc-menu.css") (resources.Get "css/uc-assistant.css") | resources.Concat "css/home.css" | fingerprint }}
 <link rel="stylesheet" href="{{ $uc.RelPermalink }}" integrity="{{ $uc.Data.Integrity }}">
 {{- end }}
 {{- block "head" . }}{{- end }}

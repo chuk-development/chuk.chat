@@ -1,17 +1,19 @@
-{{- /* Artifact panel header. Desktop: one 56px row. Mobile sheet: handle,
-       a 48px row and a full-width Preview | Code row. */ -}}
+{{- /* Artifact panel header, after the real app: type icon, title, type
+       chip, Preview | Code toggle, history / copy / download / close.
+       Mobile sheet: handle, a 48px row and a full-width toggle row. */ -}}
 <span class="a-handle"></span>
 <div class="a-ph">
     <svg class="i18 a-ph-doc"><use href="#h-{{ .icon | default "article" }}"/></svg>
-    <span class="a-ph-title"><span class="a-ph-tt">{{ .title }}</span><svg class="z20"><use href="#h-arrow-down01"/></svg></span>
+    <span class="a-ph-title"><span class="a-ph-tt">{{ .title }}</span></span>
     <span class="a-type">{{ .type }}</span>
-    <span class="a-seg"><span class="on"><svg class="z14"><use href="#h-tick02"/></svg>{{ .p.ui.preview }}</span><span>{{ .p.ui.code }}</span></span>
+    <span class="a-seg"><span class="on"><svg class="i14"><use href="#h-eye"/></svg>{{ .p.ui.preview }}</span><span><svg class="z14"><use href="#h-source-code"/></svg>{{ .p.ui.code }}</span></span>
     <span class="a-ph-ic">
-        <span><svg class="i18"><use href="#h-forum"/></svg></span>
+        <span class="a-d"><svg class="i18"><use href="#h-history"/></svg></span>
         <span class="a-d"><svg class="z18"><use href="#h-copy01"/></svg></span>
         <span class="a-d"><svg class="z18"><use href="#h-download01"/></svg></span>
+        <span class="a-m"><svg class="i18"><use href="#h-forum"/></svg></span>
         <span class="a-m"><svg class="z22"><use href="#h-more-horizontal"/></svg></span>
         <span><svg class="z18"><use href="#h-cancel01"/></svg></span>
     </span>
 </div>
-<div class="a-seg-m"><span class="a-seg"><span class="on"><svg class="z16"><use href="#h-tick02"/></svg>{{ .p.ui.preview }}</span><span>{{ .p.ui.code }}</span></span><span class="a-verchip">v1<svg class="z14"><use href="#h-arrow-down01"/></svg></span></div>
+<div class="a-seg-m"><span class="a-seg"><span class="on"><svg class="i16"><use href="#h-eye"/></svg>{{ .p.ui.preview }}</span><span><svg class="z16"><use href="#h-source-code"/></svg>{{ .p.ui.code }}</span></span><span class="a-verchip">v1<svg class="z14"><use href="#h-arrow-down01"/></svg></span></div>

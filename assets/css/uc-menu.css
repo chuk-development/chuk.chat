@@ -1,0 +1,273 @@
+/* uc-menu: owned by the uc-menu mock.
+
+   The composer's two menus, drawn like the app draws them
+   (chuk_chat: chat_mode_selector.dart, anchored_menu.dart,
+   menu_tile_group.dart):
+   - one framed panel: 2 px border at the icon colour 30 %, 3 px padding,
+     radius 18 + 3, the fill of the chat behind it;
+   - rows 40 px high, 16 px side padding, 18 px icon + 10 px, a bold label,
+     12 px, then the tick and the chevron;
+   - a run of rows sits 3 px apart, two runs sit 10 px apart (no line);
+   - the menu opens 6 px above the pill, right edges aligned, and fades in.
+   The pill opens the mode menu; its third row closes it and opens the model
+   menu at the same place. That plays at s1, s3 and s5. */
+
+.mn {
+    position: absolute;
+    right: 66px;
+    bottom: 56px;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 220px;
+    padding: 3px;
+    border: 2px solid var(--fg30);
+    border-radius: 21px;
+    background: var(--bg);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.14s cubic-bezier(0.32, 0, 0.67, 0);
+}
+
+.mn-g {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mn-row {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 6px;
+    color: var(--fg);
+}
+
+.mn-row:first-child {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.mn-row:last-child {
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+/* An 18 px box; HugeIcons draw at 0.86 of it (z18), Material at full. */
+.mn-ic {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mn-ic:first-child,
+.mn-logo {
+    margin-right: 10px;
+}
+
+.mn-l {
+    flex: 1 1 auto;
+    margin-right: 12px;
+    color: rgba(232, 228, 216, calc(0.8 + var(--pick) * 0.2));
+}
+
+.mn-v {
+    margin-right: 4px;
+    color: var(--fg70);
+}
+
+.mn-dim {
+    color: rgba(232, 228, 216, 0.8);
+}
+
+/* The tick: the mode rows add it, the model rows keep its room so the
+   menu does not change width when the tick moves. */
+.mn-tick {
+    display: none;
+}
+
+.mn-mdl .mn-tick {
+    display: flex;
+    visibility: hidden;
+}
+
+/* Not in the app yet: the provider's logo in each model row, drawn as a
+   glyph in the icon colour so it sits in the icon column. */
+.mn-logo {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    background: var(--fg);
+    -webkit-mask: var(--logo) center / 14px 14px no-repeat;
+    mask: var(--logo) center / 14px 14px no-repeat;
+}
+
+/* The chosen row: full colour and a tick. */
+.w-models:not(.s3) .mn-fast,
+.w-models.s3 .mn-custom,
+.w-models:not(.s3) .mn-mdl.sel-a,
+.w-models.s3:not(.s5) .mn-mdl.sel-b,
+.w-models.s5 .mn-mdl.sel-c {
+    --pick: 1;
+}
+
+.w-models:not(.s3) .mn-fast .mn-tick,
+.w-models.s3 .mn-custom .mn-tick {
+    display: flex;
+}
+
+.w-models:not(.s3) .sel-a .mn-tick,
+.w-models.s3:not(.s5) .sel-b .mn-tick,
+.w-models.s5 .sel-c .mn-tick {
+    visibility: visible;
+}
+
+/* The custom row names the model Custom ran last: none yet before s3. */
+.w-models.s3 .ph-a,
+.w-models:not(.s3) .ph-b,
+.w-models.s5 .ph-b,
+.w-models:not(.s5) .ph-c {
+    display: none;
+}
+
+/* The pill: Fast, then the model picked at s1, s3, s5. */
+.pl {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Out of the flow instead of display: none, so an animation can bring a
+   label back for a moment. */
+.w-models.s1 .pl-0,
+.w-models:not(.s1) .pl-a,
+.w-models.s3 .pl-a,
+.w-models:not(.s3) .pl-b,
+.w-models.s5 .pl-b,
+.w-models:not(.s5) .pl-c {
+    position: absolute;
+    visibility: hidden;
+}
+
+/* ----- Open: the mode menu, a click on the third row, the model menu, a
+   click on a model. The rest state is the model menu with the new tick, so
+   without motion the page still reads right. ----- */
+.w-models.s1:not(.s2) .mn-1,
+.w-models.s3:not(.s4) .mn-1,
+.w-models.s5:not(.s6) .mn-1 {
+    animation: mn-first 0.95s linear;
+}
+
+.w-models.s1:not(.s2) .mn-1 .mn-custom,
+.w-models.s3:not(.s4) .mn-1 .mn-custom,
+.w-models.s5:not(.s6) .mn-1 .mn-custom {
+    animation: mn-click 0.4s linear 0.45s;
+}
+
+.w-models.s1:not(.s2) .mn-2,
+.w-models.s3:not(.s4) .mn-2,
+.w-models.s5:not(.s6) .mn-2 {
+    opacity: 1;
+    transition: opacity 0.14s cubic-bezier(0.33, 1, 0.68, 1) 0.95s;
+}
+
+/* The pill and the model picked before keep their state until the click
+   lands. */
+.w-models.s1:not(.s2) .pl-0,
+.w-models.s3:not(.s4) .pl-a,
+.w-models.s5:not(.s6) .pl-b {
+    animation: mn-pill-was 1.9s step-end;
+}
+
+.w-models.s1:not(.s2) .pl-a,
+.w-models.s3:not(.s4) .pl-b,
+.w-models.s5:not(.s6) .pl-c {
+    animation: mn-pill-now 1.9s step-end;
+}
+
+.w-models.s3:not(.s4) .mn-mdl.sel-a,
+.w-models.s5:not(.s6) .mn-mdl.sel-b {
+    animation: mn-was 1.9s step-end;
+}
+
+.w-models.s3:not(.s4) .mn-mdl.sel-a .mn-tick,
+.w-models.s5:not(.s6) .mn-mdl.sel-b .mn-tick {
+    animation: mn-was-tick 1.9s step-end;
+}
+
+.w-models.s1:not(.s2) .mn-mdl.sel-a,
+.w-models.s3:not(.s4) .mn-mdl.sel-b,
+.w-models.s5:not(.s6) .mn-mdl.sel-c {
+    animation: mn-now 1.9s linear;
+}
+
+.w-models.s1:not(.s2) .mn-mdl.sel-a .mn-tick,
+.w-models.s3:not(.s4) .mn-mdl.sel-b .mn-tick,
+.w-models.s5:not(.s6) .mn-mdl.sel-c .mn-tick {
+    animation: mn-now-tick 1.9s step-end;
+}
+
+@keyframes mn-first {
+    0% { opacity: 0; }
+    15%, 85% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Hover, then the press highlight, as a Material InkWell draws them. */
+@keyframes mn-click {
+    0%, 55% { background: rgba(255, 255, 255, 0.05); }
+    56%, 100% { background: rgba(204, 204, 204, 0.16); }
+}
+
+@keyframes mn-was {
+    from, to { --pick: 1; }
+}
+
+@keyframes mn-was-tick {
+    from, to { visibility: visible; }
+}
+
+@keyframes mn-now {
+    0%, 73% { --pick: 0; background: transparent; }
+    74%, 86% { --pick: 0; background: rgba(255, 255, 255, 0.05); }
+    87%, 100% { --pick: 0; background: rgba(204, 204, 204, 0.16); }
+}
+
+@keyframes mn-now-tick {
+    from, to { visibility: hidden; }
+}
+
+@keyframes mn-pill-was {
+    from, to { position: static; visibility: visible; }
+}
+
+@keyframes mn-pill-now {
+    from, to { position: absolute; visibility: hidden; }
+}
+
+@property --pick {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+/* Phones: the pill sits on the left, so the menu opens rightwards from it. */
+@container stage (max-width: 560px) {
+    .mn {
+        left: 52px;
+        right: auto;
+        bottom: 52px;
+    }
+    .mn-x {
+        display: none;
+    }
+}

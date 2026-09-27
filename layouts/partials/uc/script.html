@@ -102,23 +102,27 @@
             var cs = getComputedStyle(el);
             var vw = parseFloat(cs.width) || 1000;
             var k;
+            // On phones the mocks stay a little smaller than the stage.
+            var narrow = sw < 560 ? 0.88 : 1;
             if (el.classList.contains('phone')) {
-                k = Math.min(sw / vw, sh / (parseFloat(cs.height) || 891));
+                k = Math.min(sw / vw, sh / (parseFloat(cs.height) || 891)) * narrow;
             } else {
                 var minH = vw > 600 ? 600 : 520;
-                k = sw / vw;
+                k = (sw * narrow) / vw;
                 if (sh / k < minH) {
                     k = sh / minH;
                 }
                 el.style.height = Math.floor(sh / k) + 'px';
             }
             el.style.zoom = k.toFixed(4);
+            el.style.setProperty('--k', k.toFixed(4));
         });
         // The hero composer uses the zoom of the chat mocks, so it looks the same.
         var hero = root.querySelector('.uc-hero-input .a-composer');
         var ref = root.querySelector('.uc-world .app:not(.app--side)');
         if (hero && ref && ref.style.zoom) {
             hero.style.zoom = ref.style.zoom;
+            hero.style.setProperty('--k', ref.style.zoom);
         }
     }
     fitStages();

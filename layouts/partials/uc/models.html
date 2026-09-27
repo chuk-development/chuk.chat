@@ -1,5 +1,13 @@
 {{ $m := .m }}
 {{ $phase := slice "a" "b" "c" }}
+{{- /* The composer's two menus, as in the app (chat_mode_selector.dart):
+       the pill opens the mode menu; its third row closes it and opens the
+       model menu at the same anchor. uc-menu.css plays that at s1, s3, s5. */ -}}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <symbol id="menu-reasoning" viewBox="0 0 24 24"><path fill="currentColor" d="M19.92 9.05C19.5 5.72 16.55 3 12.98 3C9.47 3 6.56 5.62 6.09 9L4.17 12.47C3.75 13.12 4.22 14.02 5.02 14.02H6V15.98C6 17.11 6.89 18 8.02 18H9V21H15.98V16.31C18.61 15.05 20.34 12.23 19.92 9.05ZM14.91 14.62 14.02 15.05V18.98H11.02V15.98H8.02V12H6.7L8.02 9.66C8.2 7.08 10.36 5.02 12.98 5.02C15.75 5.02 18 7.22 18 9.98C18 12.09 16.69 13.88 14.91 14.62ZM12.52 12.56C12.09 12.56 11.77 12.84 11.77 13.27C11.77 13.69 12.09 14.02 12.52 14.02C12.94 14.02 13.22 13.69 13.22 13.27C13.22 12.84 12.94 12.56 12.52 12.56ZM12.52 6.98C11.48 6.98 10.78 7.69 10.5 8.44L11.44 8.86C11.58 8.44 11.91 7.97 12.52 7.97C13.45 7.97 13.64 8.86 13.31 9.33C12.98 9.8 12.47 10.08 12.19 10.59C11.95 11.02 12 11.48 12 11.77H13.03C13.03 11.2 13.08 11.11 13.17 10.97C13.41 10.55 13.83 10.31 14.25 9.7C14.67 9.09 14.53 8.3 14.25 7.88C13.97 7.41 13.36 6.98 12.52 6.98Z"/></symbol>
+    </defs>
+</svg>
 <div class="app app--models">
     {{ partial "uc/a-chrome.html" (dict "title" .m.chat_title) }}
     <div class="a-chat">
@@ -15,20 +23,27 @@
         </div></div>
         <div class="a-foot">
             <div class="a-composer">
-                <div class="a-menus">
-                    <div class="a-mbox a-m2">
-                        <div class="a-mt"><svg class="z18"><use href="#h-ai-brain01"/></svg><span class="a-ml">{{ .m.reasoning }}</span><span class="a-mv">{{ .m.reasoning_value }}</span><svg class="z18"><use href="#h-arrow-right01"/></svg></div>
-                        <div class="a-mgap"></div>
-                        {{ range $j, $mdl := .m.models }}
-                        <div class="a-mt a-mdl{{ range $k, $s := $m.sent }}{{ if eq $s.model $j }} sel-{{ index $phase $k }}{{ end }}{{ end }}"><img src="/logos/models/{{ $mdl.logo }}" alt="" width="18" height="18" loading="lazy" decoding="async"><span class="a-ml">{{ $mdl.name }}</span><svg class="z18 a-chk"><use href="#h-tick02"/></svg></div>
-                        {{ end }}
-                        <div class="a-mt"><svg class="z18"><use href="#h-plus-sign"/></svg><span class="a-ml">{{ .m.more }}</span><svg class="z18"><use href="#h-arrow-right01"/></svg></div>
+                {{- /* Level 1: Fast, Thinking, and the custom model one level deeper. */}}
+                <div class="mn mn-1">
+                    <div class="mn-g">
+                        <div class="mn-row mn-fast"><span class="mn-ic"><svg class="z18"><use href="#h-flash"/></svg></span><span class="mn-l">{{ index .m.modes 0 }}</span><span class="mn-ic mn-tick"><svg class="z18"><use href="#h-tick02"/></svg></span></div>
+                        <div class="mn-row"><span class="mn-ic"><svg class="z18"><use href="#h-ai-brain01"/></svg></span><span class="mn-l">{{ index .m.modes 1 }}</span></div>
+                        <div class="mn-row mn-custom"><span class="mn-ic"><svg class="z18"><use href="#h-settings02"/></svg></span><span class="mn-l">{{ range $k, $s := .m.sent }}<span class="ph-{{ index $phase $k }}">{{ if eq $k 0 }}{{ $m.choose }}{{ else }}{{ (index $m.models (index $m.sent (sub $k 1)).model).name }}{{ end }}</span>{{ end }}</span><span class="mn-ic mn-tick"><svg class="z18"><use href="#h-tick02"/></svg></span><span class="mn-ic mn-dim"><svg class="z18"><use href="#h-arrow-right01"/></svg></span></div>
                     </div>
-                    <div class="a-mbox a-m1">
-                        <div class="a-mt"><svg class="z18"><use href="#h-flash"/></svg><span class="a-ml">{{ index .m.modes 0 }}</span></div>
-                        <div class="a-mt"><svg class="z18"><use href="#h-ai-brain01"/></svg><span class="a-ml">{{ index .m.modes 1 }}</span></div>
-                        <div class="a-mgap"></div>
-                        <div class="a-mt is-on"><svg class="z18"><use href="#h-settings02"/></svg><span class="a-ml">{{ range $k, $s := .m.sent }}<span class="ph-{{ index $phase $k }}">{{ (index $m.models $s.model).name }}</span>{{ end }}</span><svg class="z18"><use href="#h-tick02"/></svg><svg class="z18"><use href="#h-arrow-right01"/></svg></div>
+                </div>
+                {{- /* Level 2: reasoning, the picked models, the way to the rest. */}}
+                <div class="mn mn-2">
+                    <div class="mn-g">
+                        <div class="mn-row"><span class="mn-ic"><svg class="i18"><use href="#menu-reasoning"/></svg></span><span class="mn-l">{{ .m.reasoning }}</span><span class="mn-v">{{ .m.reasoning_value }}</span><span class="mn-ic mn-dim"><svg class="z18"><use href="#h-arrow-right01"/></svg></span></div>
+                    </div>
+                    <div class="mn-g">
+                        {{ range $j, $mdl := .m.models }}
+                        {{ $sel := "" }}
+                        {{ range $k, $s := $m.sent }}{{ if eq $s.model $j }}{{ $sel = printf "%s sel-%s" $sel (index $phase $k) }}{{ end }}{{ end }}
+                        {{ $logo := printf "/logos/models/%s?v=%s" $mdl.logo (readFile (printf "static/logos/models/%s" $mdl.logo) | md5 | truncate 8 "") }}
+                        <div class="mn-row mn-mdl{{ $sel }}{{ if and (ge $j 4) (eq $sel "") }} mn-x{{ end }}"><span class="mn-logo" style="--logo: url('{{ $logo }}')"></span><span class="mn-l">{{ $mdl.name }}</span><span class="mn-ic mn-tick"><svg class="z18"><use href="#h-tick02"/></svg></span></div>
+                        {{ end }}
+                        <div class="mn-row"><span class="mn-ic"><svg class="z18"><use href="#h-plus-sign"/></svg></span><span class="mn-l">{{ .m.more }}</span><span class="mn-ic mn-dim"><svg class="z18"><use href="#h-arrow-right01"/></svg></span></div>
                     </div>
                 </div>
                 <div class="a-field">{{ .p.input_placeholder }}</div>
@@ -36,12 +51,14 @@
                     <span class="a-btn a-plus"><svg class="z24"><use href="#h-plus-sign"/></svg></span>
                     <span class="a-grow"></span>
                     <span class="a-pill">
-                        <svg class="z15 until2"><use href="#h-flash"/></svg><svg class="z15 from2"><use href="#h-settings02"/></svg>
-                        <b><span class="until2">{{ .p.mode_label }}</span>{{ range $k, $s := .m.sent }}<span class="ph-{{ index $phase $k }} from2">{{ (index $m.models $s.model).name }}</span>{{ end }}</b>
+                        <span class="pl pl-0"><svg class="z15"><use href="#h-flash"/></svg><b>{{ .p.mode_label }}</b></span>
+                        {{- range $k, $s := .m.sent }}
+                        <span class="pl pl-{{ index $phase $k }}"><svg class="z15"><use href="#h-settings02"/></svg><b>{{ (index $m.models $s.model).name }}</b></span>
+                        {{- end }}
                         <svg class="z12 a-dn"><use href="#h-arrow-down01"/></svg>
                     </span>
                     <span class="a-btn a-mic"><svg class="z22"><use href="#h-mic02"/></svg></span>
-                <span class="a-send"><svg class="z26"><use href="#h-send-horizontal"/></svg></span>
+                    <span class="a-send"><svg class="z26"><use href="#h-send-horizontal"/></svg></span>
                 </div>
             </div>
             <p class="a-disc">{{ .p.disclaimer }}</p>

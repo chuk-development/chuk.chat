@@ -1,0 +1,298 @@
+/* uc-sidebar: owned by the uc-sidebar mock.
+   Engineers: the desktop app with the chat sidebar open. Every value is the
+   app's own logical pixels, taken from chuk_chat's SidebarDesktop
+   (lib/platform_specific/sidebar_desktop.dart) and its chrome
+   (lib/widgets/sidebar/sidebar_chrome.dart): a 320 px panel, blocks inset
+   8 px, cards 3 px apart with 20 px outer and 6 px joint corners. */
+
+.app--side .a-chat {
+    margin-left: 0;
+}
+
+.app--side .a-side {
+    --sb-panel: #31312E;
+    --sb-card: #363633;
+    --sb-sel: #57433A;
+    --sb-chip: #4B4B47;
+    --sb-muted: #C8C5BA;
+    position: relative;
+    z-index: 1;
+    flex: 0 0 320px;
+    overflow: hidden;
+    background: var(--sb-panel);
+    color: var(--fg);
+    font-family: var(--ui-font);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Head bar: floats 16 px from the top, the navigation block joins under it. */
+.sb-head {
+    position: absolute;
+    top: 16px;
+    left: 8px;
+    right: 8px;
+    z-index: 3;
+    height: 48px;
+    border-radius: 20px 20px 6px 6px;
+    background: var(--bg);
+}
+
+.sb-menu {
+    position: absolute;
+    left: -1.5px;
+    top: 3.6px;
+    width: 48px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--fg);
+}
+
+/* The frozen brand lockup (assets/wordmark.svg): 15 px ink height for
+   "Chuk Chat", 28.6 px with the slogan line. */
+.sb-word {
+    position: absolute;
+    left: 52px;
+    top: 9.7px;
+    width: 159.4px;
+    height: 28.6px;
+    color: var(--fg);
+}
+
+/* Navigation block: New chat, Media, Search. 42 px cards. */
+.sb-nav {
+    position: absolute;
+    top: 64px;
+    left: 8px;
+    right: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.sb-nc {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 42px;
+    padding: 0 8px;
+    border-radius: 6px;
+    background: var(--sb-card);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.sb-nc:last-child {
+    border-radius: 6px 6px 20px 20px;
+}
+
+.sb-ic {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--acc);
+}
+
+/* The chat list. It starts 6 px under the navigation block and runs on
+   under the account pill, like the real list does. */
+.sb-list {
+    position: absolute;
+    inset: 0;
+    padding: 202px 8px 0;
+}
+
+.sb-grp {
+    padding-top: 10px;
+}
+
+.sb-gh {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 18px 0 14px;
+    border-radius: 20px 20px 6px 6px;
+    background: var(--sb-card);
+    color: var(--sb-muted);
+}
+
+.sb-gh b {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sb-gh small {
+    margin-right: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+    /* 0.7 of the header colour in the app; Flutter's text gamma draws it
+       brighter than a browser does, so a little more here. */
+    color: rgba(200, 197, 186, 0.82);
+}
+
+.sb-chev {
+    width: 20px;
+    height: 20px;
+}
+
+.sb-card {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    margin-top: 3px;
+    padding: 6px 4px 6px 12px;
+    border-radius: 6px;
+    background: var(--sb-card);
+}
+
+.sb-card:last-child {
+    border-radius: 6px 6px 20px 20px;
+}
+
+.sb-card.is-sel {
+    background: var(--sb-sel);
+}
+
+.sb-card-t {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The title box is 27 px: the 24 px line plus the slack the app's
+   HoverMarqueeText reserves for descenders. */
+.sb-card-t b {
+    height: 27px;
+    padding-top: 1.5px;
+    overflow: hidden;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sb-card.is-sel .sb-card-t b {
+    font-weight: 700;
+    color: var(--acc);
+}
+
+.sb-card-t small {
+    margin-top: 1px;
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.3px;
+    color: var(--sb-muted);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Streaming: a flat 7 px accent dot, no halo. */
+.sb-dot {
+    display: none;
+    flex: none;
+    width: 7px;
+    height: 7px;
+    margin-left: 6px;
+    border-radius: 50%;
+    background: var(--acc);
+}
+
+/* The pin toggle keeps its slot; it only shows on hover. */
+.sb-slot {
+    flex: none;
+    width: 28px;
+}
+
+.sb-more {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(232, 228, 216, 0.75);
+}
+
+.w-engineers.s1 .sb-card.is-live .sb-dot {
+    display: block;
+}
+
+/* A chat stops streaming: the CI question at step 4, the open chat when
+   its turn folds at step 5. */
+.w-engineers.s4 .sb-card.sb-done4 .sb-dot,
+.w-engineers.s5 .sb-card.sb-done5 .sb-dot {
+    display: none;
+}
+
+/* Account pill: floats 10 px above the bottom edge, in the page colour. */
+.sb-foot {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 10px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 4px 4px 4px 14px;
+    border-radius: 20px;
+    background: var(--bg);
+}
+
+.sb-foot b {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sb-credit {
+    flex: none;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--sb-chip);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+    color: var(--acc);
+    white-space: nowrap;
+}
+
+.sb-gear {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sb-muted);
+}
+
+/* Narrow stage: the app's compact layout. The sidebar is a drawer 85 % of
+   the window wide, and the chat behind it is hidden. */
+@container stage (max-width: 560px) {
+    .app--side .a-side {
+        flex: 0 0 85%;
+    }
+}

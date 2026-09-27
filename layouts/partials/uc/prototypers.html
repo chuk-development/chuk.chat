@@ -24,7 +24,7 @@
     </div>
     <div class="a-scrim pan3"></div>
     <div class="a-panel pan3"><div class="a-panel-in">
-        <div class="until4">{{ partial "uc/a-ph.html" (dict "title" .m.art1_title "type" .m.art1_type "icon" "draw" "p" .p) }}</div>
+        <div class="until4">{{ partial "uc/a-ph.html" (dict "title" .m.art1_title "type" .m.art1_type "icon" "title" "p" .p) }}</div>
         <div class="from4">{{ partial "uc/a-ph.html" (dict "title" .m.art2_title "type" .m.art2_type "icon" "code-m" "p" .p) }}</div>
         <div class="a-pb">
             <div class="xd until4">
@@ -37,6 +37,19 @@
                     {{ if lt $i 3 }}<path class="xd-s" pathLength="1" style="--d: {{ $i }}" d="M160 {{ add $y 54 }} C 161 {{ add $y 64 }}, 159 {{ add $y 72 }}, 160 {{ add $y 82 }} M152 {{ add $y 73 }} L160 {{ add $y 83 }} L168 {{ add $y 72 }}"/>{{ end }}
                     {{ end }}
                 </svg>
+                <div class="xd-bar">
+                    <span><svg><use href="#h-undo"/></svg></span>
+                    <span><svg><use href="#h-redo"/></svg></span>
+                    <span><svg><use href="#h-hand"/></svg></span>
+                    <span class="on"><svg><use href="#h-navigation"/></svg></span>
+                    <span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+                    <span><svg viewBox="0 0 24 24"><path d="M12 3 21 12 12 21 3 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+                    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+                    <span><svg viewBox="0 0 24 24"><path d="M4 12h15M14 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span><svg viewBox="0 0 24 24"><path d="M4 18 20 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                    <span><svg><use href="#h-draw"/></svg></span>
+                    <span><svg><use href="#h-title"/></svg></span>
+                </div>
             </div>
             <div class="proto from4">
                 <div class="proto-page">

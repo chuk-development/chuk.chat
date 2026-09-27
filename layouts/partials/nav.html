@@ -7,7 +7,6 @@
         </a>
         <div class="nav-right">
             <div class="nav-links">
-                <a href="{{ "use-cases" | relLangURL }}" class="nav-link{{ if eq .Layout "usecases" }} active{{ end }}">{{ if eq .Lang "de" }}Anwendungen{{ else }}Use Cases{{ end }}</a>
                 <a href="{{ "blog" | relLangURL }}" class="nav-link{{ if eq .Section "blog" }} active{{ end }}">Blog</a>
                 <a href="{{ "pricing" | relLangURL }}" class="nav-link{{ if eq .Section "pricing" }} active{{ end }}">{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
                 <a href="{{ "downloads" | relLangURL }}" class="nav-link{{ if eq .Section "downloads" }} active{{ end }}">Downloads</a>
@@ -42,7 +41,6 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="{{ "use-cases" | relLangURL }}"{{ if eq .Layout "usecases" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Anwendungen{{ else }}Use Cases{{ end }}</a>
     <a href="{{ "blog" | relLangURL }}"{{ if eq .Section "blog" }} class="active"{{ end }}>Blog</a>
     <a href="{{ "pricing" | relLangURL }}"{{ if eq .Section "pricing" }} class="active"{{ end }}>{{ if eq .Lang "de" }}Preise{{ else }}Pricing{{ end }}</a>
     <a href="{{ "downloads" | relLangURL }}"{{ if eq .Section "downloads" }} class="active"{{ end }}>Downloads</a>
